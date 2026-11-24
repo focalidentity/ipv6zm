@@ -1,0 +1,166 @@
+---
+import { SITE, NAV_LINKS, CONTACT } from '../consts';
+---
+
+<footer class="c-footer">
+  <div class="l-container">
+    <div class="c-footer__top">
+      <div class="c-footer__brand l-stack l-stack--sm">
+        <img
+          src="/images/WhatsApp_Image_2026-11-15_at_5.06.47_PM-removebg-preview.png"
+          alt="IPv6 Council of Zambia"
+          width="160"
+          height="46"
+          class="c-footer__logo"
+          loading="lazy"
+        />
+        <p class="c-footer__tagline">{SITE.description}</p>
+        <div class="c-footer__contact">
+          <p><strong>Phone:</strong> <a href={CONTACT.phoneTel}>{CONTACT.phoneDisplay}</a></p>
+          <p><strong>Email:</strong> <a href={CONTACT.emailMailto}>{CONTACT.email}</a></p>
+        </div>
+      </div>
+
+      <div class="c-footer__links">
+        <h4 class="c-footer__heading">Navigation</h4>
+        <ul class="c-footer__menu">
+          {
+            NAV_LINKS.map((link) => (
+              <li>
+                <a href={link.href} class="c-footer__link">
+                  {link.text}
+                </a>
+              </li>
+            ))
+          }
+          <li><a href="/subscribe" class="c-footer__link">Subscribe to Dispatches</a></li>
+        </ul>
+      </div>
+
+      <div class="c-footer__programmes">
+        <h4 class="c-footer__heading">Participation</h4>
+        <ul class="c-footer__menu">
+          <li><a href="/register?event=capacity-workshops" class="c-footer__link">Workshop Registration</a></li>
+          <li><a href="/register?event=policy-forum" class="c-footer__link">Policy Forum Registration</a></li>
+          <li><a href="/register?event=national-conference-2027" class="c-footer__link">Conference 2027 Interest</a></li>
+          <li><a href="/services" class="c-footer__link">Readiness Assessments</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="c-footer__bottom">
+      <p class="c-footer__copy">
+        Copyright © 2026 {SITE.name}. All rights reserved.
+      </p>
+      <div class="c-footer__legal l-cluster">
+        <a href="/contact">Privacy Policy</a>
+        <span>·</span>
+        <a href="/contact">Terms & Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .c-footer {
+    background-color: var(--color-surface-dark);
+    color: var(--color-text-inverse-muted);
+    padding-block-start: var(--space-2xl);
+    padding-block-end: var(--space-xl);
+    border-top: 1px solid var(--color-border-dark);
+    margin-block-start: auto;
+  }
+
+  .c-footer__top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    padding-block-end: var(--space-xl);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  @media (min-width: 48rem) {
+    .c-footer__top {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+
+  .c-footer__logo {
+    height: 2.75rem;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+  }
+
+  .c-footer__tagline {
+    font-size: var(--font-size-sm);
+    max-width: 28rem;
+    line-height: var(--line-height-normal);
+  }
+
+  .c-footer__contact {
+    font-size: var(--font-size-sm);
+  }
+
+  .c-footer__contact a {
+    color: var(--color-text-inverse);
+    text-decoration: underline;
+  }
+
+  .c-footer__heading {
+    color: var(--color-text-inverse);
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-block-end: var(--space-md);
+  }
+
+  .c-footer__menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .c-footer__link {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-inverse-muted);
+    transition: color var(--transition-fast);
+    display: inline-block;
+    padding-block: var(--space-3xs);
+  }
+
+  .c-footer__link:hover {
+    color: var(--color-text-inverse);
+  }
+
+  .c-footer__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding-block-start: var(--space-lg);
+    font-size: var(--font-size-xs);
+  }
+
+  @media (min-width: 40rem) {
+    .c-footer__bottom {
+      flex-direction: row;
+    }
+  }
+
+  .c-footer__copy {
+    color: var(--color-text-inverse-muted);
+  }
+
+  .c-footer__legal a {
+    color: var(--color-text-inverse-muted);
+    padding: var(--space-2xs);
+  }
+
+  .c-footer__legal a:hover {
+    color: var(--color-text-inverse);
+  }
+</style>

@@ -1,0 +1,31 @@
+---
+import { CONTACT } from '../consts';
+---
+
+<div class="c-call-cta l-card l-card--gold">
+  <div class="u-badge u-badge--gold">Direct Consultation</div>
+  <h4 class="c-call-cta__title">Have more questions?</h4>
+  <p class="c-call-cta__text">
+    Book a short call with the Council to talk about membership, sponsorship or IPv6 training for your organisation.
+  </p>
+  <div class="c-call-cta__action">
+    <a href={CONTACT.phoneTel} class="u-btn u-btn--gold">Book a call now</a>
+  </div>
+</div>
+
+<style>
+  .c-call-cta {
+    padding: var(--space-lg);
+  }
+
+  .c-call-cta__title {
+    font-size: var(--font-size-h3);
+    margin-block: var(--space-2xs);
+  }
+
+  .c-call-cta__text {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-block-end: var(--space-md);
+  }
+</style>

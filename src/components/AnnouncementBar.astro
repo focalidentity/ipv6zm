@@ -1,0 +1,55 @@
+---
+import { CONFERENCE } from '../consts';
+---
+
+<aside class="c-announcement" aria-label="Conference Announcement">
+  <div class="l-container">
+    <div class="c-announcement__content">
+      <span class="u-badge u-badge--gold">National Event</span>
+      <p class="c-announcement__text">{CONFERENCE.announcementText}</p>
+      <a href={CONFERENCE.announcementCtaHref} class="c-announcement__link">
+        {CONFERENCE.announcementCtaText}
+      </a>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .c-announcement {
+    background-color: var(--color-brand-primary);
+    color: var(--color-text-inverse);
+    padding-block: var(--space-2xs);
+    font-size: var(--font-size-sm);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .c-announcement__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    text-align: center;
+  }
+
+  .c-announcement__text {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .c-announcement__link {
+    color: var(--color-brand-gold);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.25rem;
+    padding-inline: var(--space-2xs);
+    transition: color var(--transition-fast);
+  }
+
+  .c-announcement__link:hover {
+    color: #fde68a;
+  }
+</style>

@@ -1,0 +1,114 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import ContactCard from '../components/ContactCard.astro';
+import NewsletterBox from '../components/NewsletterBox.astro';
+import CallCtaCard from '../components/CallCtaCard.astro';
+import { SITE, SERVICES, TRANSITION_STEPS } from '../consts';
+---
+
+<PageLayout
+  title={`IPv6 Services in Zambia | ${SITE.name}`}
+  description="Explore comprehensive IPv6 services in Zambia: readiness assessments, enterprise training workshops, policy advisory, research reports, and migration support."
+>
+  <div class="c-page-header l-section">
+    <div class="l-container">
+      <div class="u-badge u-badge--primary">Services & Solutions</div>
+      <h1 class="c-page-header__title">What we do to move Zambia to IPv6</h1>
+      <p class="c-page-header__lead">
+        We provide technical training, strategic roadmapping, infrastructure audits, and regulatory counsel to secure Zambia's digital future.
+      </p>
+    </div>
+  </div>
+
+  <!-- Detailed Services Breakdown -->
+  <section class="l-section l-section--muted">
+    <div class="l-container">
+      <div class="l-grid l-grid--2col">
+        {
+          SERVICES.map((srv) => (
+            <article class="c-service-detail l-card l-card--primary">
+              <span class="c-service-detail__num">{srv.number}</span>
+              <h2 class="c-service-detail__title">{srv.title}</h2>
+              <p class="c-service-detail__summary">{srv.summary}</p>
+              <p class="c-service-detail__body">{srv.detail}</p>
+              <div class="c-service-detail__cta">
+                <a href="/contact" class="u-btn u-btn--outline">Request Service →</a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Transition Methodology -->
+  <ProcessSteps />
+
+  <!-- Pre-footer CTA -->
+  <section class="l-section l-section--muted">
+    <div class="l-container">
+      <div class="l-grid l-grid--3col">
+        <ContactCard />
+        <NewsletterBox />
+        <CallCtaCard />
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .c-page-header {
+    background: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
+    padding-block: var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .c-page-header__title {
+    font-size: var(--font-size-h1);
+    color: var(--color-brand-primary);
+    margin-block: var(--space-2xs);
+  }
+
+  .c-page-header__lead {
+    font-size: var(--font-size-body);
+    color: var(--color-text-muted);
+    max-width: 42rem;
+  }
+
+  .c-service-detail {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-xl);
+    gap: var(--space-xs);
+  }
+
+  .c-service-detail__num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-brand-accent);
+    font-family: var(--font-mono);
+  }
+
+  .c-service-detail__title {
+    font-size: var(--font-size-h2);
+    color: var(--color-brand-primary);
+  }
+
+  .c-service-detail__summary {
+    font-size: var(--font-size-body);
+    font-weight: 600;
+    color: var(--color-text-main);
+  }
+
+  .c-service-detail__body {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-normal);
+    flex-grow: 1;
+  }
+
+  .c-service-detail__cta {
+    padding-block-start: var(--space-md);
+  }
+</style>

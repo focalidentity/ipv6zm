@@ -1,0 +1,172 @@
+/* ==========================================================================
+   Lumos for Astro - Patterns Layer (Layout Primitives & Compound Structures)
+   ========================================================================== */
+
+@layer patterns {
+  /* Container Pattern */
+  .l-container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--space-md);
+  }
+
+  .l-container--narrow {
+    max-width: var(--container-narrow);
+  }
+
+  /* Vertical Stack Flow Rhythm */
+  .l-stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .l-stack > * + * {
+    margin-block-start: var(--stack-gap, var(--space-md));
+  }
+
+  .l-stack--sm > * + * {
+    margin-block-start: var(--space-xs);
+  }
+
+  .l-stack--lg > * + * {
+    margin-block-start: var(--space-lg);
+  }
+
+  .l-stack--xl > * + * {
+    margin-block-start: var(--space-xl);
+  }
+
+  /* Horizontal Cluster Pattern */
+  .l-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--cluster-gap, var(--space-md));
+    align-items: center;
+  }
+
+  .l-cluster--center {
+    justify-content: center;
+  }
+
+  .l-cluster--between {
+    justify-content: space-between;
+  }
+
+  /* Grid Patterns */
+  .l-grid {
+    display: grid;
+    gap: var(--grid-gap, var(--space-md));
+  }
+
+  .l-grid--2col {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  @media (min-width: 48rem) {
+    .l-grid--2col {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .l-grid--3col {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  @media (min-width: 48rem) {
+    .l-grid--3col {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .l-grid--3col {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .l-grid--4col {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  @media (min-width: 36rem) {
+    .l-grid--4col {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .l-grid--4col {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  /* Card Compound Pattern */
+  .l-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--card-pad, var(--space-lg));
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  }
+
+  .l-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: #cbd5e1;
+  }
+
+  .l-card--interactive:hover {
+    transform: translateY(-2px);
+  }
+
+  .l-card--accent {
+    border-top: 4px solid var(--color-brand-accent);
+  }
+
+  .l-card--primary {
+    border-top: 4px solid var(--color-brand-primary);
+  }
+
+  .l-card--gold {
+    border-top: 4px solid var(--color-brand-gold);
+    background-color: #fffdfa;
+  }
+
+  /* Section Spacing Pattern */
+  .l-section {
+    padding-block: var(--section-padding, var(--space-2xl));
+  }
+
+  .l-section--muted {
+    background-color: var(--color-surface-muted);
+  }
+
+  .l-section--dark {
+    background-color: var(--color-brand-primary);
+    color: var(--color-text-inverse);
+  }
+
+  .l-section--dark h1,
+  .l-section--dark h2,
+  .l-section--dark h3,
+  .l-section--dark h4 {
+    color: var(--color-text-inverse);
+  }
+
+  /* Frame Ratio Pattern */
+  .l-frame {
+    aspect-ratio: var(--frame-ratio, 16 / 9);
+    overflow: hidden;
+    position: relative;
+    border-radius: var(--radius-md);
+    background-color: #e2e8f0;
+  }
+
+  .l-frame > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

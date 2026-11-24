@@ -1,0 +1,165 @@
+---
+import { SITE } from '../consts';
+---
+
+<section class="c-hero l-section">
+  <div class="l-container">
+    <div class="c-hero__grid">
+      <!-- Left Hero Content -->
+      <div class="c-hero__content l-stack">
+        <div class="c-hero__badge-wrap">
+          <img
+            src="/images/Zambia_IPv6_association_badge_5fe0b2a8__1_-removebg-preview-300x167.png"
+            alt="Official IPv6 Council of Zambia Emblem"
+            width="220"
+            height="122"
+            class="c-hero__badge"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+
+        <h1 class="c-hero__title">IPv6 Zambia: Building a Faster, Safer Internet</h1>
+
+        <p class="c-hero__lead">
+          The IPv6 Council of Zambia is a non-profit association. We train engineers, bring government, banks and mobile operators together, and help the whole country move to IPv6.
+        </p>
+
+        <div class="c-hero__ctas l-cluster">
+          <a href="#programmes" class="u-btn u-btn--primary">Find out more</a>
+          <a href="/contact" class="u-btn u-btn--outline">Contact our experts</a>
+        </div>
+      </div>
+
+      <!-- Right Visual Grid (Authentic & Verified Imagery Only) -->
+      <div class="c-hero__media">
+        <div class="c-hero__media-grid">
+          <div class="c-hero__media-item c-hero__media-item--main">
+            <img
+              src="/images/nathan-dumlao-y440_q4e-0E-unsplash-scaled.jpg"
+              alt="Network engineer analyzing IPv6 configuration manuals"
+              width="600"
+              height="400"
+              loading="eager"
+              decoding="async"
+            />
+            <div class="c-hero__caption">Hands-on Capacity Building</div>
+          </div>
+          <div class="c-hero__media-item">
+            <img
+              src="/images/images-2.jpeg"
+              alt="Architectural structure representing institutional policy forums"
+              width="300"
+              height="200"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="c-hero__caption">Policy & Standards</div>
+          </div>
+          <div class="c-hero__media-item">
+            <img
+              src="/images/d4f84cf5.webp"
+              alt="Livingstone conference destination view"
+              width="300"
+              height="200"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="c-hero__caption">June 2027 Conference</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .c-hero {
+    background: linear-gradient(180deg, rgba(241, 245, 249, 0.6) 0%, rgba(248, 250, 252, 1) 100%);
+    padding-block-start: var(--space-xl);
+    padding-block-end: var(--space-2xl);
+  }
+
+  .c-hero__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  @media (min-width: 60rem) {
+    .c-hero__grid {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+  }
+
+  .c-hero__badge {
+    height: 4.5rem;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .c-hero__title {
+    font-size: var(--font-size-hero);
+    color: var(--color-brand-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .c-hero__lead {
+    font-size: var(--font-size-body);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-normal);
+    max-width: 36rem;
+  }
+
+  .c-hero__ctas {
+    gap: var(--space-sm);
+    padding-block-start: var(--space-2xs);
+  }
+
+  .c-hero__media-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xs);
+  }
+
+  .c-hero__media-item {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    background-color: #e2e8f0;
+  }
+
+  .c-hero__media-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+    transition: transform var(--transition-base);
+  }
+
+  .c-hero__media-item:hover img {
+    transform: scale(1.03);
+  }
+
+  .c-hero__media-item--main {
+    grid-column: span 2;
+  }
+
+  .c-hero__media-item--main img {
+    aspect-ratio: 16 / 9;
+  }
+
+  .c-hero__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-xs);
+    background: linear-gradient(180deg, transparent 0%, rgba(11, 37, 69, 0.85) 100%);
+    color: #ffffff;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+  }
+</style>

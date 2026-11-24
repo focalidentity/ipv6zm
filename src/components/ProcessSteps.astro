@@ -1,0 +1,56 @@
+---
+import { TRANSITION_STEPS } from '../consts';
+---
+
+<section class="c-process l-section">
+  <div class="l-container">
+    <div class="u-section-header">
+      <div class="u-badge u-badge--accent">Adoption Framework</div>
+      <h2>A clear path from IPv4 to IPv6</h2>
+      <p>A proven four-step roadmap to assess, deploy, and maintain robust dual-stack networks.</p>
+    </div>
+
+    <div class="l-grid l-grid--4col">
+      {
+        TRANSITION_STEPS.map((step) => (
+          <div class="c-process__step l-card l-card--primary">
+            <span class="c-process__num">{step.step}</span>
+            <h3 class="c-process__title">{step.title}</h3>
+            <p class="c-process__desc">{step.description}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="u-text-center" style="margin-top: var(--space-xl);">
+      <a href="/services" class="u-btn u-btn--outline">View all services</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .c-process__step {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-lg);
+  }
+
+  .c-process__num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-brand-accent);
+    font-family: var(--font-mono);
+    margin-block-end: var(--space-xs);
+  }
+
+  .c-process__title {
+    font-size: var(--font-size-h3);
+    margin-block-end: var(--space-xs);
+  }
+
+  .c-process__desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-normal);
+  }
+</style>

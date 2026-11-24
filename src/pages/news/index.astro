@@ -1,0 +1,262 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import SubscriberForm from '../../components/SubscriberForm.astro';
+import ContactCard from '../../components/ContactCard.astro';
+import CallCtaCard from '../../components/CallCtaCard.astro';
+import { SITE, CONFERENCE } from '../../consts';
+import { getAllArticles, getCategories } from '../../data/articles';
+
+const articles = getAllArticles();
+const categories = getCategories();
+---
+
+<PageLayout
+  title={`Articles & Technical Dispatches | ${SITE.name}`}
+  description="Explore official articles, technical migration guides, and policy papers on IPv6 deployment, hands-on workshops, and internet readiness in Zambia."
+>
+  <!-- Page Header -->
+  <div class="c-page-header l-section">
+    <div class="l-container">
+      <div class="u-badge u-badge--primary">Knowledge Hub</div>
+      <h1 class="c-page-header__title">Articles & Technical Dispatches</h1>
+      <p class="c-page-header__lead">
+        Authoritative guides, policy analyses, and operational reports supporting network engineers, leadership, and public sector stakeholders across Zambia.
+      </p>
+
+      <div class="c-header-actions l-cluster" style="margin-top: var(--space-md);">
+        <a href="#subscribe" class="u-btn u-btn--accent">Subscribe to Updates</a>
+        <a href="/register" class="u-btn u-btn--outline">Register for Events</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Articles Catalog Section -->
+  <section class="l-section">
+    <div class="l-container">
+      <!-- Category Filter Pills -->
+      <div class="c-category-nav" aria-label="Filter Articles by Category">
+        <button class="c-category-pill c-category-pill--active" data-filter="all">
+          All Articles ({articles.length})
+        </button>
+        {
+          categories.map((cat) => {
+            const count = articles.filter((a) => a.category === cat).length;
+            return (
+              <button class="c-category-pill" data-filter={cat}>
+                {cat} ({count})
+              </button>
+            );
+          })
+        }
+      </div>
+
+      <!-- Articles Grid -->
+      <div id="articles-grid" class="l-grid l-grid--2col" style="margin-top: var(--space-xl);">
+        {
+          articles.map((article) => (
+            <article class="c-article-card l-card l-card--interactive" data-category={article.category}>
+              <div class="c-article-card__header">
+                <span class="u-badge u-badge--primary">{article.category}</span>
+                <span class="c-article-card__read">{article.readTime}</span>
+              </div>
+              <h2 class="c-article-card__title">
+                <a href={`/news/${article.slug}/`}>{article.title}</a>
+              </h2>
+              <p class="c-article-card__excerpt">{article.excerpt}</p>
+              <div class="c-article-card__footer">
+                <span class="c-article-card__date">{article.publishedDate}</span>
+                <a href={`/news/${article.slug}/`} class="c-article-card__link">
+                  Read article →
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Event Registration Callout -->
+  <section class="l-section l-section--muted">
+    <div class="l-container">
+      <div class="c-event-callout l-card l-card--gold">
+        <div class="c-event-callout__content l-stack l-stack--sm">
+          <div class="u-badge u-badge--gold">Upcoming Participation</div>
+          <h2>Join Our Workgroups & Events</h2>
+          <p>
+            Register for the <strong>IPv6 Capacity-Building Workshops</strong>, participate in the <strong>Stakeholder and Policy Forum</strong>, or express early interest in the <strong>{CONFERENCE.title}</strong> ({CONFERENCE.targetMonthYear} - <em>date and venue to be confirmed</em>).
+          </p>
+          <div class="c-event-callout__action">
+            <a href="/register" class="u-btn u-btn--gold">Open Event Registration Form →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Subscriber Form Section -->
+  <section id="subscribe" class="l-section">
+    <div class="l-container l-container--narrow">
+      <SubscriberForm />
+    </div>
+  </section>
+
+  <!-- Pre-footer Sidebar -->
+  <section class="l-section l-section--muted">
+    <div class="l-container">
+      <div class="l-grid l-grid--2col">
+        <ContactCard />
+        <CallCtaCard />
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<script>
+  const filterBtns = document.querySelectorAll('.c-category-pill');
+  const cards = document.querySelectorAll('.c-article-card');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach((b) => b.classList.remove('c-category-pill--active'));
+      btn.classList.add('c-category-pill--active');
+
+      const filter = btn.getAttribute('data-filter');
+
+      cards.forEach((card) => {
+        const cat = card.getAttribute('data-category');
+        if (filter === 'all' || cat === filter) {
+          (card as HTMLElement).style.display = 'flex';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .c-page-header {
+    background: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
+    padding-block: var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .c-page-header__title {
+    font-size: var(--font-size-h1);
+    color: var(--color-brand-primary);
+    margin-block: var(--space-2xs);
+  }
+
+  .c-page-header__lead {
+    font-size: var(--font-size-body);
+    color: var(--color-text-muted);
+    max-width: 44rem;
+  }
+
+  .c-category-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    align-items: center;
+  }
+
+  .c-category-pill {
+    min-height: 2.75rem; /* 44px tap target */
+    padding: 0.5rem 1rem;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .c-category-pill:hover {
+    border-color: var(--color-brand-primary);
+    color: var(--color-brand-primary);
+  }
+
+  .c-category-pill--active {
+    background-color: var(--color-brand-primary);
+    color: #ffffff;
+    border-color: var(--color-brand-primary);
+  }
+
+  .c-article-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-xl);
+    gap: var(--space-xs);
+  }
+
+  .c-article-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-block-end: var(--space-2xs);
+  }
+
+  .c-article-card__read {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+  }
+
+  .c-article-card__title {
+    font-size: var(--font-size-h3);
+    color: var(--color-brand-primary);
+  }
+
+  .c-article-card__title a:hover {
+    color: var(--color-brand-secondary);
+  }
+
+  .c-article-card__excerpt {
+    font-size: var(--font-size-body);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-normal);
+    flex-grow: 1;
+    margin-block-end: var(--space-md);
+  }
+
+  .c-article-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block-start: var(--space-xs);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+  }
+
+  .c-article-card__date {
+    color: var(--color-text-muted);
+  }
+
+  .c-article-card__link {
+    font-weight: 700;
+    color: var(--color-brand-primary);
+  }
+
+  .c-article-card__link:hover {
+    color: var(--color-brand-accent);
+  }
+
+  .c-event-callout {
+    padding: var(--space-xl);
+  }
+
+  .c-event-callout h2 {
+    font-size: var(--font-size-h2);
+  }
+
+  .c-event-callout p {
+    color: var(--color-text-muted);
+    max-width: 44rem;
+  }
+
+  .c-event-callout__action {
+    padding-block-start: var(--space-xs);
+  }
+</style>

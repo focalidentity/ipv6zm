@@ -1,0 +1,269 @@
+---
+import { SITE, NAV_LINKS } from '../consts';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="c-header">
+  <div class="l-container">
+    <div class="c-header__inner">
+      <a href="/" class="c-header__brand" aria-label={`${SITE.name} Homepage`}>
+        <img
+          src="/images/WhatsApp_Image_2026-11-15_at_5.06.47_PM-removebg-preview.png"
+          alt="IPv6 Council of Zambia Logo"
+          width="180"
+          height="52"
+          class="c-header__logo"
+          loading="eager"
+        />
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="c-header__nav" aria-label="Main Navigation">
+        <ul class="c-header__menu">
+          {
+            NAV_LINKS.map((link) => {
+              const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
+              return (
+                <li>
+                  <a
+                    href={link.href}
+                    class:list={['c-header__link', { 'c-header__link--active': isActive }]}
+                    aria-current={isActive ? 'page' : undefined}
+                  >
+                    {link.text}
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </nav>
+
+      <div class="c-header__actions">
+        <a href="/contact" class="u-btn u-btn--accent c-header__cta-desktop">Join the Council</a>
+        <button
+          id="mobile-menu-toggle"
+          class="c-header__toggle"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Toggle navigation menu"
+        >
+          <span class="c-header__toggle-bar"></span>
+          <span class="c-header__toggle-bar"></span>
+          <span class="c-header__toggle-bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav Drawer -->
+    <nav id="mobile-nav" class="c-header__mobile-nav" aria-label="Mobile Navigation" hidden>
+      <ul class="c-header__mobile-menu">
+        {
+          NAV_LINKS.map((link) => {
+            const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
+            return (
+              <li>
+                <a
+                  href={link.href}
+                  class:list={['c-header__mobile-link', { 'c-header__mobile-link--active': isActive }]}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {link.text}
+                </a>
+              </li>
+            );
+          })
+        }
+        <li class="c-header__mobile-cta-wrap">
+          <a href="/contact" class="u-btn u-btn--accent" style="width: 100%; text-align: center;">Join the Council</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  if (toggleBtn && mobileNav) {
+    toggleBtn.addEventListener('click', () => {
+      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
+      if (isExpanded) {
+        mobileNav.setAttribute('hidden', '');
+      } else {
+        mobileNav.removeAttribute('hidden');
+      }
+    });
+  }
+</script>
+
+<style>
+  .c-header {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.96);
+  }
+
+  .c-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--space-xs);
+    gap: var(--space-md);
+  }
+
+  .c-header__brand {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .c-header__logo {
+    height: 3rem;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .c-header__nav {
+    display: none;
+  }
+
+  @media (min-width: 54rem) {
+    .c-header__nav {
+      display: block;
+    }
+  }
+
+  .c-header__menu {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .c-header__link {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text-main);
+    padding: var(--space-2xs) var(--space-3xs);
+    position: relative;
+    transition: color var(--transition-fast);
+  }
+
+  .c-header__link:hover {
+    color: var(--color-brand-secondary);
+  }
+
+  .c-header__link--active {
+    color: var(--color-brand-primary);
+    font-weight: 700;
+  }
+
+  .c-header__link--active::after {
+    content: '';
+    position: absolute;
+    bottom: -0.25rem;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--color-brand-accent);
+    border-radius: var(--radius-full);
+  }
+
+  .c-header__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .c-header__cta-desktop {
+    display: none;
+  }
+
+  @media (min-width: 54rem) {
+    .c-header__cta-desktop {
+      display: inline-flex;
+    }
+  }
+
+  .c-header__toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 0.35rem;
+    cursor: pointer;
+  }
+
+  @media (min-width: 54rem) {
+    .c-header__toggle {
+      display: none;
+    }
+  }
+
+  .c-header__toggle-bar {
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-brand-primary);
+    border-radius: var(--radius-full);
+    transition: transform var(--transition-fast), opacity var(--transition-fast);
+  }
+
+  .c-header__mobile-nav {
+    display: block;
+    padding-block: var(--space-md);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .c-header__mobile-nav[hidden] {
+    display: none;
+  }
+
+  @media (min-width: 54rem) {
+    .c-header__mobile-nav {
+      display: none !important;
+    }
+  }
+
+  .c-header__mobile-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin: 0;
+    padding: 0;
+  }
+
+  .c-header__mobile-link {
+    display: block;
+    padding: var(--space-xs);
+    font-size: var(--font-size-body);
+    font-weight: 600;
+    color: var(--color-text-main);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+  }
+
+  .c-header__mobile-link:hover,
+  .c-header__mobile-link--active {
+    background-color: var(--color-surface-muted);
+    color: var(--color-brand-primary);
+  }
+
+  .c-header__mobile-cta-wrap {
+    padding-block-start: var(--space-xs);
+  }
+</style>

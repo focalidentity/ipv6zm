@@ -1,0 +1,192 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactCard from '../components/ContactCard.astro';
+import NewsletterBox from '../components/NewsletterBox.astro';
+import CallCtaCard from '../components/CallCtaCard.astro';
+import { SITE, CONTACT, CONFERENCE } from '../consts';
+---
+
+<PageLayout
+  title={`Contact Us & Register Interest | ${SITE.name}`}
+  description="Connect with the IPv6 Council of Zambia. Register for training workshops, express interest in the June 2027 conference, or request an IPv6 readiness assessment."
+>
+  <div class="c-page-header l-section">
+    <div class="l-container">
+      <div class="u-badge u-badge--accent">Get in Touch</div>
+      <h1 class="c-page-header__title">Contact the Council</h1>
+      <p class="c-page-header__lead">
+        Register your organization for workshops, inquire about corporate membership, or discuss IPv6 migration advisory.
+      </p>
+    </div>
+  </div>
+
+  <section class="l-section">
+    <div class="l-container">
+      <div class="c-contact-grid">
+        <!-- Direct Enquiry Form -->
+        <div class="c-contact-form-wrap l-card l-card--primary">
+          <h2>Registration & Inquiry Form</h2>
+          <p class="c-contact-form__intro">
+            Submit your information below to register interest for the <strong>{CONFERENCE.title}</strong> ({CONFERENCE.targetMonthYear}) or reserve workshop training seats.
+          </p>
+
+          <form class="c-form l-stack" action="mailto:info@ipv6zm.org" method="POST" enctype="text/plain">
+            <div class="c-form__field">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" name="fullName" required placeholder="e.g. Chileshe Mwape" autocomplete="name" />
+            </div>
+
+            <div class="c-form__field">
+              <label for="organization">Organization / Company *</label>
+              <input type="text" id="organization" name="organization" required placeholder="e.g. Bank / ISP / Ministry" autocomplete="organization" />
+            </div>
+
+            <div class="c-form__grid">
+              <div class="c-form__field">
+                <label for="email">Official Email *</label>
+                <input type="email" id="email" name="email" required placeholder="name@company.zm" autocomplete="email" />
+              </div>
+
+              <div class="c-form__field">
+                <label for="phone">Phone / WhatsApp *</label>
+                <input type="tel" id="phone" name="phone" required placeholder="+260 9..." autocomplete="tel" />
+              </div>
+            </div>
+
+            <div class="c-form__field">
+              <label for="interest">Primary Interest *</label>
+              <select id="interest" name="interest" required>
+                <option value="">Select an interest area...</option>
+                <option value="conference-2027">National IPv6 Conference 2027 (June 2027)</option>
+                <option value="training-workshops">IPv6 Capacity-Building Workshops</option>
+                <option value="readiness-assessment">Enterprise IPv6 Readiness Assessment</option>
+                <option value="membership">Institutional Council Membership</option>
+                <option value="policy-forum">Stakeholder & Policy Forum</option>
+                <option value="general">General Inquiries</option>
+              </select>
+            </div>
+
+            <div class="c-form__field">
+              <label for="message">Message / Specific Requirements</label>
+              <textarea id="message" name="message" rows="4" placeholder="Briefly describe your team size, network requirements, or questions..."></textarea>
+            </div>
+
+            <button type="submit" class="u-btn u-btn--primary">Submit Registration / Inquiry</button>
+          </form>
+        </div>
+
+        <!-- Sidebar Contact Info -->
+        <div class="c-contact-sidebar l-stack l-stack--md">
+          <ContactCard />
+          <div class="l-card l-card--gold">
+            <h3 style="font-size: var(--font-size-h3); margin-bottom: var(--space-xs);">Secretariat Note</h3>
+            <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); line-height: var(--line-height-normal);">
+              All communications are routed directly to the Council Secretariat. For urgent partnership or sponsorship dialogue, you may call directly at <a href={CONTACT.phoneTel} style="font-weight: 700; color: var(--color-brand-primary);">{CONTACT.phoneDisplay}</a>.
+            </p>
+          </div>
+          <NewsletterBox />
+          <CallCtaCard />
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .c-page-header {
+    background: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
+    padding-block: var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .c-page-header__title {
+    font-size: var(--font-size-h1);
+    color: var(--color-brand-primary);
+    margin-block: var(--space-2xs);
+  }
+
+  .c-page-header__lead {
+    font-size: var(--font-size-body);
+    color: var(--color-text-muted);
+    max-width: 42rem;
+  }
+
+  .c-contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  @media (min-width: 56rem) {
+    .c-contact-grid {
+      grid-template-columns: 1.3fr 0.9fr;
+    }
+  }
+
+  .c-contact-form-wrap {
+    padding: var(--space-xl);
+  }
+
+  .c-contact-form-wrap h2 {
+    font-size: var(--font-size-h2);
+    margin-block-end: var(--space-2xs);
+  }
+
+  .c-contact-form__intro {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-block-end: var(--space-lg);
+  }
+
+  .c-form {
+    gap: var(--space-md);
+  }
+
+  .c-form__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 36rem) {
+    .c-form__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .c-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+  }
+
+  .c-form__field label {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-brand-primary);
+  }
+
+  .c-form__field input,
+  .c-form__field select,
+  .c-form__field textarea {
+    min-height: 2.75rem; /* 44px minimum tap target height */
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 1rem; /* Minimum 16px prevents iOS Safari auto-zoom */
+    background-color: #ffffff;
+    color: var(--color-text-main);
+  }
+
+  .c-form__field textarea {
+    min-height: 6rem;
+  }
+
+  .c-form__field input:focus,
+  .c-form__field select:focus,
+  .c-form__field textarea:focus {
+    outline: 2px solid var(--color-brand-primary);
+    border-color: var(--color-brand-primary);
+  }
+</style>

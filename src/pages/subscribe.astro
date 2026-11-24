@@ -1,0 +1,90 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import SubscriberForm from '../components/SubscriberForm.astro';
+import ContactCard from '../components/ContactCard.astro';
+import CallCtaCard from '../components/CallCtaCard.astro';
+import { SITE, CONTACT, CONFERENCE } from '../consts';
+---
+
+<PageLayout
+  title={`Subscribe to Technical Updates & Bulletins | ${SITE.name}`}
+  description="Subscribe to official technical dispatches, research bulletins, policy briefings, and event notifications from the IPv6 Council of Zambia."
+  canonical={`${SITE.url}/subscribe/`}
+>
+  <div class="c-page-header l-section">
+    <div class="l-container">
+      <div class="u-badge u-badge--accent">Official Communications</div>
+      <h1 class="c-page-header__title">Subscribe to IPv6 Zambia Dispatches</h1>
+      <p class="c-page-header__lead">
+        Stay updated on technical deployment frameworks, hands-on workshop cohorts, regulatory briefings, and the National IPv6 & Internet Conference 2027.
+      </p>
+    </div>
+  </div>
+
+  <section class="l-section">
+    <div class="l-container l-container--narrow">
+      <SubscriberForm
+        title="Subscriber Registration"
+        subtitle="Select your preferred communication topics below. Official dispatches are authored by the Council Secretariat."
+      />
+
+      <!-- Benefits of Subscribing -->
+      <div class="c-benefits-grid l-grid l-grid--3col" style="margin-top: var(--space-xl);">
+        <div class="l-card" style="padding: var(--space-md);">
+          <strong style="color: var(--color-brand-primary); display: block; margin-bottom: var(--space-3xs);">
+            Technical Guides
+          </strong>
+          <span style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
+            Dual-stack routing, address allocation best practices, and security configurations.
+          </span>
+        </div>
+        <div class="l-card" style="padding: var(--space-md);">
+          <strong style="color: var(--color-brand-primary); display: block; margin-bottom: var(--space-3xs);">
+            Training Alerts
+          </strong>
+          <span style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
+            Priority seat reservation for engineer cohorts and hands-on lab sessions.
+          </span>
+        </div>
+        <div class="l-card" style="padding: var(--space-md);">
+          <strong style="color: var(--color-brand-primary); display: block; margin-bottom: var(--space-3xs);">
+            Conference News
+          </strong>
+          <span style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
+            Direct alerts once the {CONFERENCE.targetMonthYear} national summit venue and dates are finalized.
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pre-footer Contact -->
+  <section class="l-section l-section--muted">
+    <div class="l-container l-container--narrow">
+      <div class="l-grid l-grid--2col">
+        <ContactCard />
+        <CallCtaCard />
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .c-page-header {
+    background: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
+    padding-block: var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .c-page-header__title {
+    font-size: var(--font-size-h1);
+    color: var(--color-brand-primary);
+    margin-block: var(--space-2xs);
+  }
+
+  .c-page-header__lead {
+    font-size: var(--font-size-body);
+    color: var(--color-text-muted);
+    max-width: 44rem;
+  }
+</style>

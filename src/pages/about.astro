@@ -1,0 +1,187 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactCard from '../components/ContactCard.astro';
+import NewsletterBox from '../components/NewsletterBox.astro';
+import CallCtaCard from '../components/CallCtaCard.astro';
+import { SITE } from '../consts';
+---
+
+<PageLayout
+  title={`About Us | ${SITE.name}`}
+  description="Learn about the IPv6 Council of Zambia, our non-profit mission, our founder's story, and how we collaborate with government, banks, and mobile operators."
+>
+  <div class="c-page-header l-section">
+    <div class="l-container">
+      <div class="u-badge u-badge--primary">About the Council</div>
+      <h1 class="c-page-header__title">Building a Faster, Safer Zambian Internet</h1>
+      <p class="c-page-header__lead">
+        A non-profit professional association dedicated to building national technical capacity and accelerating IPv6 adoption across Zambia.
+      </p>
+    </div>
+  </div>
+
+  <section class="l-section">
+    <div class="l-container l-stack l-stack--xl">
+      <!-- Mission & Objectives -->
+      <div class="l-grid l-grid--2col">
+        <div class="c-about-box l-card l-card--primary">
+          <h2>Our Mission</h2>
+          <p>
+            To build the technical skills, institutional frameworks, and collaborative networks Zambia needs to operate a secure, scalable, and globally integrated IPv6 internet ecosystem.
+          </p>
+        </div>
+        <div class="c-about-box l-card l-card--accent">
+          <h2>Core Objectives</h2>
+          <ul class="c-about-list">
+            <li><strong>Capacity Building:</strong> Hands-on technical workshops delivered with international engineering partners.</li>
+            <li><strong>Cybersecurity & Scalability:</strong> Strengthening national critical infrastructure by eliminating address exhaustion barriers.</li>
+            <li><strong>Multi-Sector Dialogue:</strong> Bringing government, commercial banks, MNOs, and private enterprise around one table.</li>
+            <li><strong>Research & Evidence:</strong> Publishing transparent national benchmarks on Zambia's IPv6 deployment.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Founder Narrative -->
+      <article class="c-founder-full l-card">
+        <div class="u-badge u-badge--gold">Founder's Story</div>
+        <h2>Born from a lifelong passion for computing</h2>
+        <div class="c-founder-full__body l-stack l-stack--sm">
+          <p>
+            The Council began with one core belief: Zambia's internet will only grow if its people have the skills and knowledge to run it. Our founder grew up around early computing systems, inspired by a mother who was an early programmer with an international British company in the 1970s.
+          </p>
+          <p>
+            Having subsequently trained in accounting in the UK before returning to establish a long-standing career in IT and technology advisory, our founder is a persistent networker who believes that national achievements depend on collaboration, practical skills, and shared technical leadership rather than credentials alone.
+          </p>
+          <p>
+            Today, that curiosity has matured into a nationwide mission: ensuring every telecommunications provider, financial institution, and government body in Zambia successfully transitions to IPv6.
+          </p>
+        </div>
+      </article>
+
+      <!-- Multi-Stakeholder Alliance -->
+      <div class="c-alliance l-card l-card--primary">
+        <h2>Uniting Zambia's Internet Ecosystem</h2>
+        <p>
+          IPv6 is not merely an engineering patch—it is an economic prerequisite for 5G, Smart Cities, IoT agriculture, and secure electronic financial transactions. We work hand-in-hand with:
+        </p>
+        <div class="l-grid l-grid--4col" style="margin-top: var(--space-md);">
+          <div class="c-alliance-item">
+            <strong>Network Engineers</strong>
+            <span>Hands-on skills & certifications</span>
+          </div>
+          <div class="c-alliance-item">
+            <strong>Mobile Operators</strong>
+            <span>Dual-stack carrier infrastructure</span>
+          </div>
+          <div class="c-alliance-item">
+            <strong>Commercial Banks</strong>
+            <span>High-security fintech integration</span>
+          </div>
+          <div class="c-alliance-item">
+            <strong>Government & ZICTA</strong>
+            <span>National standards & policies</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pre-footer CTA -->
+  <section class="l-section l-section--muted">
+    <div class="l-container">
+      <div class="l-grid l-grid--3col">
+        <ContactCard />
+        <NewsletterBox />
+        <CallCtaCard />
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .c-page-header {
+    background: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
+    padding-block: var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .c-page-header__title {
+    font-size: var(--font-size-h1);
+    color: var(--color-brand-primary);
+    margin-block: var(--space-2xs);
+  }
+
+  .c-page-header__lead {
+    font-size: var(--font-size-body);
+    color: var(--color-text-muted);
+    max-width: 42rem;
+  }
+
+  .c-about-box {
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .c-about-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  .c-about-list strong {
+    color: var(--color-brand-primary);
+  }
+
+  .c-founder-full {
+    padding: var(--space-xl);
+    border-left: 6px solid var(--color-brand-gold);
+  }
+
+  .c-founder-full h2 {
+    margin-block: var(--space-2xs);
+    font-size: var(--font-size-h2);
+  }
+
+  .c-founder-full__body {
+    font-size: var(--font-size-body);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-normal);
+  }
+
+  .c-alliance {
+    padding: var(--space-xl);
+  }
+
+  .c-alliance h2 {
+    font-size: var(--font-size-h2);
+    margin-block-end: var(--space-2xs);
+  }
+
+  .c-alliance p {
+    color: var(--color-text-muted);
+  }
+
+  .c-alliance-item {
+    background-color: var(--color-surface-muted);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+  }
+
+  .c-alliance-item strong {
+    color: var(--color-brand-primary);
+    font-size: var(--font-size-sm);
+  }
+
+  .c-alliance-item span {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+  }
+</style>

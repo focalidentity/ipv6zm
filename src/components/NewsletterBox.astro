@@ -1,0 +1,65 @@
+---
+---
+
+<div class="c-newsletter l-card l-card--accent">
+  <div class="u-badge u-badge--accent">Stay Informed</div>
+  <h4 class="c-newsletter__title">Subscribe to IPv6 Zambia updates!</h4>
+  <p class="c-newsletter__text">
+    Enter your email to get conference news, workshop dates and plain-English IPv6 guides. Subscribers also get early access to tickets.
+  </p>
+  <form class="c-newsletter__form" action="/contact" method="GET">
+    <input
+      type="email"
+      name="email"
+      placeholder="Enter your email address"
+      required
+      aria-label="Email Address for IPv6 updates"
+      class="c-newsletter__input"
+    />
+    <button type="submit" class="u-btn u-btn--accent">Subscribe</button>
+  </form>
+</div>
+
+<style>
+  .c-newsletter {
+    padding: var(--space-lg);
+  }
+
+  .c-newsletter__title {
+    font-size: var(--font-size-h3);
+    margin-block: var(--space-2xs);
+  }
+
+  .c-newsletter__text {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-block-end: var(--space-md);
+  }
+
+  .c-newsletter__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+
+  @media (min-width: 30rem) {
+    .c-newsletter__form {
+      flex-direction: row;
+    }
+  }
+
+  .c-newsletter__input {
+    flex: 1;
+    min-height: 2.75rem; /* 44px minimum touch target */
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: 1rem; /* Minimum 16px prevents iOS Safari auto-zoom */
+    color: var(--color-text-main);
+    background-color: #ffffff;
+  }
+
+  .c-newsletter__input:focus {
+    outline: 2px solid var(--color-brand-primary);
+  }
+</style>

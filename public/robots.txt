@@ -1,0 +1,6 @@
+# robots.txt for IPv6 Council of Zambia
+User-agent: *
+Allow: /
+
+# Sitemap Index
+Sitemap: https://ipv6zm.org/sitemap.xml

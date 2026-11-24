@@ -1,0 +1,66 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Hero from '../components/Hero.astro';
+import IntroStatement from '../components/IntroStatement.astro';
+import ProgrammesGrid from '../components/ProgrammesGrid.astro';
+import ServicesList from '../components/ServicesList.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import EventPlatform from '../components/EventPlatform.astro';
+import FounderStory from '../components/FounderStory.astro';
+import MembershipCard from '../components/MembershipCard.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import ContactCard from '../components/ContactCard.astro';
+import NewsletterBox from '../components/NewsletterBox.astro';
+import CallCtaCard from '../components/CallCtaCard.astro';
+import { SITE } from '../consts';
+---
+
+<PageLayout
+  title={`${SITE.name} | ${SITE.tagline}`}
+  description={SITE.description}
+>
+  <Hero />
+  <IntroStatement />
+  <ProgrammesGrid />
+  <ServicesList />
+  <ProcessSteps />
+  <EventPlatform />
+  <FounderStory />
+  <MembershipCard />
+
+  <!-- Global Pre-Footer Section -->
+  <section class="l-section l-section--muted">
+    <div class="l-container">
+      <div class="c-prefooter-grid">
+        <div class="c-prefooter-grid__faq">
+          <FaqAccordion />
+        </div>
+        <div class="c-prefooter-grid__sidebar l-stack l-stack--md">
+          <ContactCard />
+          <NewsletterBox />
+          <CallCtaCard />
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .c-prefooter-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 60rem) {
+    .c-prefooter-grid {
+      grid-template-columns: 1.4fr 0.9fr;
+      align-items: start;
+    }
+  }
+
+  .c-prefooter-grid__sidebar {
+    position: sticky;
+    top: 5rem;
+  }
+</style>

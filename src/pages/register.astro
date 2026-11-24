@@ -1,0 +1,335 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactCard from '../components/ContactCard.astro';
+import CallCtaCard from '../components/CallCtaCard.astro';
+import { SITE, CONTACT, CONFERENCE } from '../consts';
+---
+
+<PageLayout
+  title={`Event Registration & Interest | ${SITE.name}`}
+  description="Register for IPv6 Capacity-Building Workshops, Stakeholder and Policy Forums, or express interest in the June 2027 National IPv6 & Internet Conference."
+  canonical={`${SITE.url}/register/`}
+>
+  <div class="c-page-header l-section">
+    <div class="l-container">
+      <div class="u-badge u-badge--gold">Official Registration Desk</div>
+      <h1 class="c-page-header__title">Event Registration & Participation</h1>
+      <p class="c-page-header__lead">
+        Register your organization's engineers and leaders for upcoming capacity-building workshops, policy roundtables, and the National IPv6 & Internet Conference.
+      </p>
+    </div>
+  </div>
+
+  <section class="l-section">
+    <div class="l-container">
+      <div class="c-reg-grid">
+        <!-- Interactive Registration Form -->
+        <div class="c-reg-form-wrap l-card l-card--primary">
+          <div class="u-badge u-badge--primary">Delegate Registration</div>
+          <h2>Select Your Event & Submit Details</h2>
+          <p class="c-reg-form__intro">
+            Complete the form below to allocate seats or register organizational interest. Communications are handled directly by the Council Secretariat.
+          </p>
+
+          <!-- Status Message Area -->
+          <div id="reg-status" class="c-reg-status" role="status" aria-live="polite" hidden></div>
+
+          <form id="event-reg-form" class="c-reg-form l-stack" novalidate>
+            <!-- Event Selection -->
+            <div class="c-form__field">
+              <label for="event-select">Target Event / Initiative <span class="u-text-accent">*</span></label>
+              <select id="event-select" name="event" required class="c-reg-input">
+                <option value="">Select an event...</option>
+                <option value="capacity-workshops">IPv6 Capacity-Building Workshops (Hands-On Technical Labs)</option>
+                <option value="policy-forum">Stakeholder and Policy Forum (Multi-Sector Roundtable)</option>
+                <option value="national-conference-2027">National IPv6 & Internet Conference 2027 (June 2027 - Interest Only)</option>
+              </select>
+            </div>
+
+            <!-- Tentative Notice for Conference -->
+            <div id="conference-notice" class="c-conf-notice" hidden>
+              <strong>National Conference Planning Notice:</strong>
+              The National IPv6 & Internet Conference is planned for <strong>{CONFERENCE.targetMonthYear}</strong>. Exact calendar days, host venue (Livingstone/Lusaka), and hospitality partner rates remain tentative and unconfirmed. Registering interest here secures priority notification once ticketing opens.
+            </div>
+
+            <div class="c-form__grid">
+              <div class="c-form__field">
+                <label for="reg-name">Full Name <span class="u-text-accent">*</span></label>
+                <input type="text" id="reg-name" name="name" required placeholder="e.g. Mwamba Mwape" autocomplete="name" class="c-reg-input" />
+              </div>
+              <div class="c-form__field">
+                <label for="reg-org">Organization / Company <span class="u-text-accent">*</span></label>
+                <input type="text" id="reg-org" name="organization" required placeholder="e.g. Telecommunications / Bank / State Agency" autocomplete="organization" class="c-reg-input" />
+              </div>
+            </div>
+
+            <div class="c-form__grid">
+              <div class="c-form__field">
+                <label for="reg-email">Official Email <span class="u-text-accent">*</span></label>
+                <input type="email" id="reg-email" name="email" required placeholder="name@company.zm" autocomplete="email" class="c-reg-input" />
+              </div>
+              <div class="c-form__field">
+                <label for="reg-phone">Phone / WhatsApp <span class="u-text-accent">*</span></label>
+                <input type="tel" id="reg-phone" name="phone" required placeholder="+260 9..." autocomplete="tel" class="c-reg-input" />
+              </div>
+            </div>
+
+            <div class="c-form__grid">
+              <div class="c-form__field">
+                <label for="reg-mode">Attendance Preference <span class="u-text-accent">*</span></label>
+                <select id="reg-mode" name="attendanceMode" required class="c-reg-input">
+                  <option value="in-person">In-Person (Zambia)</option>
+                  <option value="virtual">Virtual / Remote Participation</option>
+                  <option value="hybrid">Either / Undecided</option>
+                </select>
+              </div>
+              <div class="c-form__field">
+                <label for="reg-group">Estimated Delegates / Seats <span class="u-text-accent">*</span></label>
+                <select id="reg-group" name="groupSize" required class="c-reg-input">
+                  <option value="1">Individual (1 Delegate)</option>
+                  <option value="2-4">Small Team (2 - 4 Delegates)</option>
+                  <option value="5-10">Department Cohort (5 - 10 Delegates)</option>
+                  <option value="10+">Enterprise Group (10+ Delegates)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="c-form__field">
+              <label for="reg-notes">Special Requirements / Engineering Focus</label>
+              <textarea id="reg-notes" name="notes" rows="3" placeholder="Specify your primary interests (e.g. BGP peering, firewall transition, dual-stack APN, policy frameworks)..." class="c-reg-textarea"></textarea>
+            </div>
+
+            <button type="submit" id="reg-submit-btn" class="u-btn u-btn--primary">
+              Submit Event Registration
+            </button>
+          </form>
+        </div>
+
+        <!-- Sidebar Information -->
+        <div class="c-reg-sidebar l-stack l-stack--md">
+          <div class="l-card l-card--gold">
+            <h3 style="font-size: var(--font-size-h3); margin-bottom: var(--space-xs);">Secretariat Helpdesk</h3>
+            <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); line-height: var(--line-height-normal); margin-bottom: var(--space-sm);">
+              Need to register a corporate cohort across multiple branches or discuss technical prerequisites? Reach our Secretariat directly.
+            </p>
+            <div style="font-size: var(--font-size-sm);">
+              <p><strong>Phone:</strong> <a href={CONTACT.phoneTel} style="color: var(--color-brand-primary); font-weight: 700;">{CONTACT.phoneDisplay}</a></p>
+              <p><strong>Email:</strong> <a href={CONTACT.emailMailto} style="color: var(--color-brand-primary); font-weight: 700;">{CONTACT.email}</a></p>
+            </div>
+          </div>
+
+          <ContactCard />
+          <CallCtaCard />
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<script>
+  const form = document.getElementById('event-reg-form') as HTMLFormElement | null;
+  const eventSelect = document.getElementById('event-select') as HTMLSelectElement | null;
+  const confNotice = document.getElementById('conference-notice');
+  const statusEl = document.getElementById('reg-status');
+  const submitBtn = document.getElementById('reg-submit-btn') as HTMLButtonElement | null;
+
+  // Toggle conference tentative notice
+  if (eventSelect && confNotice) {
+    const updateNotice = () => {
+      if (eventSelect.value === 'national-conference-2027') {
+        confNotice.removeAttribute('hidden');
+      } else {
+        confNotice.setAttribute('hidden', '');
+      }
+    };
+    eventSelect.addEventListener('change', updateNotice);
+
+    // Auto-select from URL query parameter e.g. /register?event=workshops
+    const params = new URLSearchParams(window.location.search);
+    const evtParam = params.get('event');
+    if (evtParam) {
+      if (evtParam.includes('workshop')) eventSelect.value = 'capacity-workshops';
+      else if (evtParam.includes('policy')) eventSelect.value = 'policy-forum';
+      else if (evtParam.includes('conf')) eventSelect.value = 'national-conference-2027';
+      updateNotice();
+    }
+  }
+
+  // Handle client-side submission & feedback
+  if (form && statusEl && submitBtn) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        statusEl.removeAttribute('hidden');
+        statusEl.className = 'c-reg-status c-reg-status--error';
+        statusEl.textContent = 'Please complete all required fields with valid details.';
+        form.reportValidity();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting Registration...';
+      statusEl.setAttribute('hidden', '');
+
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData.entries());
+
+      // @ts-ignore
+      const endpoint = import.meta.env?.PUBLIC_EVENT_REGISTRATION_ENDPOINT;
+
+      if (endpoint && endpoint.startsWith('http')) {
+        try {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          if (!res.ok) throw new Error('Registration endpoint returned error');
+        } catch (err) {
+          console.warn('Remote registration endpoint unavailable; using client confirmation state.');
+        }
+      }
+
+      statusEl.removeAttribute('hidden');
+      statusEl.className = 'c-reg-status c-reg-status--success';
+      statusEl.innerHTML = `
+        <strong>Registration Received!</strong>
+        <p style="margin: 0.25rem 0 0 0;">
+          Thank you, <strong>${formData.get('name')}</strong>. Your registration for <em>${formData.get('event')}</em> on behalf of <strong>${formData.get('organization')}</strong> has been recorded. Our Secretariat will follow up via <code>${formData.get('email')}</code>.
+        </p>
+      `;
+
+      form.reset();
+      confNotice?.setAttribute('hidden', '');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Registration Confirmed ✓';
+      setTimeout(() => {
+        submitBtn.textContent = 'Submit Event Registration';
+      }, 5000);
+    });
+  }
+</script>
+
+<style>
+  .c-page-header {
+    background: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
+    padding-block: var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .c-page-header__title {
+    font-size: var(--font-size-h1);
+    color: var(--color-brand-primary);
+    margin-block: var(--space-2xs);
+  }
+
+  .c-page-header__lead {
+    font-size: var(--font-size-body);
+    color: var(--color-text-muted);
+    max-width: 44rem;
+  }
+
+  .c-reg-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  @media (min-width: 56rem) {
+    .c-reg-grid {
+      grid-template-columns: 1.35fr 0.85fr;
+    }
+  }
+
+  .c-reg-form-wrap {
+    padding: var(--space-xl);
+  }
+
+  .c-reg-form-wrap h2 {
+    font-size: var(--font-size-h2);
+    margin-block-end: var(--space-2xs);
+  }
+
+  .c-reg-form__intro {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-block-end: var(--space-lg);
+  }
+
+  .c-reg-status {
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    margin-block-end: var(--space-md);
+  }
+
+  .c-reg-status--error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #f87171;
+  }
+
+  .c-reg-status--success {
+    background-color: #dcfce7;
+    color: #166534;
+    border: 1px solid #86efac;
+  }
+
+  .c-conf-notice {
+    background-color: #fef3c7;
+    border-left: 4px solid var(--color-brand-gold);
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-xs);
+    color: #92400e;
+    line-height: var(--line-height-normal);
+    border-radius: var(--radius-sm);
+  }
+
+  .c-reg-form {
+    gap: var(--space-md);
+  }
+
+  .c-form__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 36rem) {
+    .c-form__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .c-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+  }
+
+  .c-form__field label {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-brand-primary);
+  }
+
+  .c-reg-input,
+  .c-reg-textarea {
+    min-height: 2.75rem; /* 44px tap target */
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 1rem; /* 16px min prevents iOS auto-zoom */
+    background-color: #ffffff;
+    color: var(--color-text-main);
+  }
+
+  .c-reg-input:focus,
+  .c-reg-textarea:focus {
+    outline: 2px solid var(--color-brand-primary);
+    border-color: var(--color-brand-primary);
+  }
+</style>

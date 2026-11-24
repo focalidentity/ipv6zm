@@ -1,0 +1,10 @@
+/* ==========================================================================
+   Lumos for Astro - Cascade Aggregator
+   Enforces: @layer base, patterns, components, utilities;
+   ========================================================================== */
+
+@layer base, patterns, components, utilities;
+
+@import './base.css' layer(base);
+@import './patterns.css' layer(patterns);
+@import './utilities.css' layer(utilities);

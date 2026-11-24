@@ -1,0 +1,183 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactCard from '../components/ContactCard.astro';
+import NewsletterBox from '../components/NewsletterBox.astro';
+import CallCtaCard from '../components/CallCtaCard.astro';
+import { SITE, CORE_PROGRAMMES, CONFERENCE } from '../consts';
+---
+
+<PageLayout
+  title={`Programmes & Initiatives | ${SITE.name}`}
+  description="Learn about the key initiatives driving IPv6 adoption in Zambia: capacity-building workshops, stakeholder forums, and the National IPv6 & Internet Conference 2027."
+>
+  <div class="c-page-header l-section">
+    <div class="l-container">
+      <div class="u-badge u-badge--accent">Strategic Initiatives</div>
+      <h1 class="c-page-header__title">Our Programmes & Initiatives</h1>
+      <p class="c-page-header__lead">
+        Strategic capacity-building, high-level policy dialogue, and national summits uniting engineers, policymakers, and industry leaders.
+      </p>
+    </div>
+  </div>
+
+  <section class="l-section">
+    <div class="l-container l-stack l-stack--xl">
+      <!-- 1. Capacity Building Workshops -->
+      <article id="capacity-workshops" class="c-project-feature l-card">
+        <div class="c-project-feature__grid">
+          <div class="c-project-feature__media l-frame">
+            <img
+              src="/images/ubreakifix-north-las-vegas-_AIT3BLFIag-unsplash-scaled.jpg"
+              alt="Hands-on IPv6 training lab session"
+              width="600"
+              height="340"
+              loading="lazy"
+            />
+          </div>
+          <div class="c-project-feature__content l-stack l-stack--sm">
+            <div class="u-badge u-badge--primary">Training Programme</div>
+            <h2>IPv6 Capacity-Building Workshops</h2>
+            <p>
+              Delivered alongside international partner organisations, these intensive courses provide network engineers, ISP technicians, and university students with practical, hands-on lab experience in IPv6 addressing, dual-stack routing (OSPFv3 and BGP), and cybersecurity.
+            </p>
+            <ul class="c-project-feature__list">
+              <li>Dual-stack architecture and transition mechanics</li>
+              <li>IPv6 address planning and allocation best practices</li>
+              <li>Routing protocols, firewall rule sets, and security audits</li>
+            </ul>
+            <div class="c-project-feature__cta">
+              <a href="/contact" class="u-btn u-btn--primary">Register for Upcoming Workshops</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. Stakeholder and Policy Forum -->
+      <article id="policy-forum" class="c-project-feature l-card">
+        <div class="c-project-feature__grid">
+          <div class="c-project-feature__media l-frame">
+            <img
+              src="/images/cytonn-photography-GJao3ZTX9gU-unsplash-scaled.jpg"
+              alt="Policy and stakeholder dialogue roundtable"
+              width="600"
+              height="340"
+              loading="lazy"
+            />
+          </div>
+          <div class="c-project-feature__content l-stack l-stack--sm">
+            <div class="u-badge u-badge--accent">Governance & Policy</div>
+            <h2>Stakeholder and Policy Forum</h2>
+            <p>
+              A collaborative roundtable bringing together mobile network operators (MNOs), commercial banks, regulatory bodies (including ZICTA), and government ICT executives to align national standards, resolve regulatory bottlenecks, and promote IPv6-first procurement policies.
+            </p>
+            <ul class="c-project-feature__list">
+              <li>Multi-sector coordination between banking, telecom, and state</li>
+              <li>Policy recommendations on national IPv6 readiness mandates</li>
+              <li>Addressing cybersecurity and critical infrastructure resilience</li>
+            </ul>
+            <div class="c-project-feature__cta">
+              <a href="/contact" class="u-btn u-btn--outline">Participate in Policy Dialogues</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. National IPv6 & Internet Conference 2027 -->
+      <article id="national-conference-2027" class="c-project-feature l-card l-card--gold">
+        <div class="c-project-feature__grid">
+          <div class="c-project-feature__media l-frame">
+            <img
+              src="/images/emediong-umoh-prhHGOOeJws-unsplash-scaled.jpg"
+              alt="National IPv6 & Internet Conference plenary"
+              width="600"
+              height="340"
+              loading="lazy"
+            />
+          </div>
+          <div class="c-project-feature__content l-stack l-stack--sm">
+            <div class="u-badge u-badge--gold">National Summit</div>
+            <h2>National IPv6 & Internet Conference 2027</h2>
+            <p class="c-project-feature__status">
+              <strong>Timing:</strong> Planned for {CONFERENCE.targetMonthYear} (Date and venue to be confirmed).
+            </p>
+            <p>
+              The premier national summit dedicated to Zambia's internet evolution. The conference will showcase keynote addresses from global IPv6 authorities, technical breakout sessions, policy forums, and sponsor exhibits.
+            </p>
+            <div class="c-project-feature__cta l-cluster">
+              <a href="/contact" class="u-btn u-btn--gold">Register Conference Interest</a>
+              <a href="/contact" class="u-btn u-btn--outline">Sponsorship Inquiries</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Pre-footer CTA -->
+  <section class="l-section l-section--muted">
+    <div class="l-container">
+      <div class="l-grid l-grid--3col">
+        <ContactCard />
+        <NewsletterBox />
+        <CallCtaCard />
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .c-page-header {
+    background: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
+    padding-block: var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .c-page-header__title {
+    font-size: var(--font-size-h1);
+    color: var(--color-brand-primary);
+    margin-block: var(--space-2xs);
+  }
+
+  .c-page-header__lead {
+    font-size: var(--font-size-body);
+    color: var(--color-text-muted);
+    max-width: 42rem;
+  }
+
+  .c-project-feature__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  @media (min-width: 52rem) {
+    .c-project-feature__grid {
+      grid-template-columns: 1fr 1.2fr;
+    }
+  }
+
+  .c-project-feature__list {
+    list-style: disc;
+    padding-left: var(--space-md);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+  }
+
+  .c-project-feature__status {
+    font-size: var(--font-size-sm);
+    color: var(--color-brand-primary);
+    background-color: #fef3c7;
+    padding: var(--space-2xs) var(--space-xs);
+    border-radius: var(--radius-sm);
+    display: inline-block;
+  }
+
+  .c-project-feature__cta {
+    padding-block-start: var(--space-xs);
+    gap: var(--space-xs);
+  }
+</style>

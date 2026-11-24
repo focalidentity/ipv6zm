@@ -1,0 +1,72 @@
+---
+import { SERVICES } from '../consts';
+---
+
+<section id="services" class="c-services l-section l-section--muted">
+  <div class="l-container">
+    <div class="u-section-header">
+      <div class="u-badge u-badge--primary">Capability Scope</div>
+      <h2>What we do to move Zambia to IPv6</h2>
+      <p>Specialized institutional assistance, engineering enablement, and advisory services.</p>
+    </div>
+
+    <div class="c-services__list l-stack">
+      {
+        SERVICES.map((srv) => (
+          <div class="c-services__item l-card l-card--interactive">
+            <div class="c-services__item-num">{srv.number}</div>
+            <div class="c-services__item-content l-stack l-stack--sm">
+              <h3 class="c-services__item-title">{srv.title}</h3>
+              <p class="c-services__item-summary">{srv.summary}</p>
+            </div>
+            <div class="c-services__item-action">
+              <a href="/services" class="u-btn u-btn--outline" aria-label={`Details for ${srv.title}`}>
+                Details →
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .c-services__list {
+    gap: var(--space-md);
+    max-width: 60rem;
+    margin-inline: auto;
+  }
+
+  .c-services__item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+  }
+
+  @media (max-width: 40rem) {
+    .c-services__item {
+      grid-template-columns: 1fr;
+      gap: var(--space-sm);
+    }
+  }
+
+  .c-services__item-num {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-brand-accent);
+    font-family: var(--font-mono);
+  }
+
+  .c-services__item-title {
+    font-size: var(--font-size-h3);
+    color: var(--color-brand-primary);
+  }
+
+  .c-services__item-summary {
+    font-size: var(--font-size-body);
+    color: var(--color-text-muted);
+  }
+</style>

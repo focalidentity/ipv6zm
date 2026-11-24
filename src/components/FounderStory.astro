@@ -1,0 +1,91 @@
+---
+---
+
+<section class="c-founder l-section">
+  <div class="l-container">
+    <div class="c-founder__card l-card">
+      <div class="c-founder__grid">
+        <div class="c-founder__content l-stack">
+          <div class="u-badge u-badge--accent">Origin & Vision</div>
+          <h2 class="c-founder__title">Born from a lifelong passion for computing</h2>
+          <p class="c-founder__body">
+            The Council began with one belief. Zambia’s internet will only grow if its people have the skills to run it. Our founder grew up around early computers, and that curiosity became a mission to bring IPv6 skills to every organisation that depends on the internet.
+          </p>
+
+          <div class="c-founder__milestones l-cluster">
+            <div class="c-founder__stat">
+              <span class="c-founder__stat-val">2027</span>
+              <span class="c-founder__stat-lbl">National Conference (Date to be confirmed)</span>
+            </div>
+            <div class="c-founder__stat">
+              <span class="c-founder__stat-val">Goals</span>
+              <span class="c-founder__stat-lbl">Skills, security, growth and new ideas</span>
+            </div>
+          </div>
+
+          <div class="c-founder__callout">
+            <p><strong>Join the Council and get early access:</strong> Become a member to get early access to IPv6 workshops and the national conference.</p>
+            <a href="/contact" class="u-btn u-btn--primary">Get in touch</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .c-founder__card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border-left: 6px solid var(--color-brand-primary);
+    padding: var(--space-xl);
+  }
+
+  .c-founder__title {
+    font-size: var(--font-size-h2);
+  }
+
+  .c-founder__body {
+    font-size: var(--font-size-body);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-normal);
+  }
+
+  .c-founder__milestones {
+    gap: var(--space-lg);
+    padding-block: var(--space-xs);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .c-founder__stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .c-founder__stat-val {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-brand-primary);
+  }
+
+  .c-founder__stat-lbl {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  .c-founder__callout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background-color: var(--color-surface-muted);
+    border-radius: var(--radius-md);
+  }
+
+  @media (min-width: 48rem) {
+    .c-founder__callout {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+</style>

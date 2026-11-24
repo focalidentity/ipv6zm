@@ -1,0 +1,47 @@
+---
+import { CONTACT } from '../consts';
+---
+
+<div class="c-contact-card l-card l-card--primary">
+  <div class="u-badge u-badge--primary">Direct Council Desk</div>
+  <h3 class="c-contact-card__title">Official Communication</h3>
+  <div class="c-contact-card__items l-stack l-stack--sm">
+    <div class="c-contact-card__item">
+      <span class="c-contact-card__label">Phone:</span>
+      <a href={CONTACT.phoneTel} class="c-contact-card__val">{CONTACT.phoneDisplay}</a>
+    </div>
+    <div class="c-contact-card__item">
+      <span class="c-contact-card__label">Email:</span>
+      <a href={CONTACT.emailMailto} class="c-contact-card__val">{CONTACT.email}</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .c-contact-card {
+    padding: var(--space-lg);
+  }
+
+  .c-contact-card__title {
+    font-size: var(--font-size-h3);
+    margin-block: var(--space-2xs);
+  }
+
+  .c-contact-card__label {
+    display: block;
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .c-contact-card__val {
+    font-size: var(--font-size-body);
+    font-weight: 600;
+    color: var(--color-brand-primary);
+  }
+
+  .c-contact-card__val:hover {
+    color: var(--color-brand-accent);
+  }
+</style>

@@ -1,0 +1,299 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import SubscriberForm from '../../components/SubscriberForm.astro';
+import ContactCard from '../../components/ContactCard.astro';
+import CallCtaCard from '../../components/CallCtaCard.astro';
+import { SITE, CONFERENCE } from '../../consts';
+import { getAllArticles, getArticlesByCategory, type Article } from '../../data/articles';
+
+export async function getStaticPaths() {
+  const articles = getAllArticles();
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+interface Props {
+  article: Article;
+}
+
+const { article } = Astro.props;
+
+// Related articles from same category (excluding current)
+const related = getArticlesByCategory(article.category).filter((a) => a.slug !== article.slug).slice(0, 2);
+
+// Article structured data (Schema.org TechArticle)
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: article.title,
+  description: article.excerpt,
+  articleSection: article.category,
+  datePublished: '2026-11-24',
+  author: {
+    '@type': 'Organization',
+    name: article.author,
+    url: SITE.url,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: SITE.name,
+    url: SITE.url,
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `${SITE.url}/news/${article.slug}/`,
+  },
+};
+---
+
+<PageLayout
+  title={`${article.title} | ${SITE.name}`}
+  description={article.excerpt}
+  canonical={`${SITE.url}/news/${article.slug}/`}
+>
+  <!-- Schema.org Article Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} slot="head" />
+
+  <!-- Breadcrumbs & Article Header -->
+  <div class="c-article-header l-section">
+    <div class="l-container l-container--narrow">
+      <nav class="c-breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <a href="/news">News & Articles</a>
+        <span>/</span>
+        <span class="c-breadcrumbs__current">{article.category}</span>
+      </nav>
+
+      <div class="c-article-header__meta l-cluster">
+        <span class="u-badge u-badge--accent">{article.category}</span>
+        <span class="c-article-header__item">{article.publishedDate}</span>
+        <span class="c-article-header__item">·</span>
+        <span class="c-article-header__item">{article.readTime}</span>
+        <span class="c-article-header__item">·</span>
+        <span class="c-article-header__item">{article.author}</span>
+      </div>
+
+      <h1 class="c-article-header__title">{article.title}</h1>
+    </div>
+  </div>
+
+  <!-- Article Body -->
+  <article class="c-article-main l-section">
+    <div class="l-container l-container--narrow">
+      <div class="c-article-content l-stack l-stack--md" set:html={article.content} />
+
+      <!-- Verified External Reference Callout Box -->
+      <div class="c-ref-box l-card l-card--primary">
+        <div class="u-badge u-badge--primary">Official Standard Reference</div>
+        <h3 class="c-ref-box__title">Verified External Resource</h3>
+        <p class="c-ref-box__desc">
+          For technical standards, allocation registries, or regulatory specifications, consult the verified documentation:
+        </p>
+        <a
+          href={article.externalLink.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="u-btn u-btn--outline"
+        >
+          {article.externalLink.label} ↗
+        </a>
+      </div>
+
+      <!-- Event Participation Callout -->
+      <div class="c-event-inline l-card l-card--gold">
+        <h3>Participate in Upcoming Initiatives</h3>
+        <p>
+          Apply these concepts in practice. Register for our <strong>IPv6 Capacity-Building Workshops</strong> or record your interest for the <strong>{CONFERENCE.title}</strong> (planned for {CONFERENCE.targetMonthYear} - <em>date and venue to be confirmed</em>).
+        </p>
+        <a href="/register" class="u-btn u-btn--gold">Open Event Registration Form →</a>
+      </div>
+
+      <!-- Navigation to all articles -->
+      <div class="c-article-back">
+        <a href="/news" class="u-btn u-btn--outline">← Back to All Articles</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Related Articles (if available) -->
+  {related.length > 0 && (
+    <section class="l-section l-section--muted">
+      <div class="l-container l-container--narrow">
+        <h2 style="font-size: var(--font-size-h2); margin-bottom: var(--space-md);">Related Articles in {article.category}</h2>
+        <div class="l-grid l-grid--2col">
+          {related.map((rel) => (
+            <div class="l-card l-card--interactive" style="padding: var(--space-lg); display: flex; flex-direction: column;">
+              <h3 style="font-size: var(--font-size-h3); margin-bottom: var(--space-2xs);">
+                <a href={`/news/${rel.slug}/`}>{rel.title}</a>
+              </h3>
+              <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); flex-grow: 1; margin-bottom: var(--space-sm);">
+                {rel.excerpt}
+              </p>
+              <a href={`/news/${rel.slug}/`} style="font-weight: 700; color: var(--color-brand-primary);">
+                Read article →
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Subscriber Form on Article Page -->
+  <section class="l-section">
+    <div class="l-container l-container--narrow">
+      <SubscriberForm
+        title="Stay Informed with IPv6 Council Dispatches"
+        subtitle="Subscribe to receive upcoming technical articles, policy briefings, and conference announcements directly."
+        compact={true}
+      />
+    </div>
+  </section>
+
+  <!-- Pre-footer Sidebar -->
+  <section class="l-section l-section--muted">
+    <div class="l-container l-container--narrow">
+      <div class="l-grid l-grid--2col">
+        <ContactCard />
+        <CallCtaCard />
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .c-article-header {
+    background: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
+    padding-block: var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .c-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-block-end: var(--space-sm);
+  }
+
+  .c-breadcrumbs a:hover {
+    color: var(--color-brand-primary);
+  }
+
+  .c-breadcrumbs__current {
+    color: var(--color-brand-primary);
+    font-weight: 600;
+  }
+
+  .c-article-header__meta {
+    gap: var(--space-2xs);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-block-end: var(--space-xs);
+  }
+
+  .c-article-header__title {
+    font-size: var(--font-size-h1);
+    color: var(--color-brand-primary);
+    line-height: var(--line-height-tight);
+  }
+
+  .c-article-main {
+    padding-block: var(--space-xl);
+  }
+
+  /* Lumos Fluid Typography for Article Content */
+  .c-article-content :global(.article-lead) {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--color-brand-primary);
+    font-weight: 500;
+  }
+
+  .c-article-content :global(h2) {
+    font-size: var(--font-size-h2);
+    margin-block-start: var(--space-xl);
+    margin-block-end: var(--space-xs);
+  }
+
+  .c-article-content :global(h3) {
+    font-size: var(--font-size-h3);
+    margin-block-start: var(--space-lg);
+    margin-block-end: var(--space-2xs);
+  }
+
+  .c-article-content :global(p) {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-main);
+  }
+
+  .c-article-content :global(ul) {
+    list-style: disc;
+    padding-left: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    color: var(--color-text-main);
+  }
+
+  .c-article-content :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background-color: #f1f5f9;
+    padding: 0.15rem 0.35rem;
+    border-radius: var(--radius-sm);
+    color: var(--color-brand-primary);
+  }
+
+  .c-article-content :global(a) {
+    color: var(--color-brand-secondary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 600;
+  }
+
+  .c-article-content :global(a:hover) {
+    color: var(--color-brand-accent);
+  }
+
+  .c-ref-box {
+    margin-block-start: var(--space-2xl);
+    padding: var(--space-xl);
+  }
+
+  .c-ref-box__title {
+    font-size: var(--font-size-h3);
+    margin-block: var(--space-2xs);
+  }
+
+  .c-ref-box__desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-block-end: var(--space-md);
+  }
+
+  .c-event-inline {
+    margin-block-start: var(--space-lg);
+    padding: var(--space-xl);
+  }
+
+  .c-event-inline h3 {
+    font-size: var(--font-size-h3);
+    margin-block-end: var(--space-2xs);
+  }
+
+  .c-event-inline p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-block-end: var(--space-md);
+  }
+
+  .c-article-back {
+    margin-block-start: var(--space-xl);
+  }
+</style>
