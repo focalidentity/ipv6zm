@@ -1,9 +1,6 @@
-# Cloudflare Pages Configuration for IPv6 Council of Zambia
-# Documentation: https://developers.cloudflare.com/pages/configuration/wrangler-configuration/
-
 name = "ipv6zm"
-compatibility_date = "2024-11-01"
-pages_build_output_dir = "./dist"
+compatibility_date = "2026-11-24"
 
-# Account and credentials are intentionally omitted per zero-placeholder standard.
-# Wrangler will prompt for authentication upon running: npx wrangler login
+[assets]
+directory = "./dist"
+not_found_handling = "404-page"
