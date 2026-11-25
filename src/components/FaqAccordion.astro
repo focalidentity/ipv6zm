@@ -41,7 +41,7 @@ import { FAQ_ITEMS, CONTACT } from '../consts';
         </div>
       </div>
 
-      <!-- Right Column: Clean Borderless Accordion matching Reference -->
+      <!-- Right Column: Clean Borderless Accordion matching Reference (Left-aligned text) -->
       <div class="c-faq-section__right">
         <div class="c-accordion">
           {
@@ -77,13 +77,69 @@ import { FAQ_ITEMS, CONTACT } from '../consts';
   .c-faq-section__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3.5rem;
+    gap: 3rem;
   }
 
+  /* Mobile (<48rem): Heading and Phone/Email rows centred, then the accordion */
+  @media (max-width: 47.99rem) {
+    .c-faq-section__left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .c-faq-section__title {
+      text-align: center;
+    }
+
+    .c-faq-section__contacts {
+      align-items: center;
+      width: 100%;
+    }
+
+    .c-contact-pill-item {
+      justify-content: center;
+    }
+  }
+
+  /* Tablet (48rem to 63.99rem): Two columns like reference. Left: heading and contacts. Right: accordion */
+  @media (min-width: 48rem) and (max-width: 63.99rem) {
+    .c-faq-section__grid {
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+    }
+
+    .c-faq-section__left {
+      text-align: left;
+    }
+
+    .c-faq-section__title {
+      text-align: left;
+    }
+
+    .c-contact-pill-item {
+      justify-content: flex-start;
+    }
+  }
+
+  /* Desktop (>= 64rem) - MUST NOT CHANGE */
   @media (min-width: 64rem) {
     .c-faq-section__grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 5rem;
+    }
+
+    .c-faq-section__left {
+      text-align: left;
+    }
+
+    .c-faq-section__title {
+      text-align: left;
+    }
+
+    .c-contact-pill-item {
+      justify-content: flex-start;
     }
   }
 
@@ -126,16 +182,18 @@ import { FAQ_ITEMS, CONTACT } from '../consts';
     color: var(--color-brand-accent);
   }
 
-  /* Accordion matching Reference: No outer borders, large typography, orange hover */
+  /* Accordion matching Reference: No outer borders, large typography, orange hover, ALWAYS left-aligned */
   .c-accordion {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+    text-align: left;
   }
 
   .c-accordion__item {
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     padding-bottom: 1.25rem;
+    text-align: left;
   }
 
   .c-accordion__header {
@@ -147,6 +205,7 @@ import { FAQ_ITEMS, CONTACT } from '../consts';
     list-style: none;
     user-select: none;
     padding-block: 0.5rem;
+    text-align: left;
   }
 
   .c-accordion__header::-webkit-details-marker {
@@ -160,6 +219,7 @@ import { FAQ_ITEMS, CONTACT } from '../consts';
     line-height: 1.4;
     color: #ffffff;
     transition: color var(--transition-fast);
+    text-align: left;
   }
 
   .c-accordion__item:hover .c-accordion__question,
@@ -183,6 +243,7 @@ import { FAQ_ITEMS, CONTACT } from '../consts';
   .c-accordion__body {
     padding-top: 1rem;
     padding-bottom: 0.5rem;
+    text-align: left;
   }
 
   .c-accordion__body p {
@@ -191,5 +252,6 @@ import { FAQ_ITEMS, CONTACT } from '../consts';
     color: var(--color-text-inverse-muted);
     line-height: 1.65;
     margin: 0;
+    text-align: left;
   }
 </style>

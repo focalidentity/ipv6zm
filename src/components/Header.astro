@@ -229,32 +229,32 @@ const currentPath = Astro.url.pathname;
     gap: 1rem;
   }
 
-  /* Join the Council CTA matching Reference (Orange Pill with Right Arrow) */
+  /* Join the Council CTA matching Reference (Orange Pill with Right Arrow) - Desktop only */
   .c-header__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background-color: var(--color-brand-accent);
-    color: #ffffff;
-    font-family: var(--font-sans);
-    font-size: 15px;
-    font-weight: 600;
-    padding: 10px 22px;
-    border-radius: var(--radius-pill);
-    min-height: 42px;
-    transition: background-color var(--transition-fast), transform var(--transition-fast);
-    text-decoration: none;
+    display: none;
   }
 
-  .c-header__cta:hover {
-    background-color: var(--color-brand-accent-hover);
-    transform: translateY(-1px);
-    color: #ffffff;
-  }
-
-  @media (max-width: 30rem) {
+  @media (min-width: 64rem) {
     .c-header__cta {
-      display: none; /* Keep screen clean on very narrow mobile */
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: var(--color-brand-accent);
+      color: #ffffff;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      min-height: 42px;
+      transition: background-color var(--transition-fast), transform var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .c-header__cta:hover {
+      background-color: var(--color-brand-accent-hover);
+      transform: translateY(-1px);
+      color: #ffffff;
     }
   }
 

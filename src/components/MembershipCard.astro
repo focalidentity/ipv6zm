@@ -17,12 +17,12 @@
           />
         </div>
         <div class="c-member__text">
-          <h2 class="c-member__title">
-            Join us today and become a valued member
-          </h2>
           <p class="c-member__desc">
             Partner with a community that values your skills. Get practical training, expert advice and a national network.
           </p>
+          <h2 class="c-member__title">
+            Join us today and become a valued member
+          </h2>
         </div>
       </div>
 
@@ -57,11 +57,55 @@
     padding: clamp(2.5rem, 5vw, 4rem);
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
-    align-items: flex-start;
+    gap: 2rem;
     color: #ffffff;
   }
 
+  /* Mobile and Tablet: Everything centred */
+  @media (max-width: 63.99rem) {
+    .c-member__banner {
+      align-items: center;
+      text-align: center;
+    }
+
+    .c-member__left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+      width: 100%;
+    }
+
+    .c-member__icon-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .c-member__text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .c-member__desc {
+      order: 1; /* Paragraph above heading like reference */
+      max-width: 36rem;
+    }
+
+    .c-member__title {
+      order: 2;
+      max-width: 36rem;
+    }
+
+    .c-member__right {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  /* Desktop (>= 64rem) - MUST NOT CHANGE */
   @media (min-width: 64rem) {
     .c-member__banner {
       flex-direction: row;
@@ -72,26 +116,32 @@
 
     .c-member__left {
       flex: 0 0 65%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .c-member__text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .c-member__title {
+      order: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .c-member__desc {
+      order: 2;
+      max-width: 36rem;
     }
 
     .c-member__right {
       flex: 0 0 35%;
       display: flex;
       justify-content: flex-end;
-    }
-  }
-
-  .c-member__left {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  @media (min-width: 36rem) {
-    .c-member__left {
-      flex-direction: row;
-      align-items: center;
-      gap: 2rem;
+      width: auto;
     }
   }
 
@@ -113,7 +163,6 @@
     font-family: var(--font-heading);
     font-size: var(--font-size-h2);
     color: #ffffff;
-    margin-bottom: 0.5rem;
     line-height: 1.25;
   }
 
@@ -123,16 +172,5 @@
     color: var(--color-text-inverse-muted);
     line-height: 1.6;
     margin: 0;
-    max-width: 36rem;
-  }
-
-  .c-member__right {
-    width: 100%;
-  }
-
-  @media (min-width: 64rem) {
-    .c-member__right {
-      width: auto;
-    }
   }
 </style>

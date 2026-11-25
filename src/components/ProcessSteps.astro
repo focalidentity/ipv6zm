@@ -5,10 +5,20 @@ import { TRANSITION_STEPS } from '../consts';
 <section class="c-process l-section">
   <div class="l-container">
     <div class="c-process__header">
-      <h2 class="c-process__title">A clear path from IPv4 to IPv6</h2>
-      <p class="c-process__lead">
-        A proven four-step roadmap to assess, deploy, and maintain robust dual-stack networks.
-      </p>
+      <div class="c-process__title-wrap">
+        <h2 class="c-process__title">A clear path from IPv4 to IPv6</h2>
+        <p class="c-process__lead">
+          A proven four-step roadmap to assess, deploy, and maintain robust dual-stack networks.
+        </p>
+      </div>
+      <div class="c-process__action">
+        <a href="/services" class="u-link-arrow u-link-arrow--inverse">
+          <span>View all services</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
     </div>
 
     <!-- Dashed Container Framework matching Reference -->
@@ -24,15 +34,6 @@ import { TRANSITION_STEPS } from '../consts';
           </div>
         ))
       }
-    </div>
-
-    <div class="c-process__action">
-      <a href="/services" class="u-link-arrow u-link-arrow--inverse">
-        <span>View all services</span>
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-          <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
     </div>
   </div>
 </section>
@@ -55,8 +56,49 @@ import { TRANSITION_STEPS } from '../consts';
   }
 
   .c-process__header {
-    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
     margin-bottom: 3.5rem;
+  }
+
+  /* Mobile and Tablet: Heading, paragraph and "View all services" centred, stacked */
+  @media (max-width: 63.99rem) {
+    .c-process__header {
+      align-items: center;
+      text-align: center;
+    }
+
+    .c-process__title-wrap {
+      text-align: center;
+      max-width: 700px;
+    }
+
+    .c-process__action {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  /* Desktop (>= 64rem) - MUST NOT CHANGE */
+  @media (min-width: 64rem) {
+    .c-process__header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+      text-align: left;
+    }
+
+    .c-process__title-wrap {
+      text-align: left;
+      max-width: 700px;
+    }
+
+    .c-process__action {
+      display: block;
+      width: auto;
+    }
   }
 
   .c-process__title {
@@ -74,58 +116,124 @@ import { TRANSITION_STEPS } from '../consts';
     margin: 0;
   }
 
-  /* Dashed Outer Container with 4 Equal Columns */
+  /* Framework Container */
   .c-process__framework {
     border: 1px dashed rgba(255, 255, 255, 0.25);
     border-radius: 30px;
     overflow: hidden;
-    display: grid;
-    grid-template-columns: 1fr;
     background-color: rgba(0, 0, 0, 0.25);
   }
 
-  @media (min-width: 48rem) {
+  /* Mobile (<48rem): One column, number, label and text all centred, small 24px gap */
+  @media (max-width: 47.99rem) {
     .c-process__framework {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .c-process__card {
+      padding: 2.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
+      min-height: auto;
+    }
+
+    .c-process__card:last-child {
+      border-bottom: none;
+    }
+
+    .c-process__num {
+      margin-bottom: 1.5rem; /* ~24px gap between number and content */
+      text-align: center;
+    }
+
+    .c-process__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  /* Tablet (48rem to 63.99rem): 2x2 grid with thin dividers, content centred, ~24px gap */
+  @media (min-width: 48rem) and (max-width: 63.99rem) {
+    .c-process__framework {
+      display: grid;
       grid-template-columns: repeat(2, 1fr);
     }
-  }
 
-  @media (min-width: 64rem) {
-    .c-process__framework {
-      grid-template-columns: repeat(4, 1fr);
+    .c-process__card {
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
+      min-height: 280px;
     }
-  }
 
-  /* Each Step Card */
-  .c-process__card {
-    padding: clamp(2rem, 3vw, 2.75rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 400px;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
-    transition: background-color var(--transition-fast);
-  }
-
-  .c-process__card:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-  }
-
-  @media (min-width: 48rem) {
     .c-process__card:nth-child(odd) {
       border-right: 1px dashed rgba(255, 255, 255, 0.25);
     }
+
+    .c-process__card:nth-last-child(-n + 2) {
+      border-bottom: none;
+    }
+
+    .c-process__num {
+      margin-bottom: 1.5rem; /* ~24px gap between number and content */
+      text-align: center;
+    }
+
+    .c-process__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
   }
 
+  /* Desktop (>= 64rem) - MUST NOT CHANGE */
   @media (min-width: 64rem) {
+    .c-process__framework {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
     .c-process__card {
+      padding: clamp(2rem, 3vw, 2.75rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 400px;
       border-bottom: none;
       border-right: 1px dashed rgba(255, 255, 255, 0.25);
+      text-align: left;
     }
 
     .c-process__card:last-child {
       border-right: none;
     }
+
+    .c-process__num {
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .c-process__content {
+      text-align: left;
+    }
+  }
+
+  .c-process__card {
+    transition: background-color var(--transition-fast);
+  }
+
+  .c-process__card:hover {
+    background-color: rgba(255, 255, 255, 0.05);
   }
 
   /* Huge Step Number (100px desktop, 80px tablet, 70px mobile) */
@@ -135,7 +243,6 @@ import { TRANSITION_STEPS } from '../consts';
     font-weight: 700;
     line-height: 0.9;
     color: #ffffff;
-    margin-bottom: 2rem;
   }
 
   .c-process__step-title {
@@ -154,11 +261,5 @@ import { TRANSITION_STEPS } from '../consts';
     color: var(--color-text-inverse-muted);
     line-height: 1.6;
     margin: 0;
-  }
-
-  .c-process__action {
-    margin-top: 2.5rem;
-    display: flex;
-    justify-content: flex-end;
   }
 </style>

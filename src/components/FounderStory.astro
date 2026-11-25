@@ -6,17 +6,14 @@
     <div class="c-founder__split">
       <!-- Left Card: Early Access with Background Photo & Frosted Glass Overlay -->
       <div class="c-founder__left-card">
+        <img
+          src="/images/Engineers_collaborating_at_network.jpg"
+          alt="Engineers collaborating at network equipment"
+          class="c-founder__bg-image"
+          loading="lazy"
+        />
         <div class="c-founder__glass-overlay">
-          <div class="c-founder__avatar-wrap">
-            <img
-              src="/images/team-member-7.webp"
-              alt="Portrait illustration representing a Council member"
-              width="600"
-              height="760"
-              class="c-founder__avatar"
-              loading="lazy"
-            />
-          </div>
+          <!-- Template face avatar intentionally removed/hidden per rules -->
           <div class="c-founder__glass-content">
             <p class="c-founder__glass-title">
               Join the Council and get early access
@@ -103,58 +100,73 @@
     }
   }
 
-  /* Left Card: Full Image background with bottom Frosted Glass Card */
+  /* Left Card: Explicit HTML img for 100% reliable image loading */
   .c-founder__left-card {
-    min-height: 580px;
+    height: 380px;
     border-radius: var(--radius-card);
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url('/images/Engineers_collaborating_at_network.jpg');
-    background-size: cover;
-    background-position: center;
     position: relative;
-    padding: 2rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     overflow: hidden;
+    background-color: #1a1a1a;
   }
 
-  @media (max-width: 48rem) {
+  .c-founder__bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    filter: brightness(0.85);
+  }
+
+  @media (min-width: 48rem) and (max-width: 63.99rem) {
     .c-founder__left-card {
-      min-height: 480px;
-      padding: 1.25rem;
+      height: 420px;
+      padding: 2rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .c-founder__left-card {
+      height: 580px;
+      padding: 2.5rem;
     }
   }
 
   /* Reference Glassmorphic Box */
   .c-founder__glass-overlay {
-    background: rgba(0, 0, 0, 0.45);
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.55);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: var(--radius-card);
-    padding: 1.75rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    gap: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+    max-width: 520px;
+    margin-inline: auto;
   }
 
-  @media (min-width: 32rem) {
-    .c-founder__glass-overlay {
-      flex-direction: row;
+  /* Mobile and Tablet: Centre the glass content */
+  @media (max-width: 63.99rem) {
+    .c-founder__glass-content {
+      display: flex;
+      flex-direction: column;
       align-items: center;
+      text-align: center;
     }
-  }
 
-  .c-founder__avatar-wrap {
-    flex-shrink: 0;
-  }
-
-  .c-founder__avatar {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    .c-founder__glass-content .u-link-arrow {
+      justify-content: center;
+    }
   }
 
   .c-founder__glass-title {
@@ -187,7 +199,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 3rem;
+    gap: 2.5rem;
   }
 
   .c-founder__title {
@@ -205,6 +217,21 @@
     line-height: 1.65;
   }
 
+  /* Mobile & Tablet Centring for Right Card */
+  @media (max-width: 63.99rem) {
+    .c-founder__story {
+      text-align: center;
+    }
+
+    .c-founder__title {
+      text-align: center;
+    }
+
+    .c-founder__body {
+      text-align: center;
+    }
+  }
+
   /* Counters Grid matching Reference */
   .c-founder__counters {
     display: grid;
@@ -214,16 +241,57 @@
     border-top: 1px solid rgba(255, 255, 255, 0.15);
   }
 
-  @media (min-width: 32rem) {
-    .c-founder__counters {
-      grid-template-columns: repeat(2, 1fr);
+  /* Mobile: the two stats stacked and centred, each with its icon in a round pill above the number and label */
+  @media (max-width: 47.99rem) {
+    .c-counter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.75rem;
+    }
+
+    .c-counter__data {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   }
 
-  .c-counter {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.25rem;
+  /* Tablet (48rem to 63.99rem): Two stats side by side, centred */
+  @media (min-width: 48rem) and (max-width: 63.99rem) {
+    .c-founder__counters {
+      grid-template-columns: repeat(2, 1fr);
+      justify-items: center;
+    }
+
+    .c-counter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.75rem;
+    }
+
+    .c-counter__data {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  /* Desktop (>= 64rem): Left aligned side by side - MUST NOT CHANGE */
+  @media (min-width: 64rem) {
+    .c-founder__counters {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .c-counter {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
   }
 
   .c-counter__number {

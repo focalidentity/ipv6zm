@@ -201,4 +201,42 @@
     object-fit: cover;
     display: block;
   }
+
+  /* Inner Pages: Mobile and Tablet Centring Rule */
+  @media (max-width: 63.99rem) {
+    .c-page-header .l-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .c-page-header__lead {
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .c-article-header .l-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Centre headings inside general stacked cards on mobile and tablet */
+    .c-about-box,
+    .c-founder-full,
+    .c-alliance {
+      align-items: center;
+      text-align: center;
+    }
+
+    .c-about-list {
+      text-align: left; /* Keep lists readable */
+    }
+
+    .c-alliance-item {
+      text-align: center;
+    }
+  }
 }

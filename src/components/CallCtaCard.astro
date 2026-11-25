@@ -3,16 +3,20 @@ import { CONTACT } from '../consts';
 ---
 
 <div class="c-call-card">
-  <h2 class="c-call-card__title">Have more questions?</h2>
-  <p class="c-call-card__text">
-    Book a short call with the Council to talk about membership, sponsorship or IPv6 training for your organisation.
-  </p>
+  <div class="c-call-card__content">
+    <h2 class="c-call-card__title">Have more questions?</h2>
+    <p class="c-call-card__text">
+      Book a short call with the Council to talk about membership, sponsorship or IPv6 training for your organisation.
+    </p>
+  </div>
   <div class="c-call-card__action">
     <a href={CONTACT.phoneTel} class="c-call-card__link">
       <span>Book a call now</span>
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path d="M2.9 7H11.1M11.1 7L7 2.9M11.1 7L7 11.1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      <span class="c-call-card__circle" aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+          <path d="M2.9 7H11.1M11.1 7L7 2.9M11.1 7L7 11.1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
     </a>
   </div>
 </div>
@@ -28,6 +32,43 @@ import { CONTACT } from '../consts';
     justify-content: space-between;
     height: 100%;
     color: #ffffff;
+  }
+
+  /* Mobile and Tablet: text centred, buttons centred */
+  @media (max-width: 63.99rem) {
+    .c-call-card {
+      align-items: center;
+      text-align: center;
+    }
+
+    .c-call-card__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .c-call-card__action {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  /* Desktop (>= 64rem) - MUST NOT CHANGE */
+  @media (min-width: 64rem) {
+    .c-call-card {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .c-call-card__content {
+      text-align: left;
+    }
+
+    .c-call-card__action {
+      display: block;
+    }
   }
 
   .c-call-card__title {
@@ -54,6 +95,7 @@ import { CONTACT } from '../consts';
   .c-call-card__link {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     color: #ffffff;
     font-family: var(--font-sans);
@@ -61,7 +103,19 @@ import { CONTACT } from '../consts';
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 4px;
+    min-height: 44px;
     transition: opacity var(--transition-fast);
+  }
+
+  .c-call-card__circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
   }
 
   .c-call-card__link:hover {

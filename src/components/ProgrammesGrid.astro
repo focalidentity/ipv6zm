@@ -21,62 +21,135 @@ import { CORE_PROGRAMMES } from '../consts';
       </div>
     </div>
 
-    <!-- 3-Column Card Grid matching Reference -->
-    <div class="c-programmes__grid">
-      {
-        CORE_PROGRAMMES.map((prog) => (
-          <article class="c-prog-card">
-            <div class="c-prog-card__image-wrap">
-              <img
-                src={prog.image}
-                alt={prog.imageAlt}
-                width="600"
-                height="450"
-                loading="lazy"
-                class="c-prog-card__image"
-              />
-            </div>
-            <div class="c-prog-card__body">
-              <span class="u-badge">{prog.category}</span>
-              <h3 class="c-prog-card__title">
-                <a href={prog.href}>{prog.title}</a>
-              </h3>
-              <p class="c-prog-card__desc">{prog.description}</p>
-              <div class="c-prog-card__footer">
-                <a href={prog.href} class="u-link-arrow u-link-arrow--inverse">
-                  <span>Learn more</span>
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
+    <!-- Programmes Carousel Wrapper with CSS scroll-snap and navigation arrows -->
+    <div class="c-programmes__carousel-wrap">
+      <div class="c-programmes__grid" id="programmes-track">
+        {
+          CORE_PROGRAMMES.map((prog) => (
+            <article class="c-prog-card">
+              <div class="c-prog-card__image-wrap">
+                <img
+                  src={prog.image}
+                  alt={prog.imageAlt}
+                  width="600"
+                  height="450"
+                  loading="lazy"
+                  class="c-prog-card__image"
+                />
               </div>
-            </div>
-          </article>
-        ))
-      }
+              <div class="c-prog-card__body">
+                <span class="u-badge">{prog.category}</span>
+                <h3 class="c-prog-card__title">
+                  <a href={prog.href}>{prog.title}</a>
+                </h3>
+                <p class="c-prog-card__desc">{prog.description}</p>
+                <div class="c-prog-card__footer">
+                  <a href={prog.href} class="u-link-arrow u-link-arrow--inverse">
+                    <span>Learn more</span>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <!-- Round navigation buttons (visible on mobile and tablet) -->
+      <button
+        class="c-carousel-btn c-carousel-btn--prev"
+        id="programmes-prev"
+        aria-label="Previous programme"
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button
+        class="c-carousel-btn c-carousel-btn--next"
+        id="programmes-next"
+        aria-label="Next programme"
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </div>
   </div>
 </section>
+
+<script>
+  const track = document.getElementById('programmes-track');
+  const prevBtn = document.getElementById('programmes-prev');
+  const nextBtn = document.getElementById('programmes-next');
+
+  if (track && prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+      const card = track.querySelector('.c-prog-card');
+      const step = card ? card.clientWidth + 24 : 320;
+      track.scrollBy({ left: -step, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const card = track.querySelector('.c-prog-card');
+      const step = card ? card.clientWidth + 24 : 320;
+      track.scrollBy({ left: step, behavior: 'smooth' });
+    });
+  }
+</script>
 
 <style>
   .c-programmes {
     background-color: #040404;
     color: #ffffff;
     padding-block: clamp(3.75rem, 6vw, 7.5rem);
+    position: relative;
+    overflow: hidden;
   }
 
   .c-programmes__header {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 3.5rem;
+    gap: 1.25rem;
+    margin-bottom: 3rem;
   }
 
-  @media (min-width: 48rem) {
+  /* Mobile and Tablet: Heading centred, View all programmes centred below it (stacked) */
+  @media (max-width: 63.99rem) {
+    .c-programmes__header {
+      align-items: center;
+      text-align: center;
+    }
+
+    .c-programmes__title-wrap {
+      text-align: center;
+    }
+
+    .c-programmes__cta {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  /* Desktop (>= 64rem) - MUST NOT CHANGE */
+  @media (min-width: 64rem) {
     .c-programmes__header {
       flex-direction: row;
       justify-content: space-between;
       align-items: flex-end;
+      text-align: left;
+    }
+
+    .c-programmes__title-wrap {
+      text-align: left;
+    }
+
+    .c-programmes__cta {
+      display: block;
+      width: auto;
     }
   }
 
@@ -95,25 +168,178 @@ import { CORE_PROGRAMMES } from '../consts';
     margin: 0;
   }
 
-  .c-programmes__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+  /* Carousel Wrapper */
+  .c-programmes__carousel-wrap {
+    position: relative;
+    width: 100%;
   }
 
-  @media (min-width: 48rem) {
+  /* Mobile (<48rem): Swipe row showing 1 card at a time with scroll-snap */
+  @media (max-width: 47.99rem) {
     .c-programmes__grid {
-      grid-template-columns: repeat(2, 1fr);
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1.5rem;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 1rem;
+      margin-inline: -1.25rem;
+      padding-inline: 1.25rem;
+    }
+
+    .c-programmes__grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .c-prog-card {
+      flex: 0 0 calc(100% - 2.5rem);
+      min-width: calc(100% - 2.5rem);
+      max-width: calc(100% - 2.5rem);
+      scroll-snap-align: center;
+    }
+
+    /* Card picture, tag, title and Learn more centred */
+    .c-prog-card__body {
+      align-items: center;
+      text-align: center;
+    }
+
+    .c-prog-card__footer {
+      display: flex;
+      justify-content: center;
+    }
+
+    .c-carousel-btn {
+      display: flex;
+      position: absolute;
+      top: 35%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      color: #040404;
+      border: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      z-index: 10;
+      transition: background-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .c-carousel-btn:hover {
+      background: #ffffff;
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    .c-carousel-btn--prev {
+      left: 0;
+    }
+
+    .c-carousel-btn--next {
+      right: 0;
     }
   }
 
+  /* Tablet (48rem to 63.99rem): Shows 2 cards at a time, no running off edge, scroll-snap */
+  @media (min-width: 48rem) and (max-width: 63.99rem) {
+    .c-programmes__grid {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1.5rem;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 1rem;
+      margin-inline: -1.5rem;
+      padding-inline: 1.5rem;
+    }
+
+    .c-programmes__grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .c-prog-card {
+      flex: 0 0 calc(50% - 0.75rem);
+      min-width: calc(50% - 0.75rem);
+      max-width: calc(50% - 0.75rem);
+      scroll-snap-align: start;
+    }
+
+    /* Card picture, tag, title and Learn more centred */
+    .c-prog-card__body {
+      align-items: center;
+      text-align: center;
+    }
+
+    .c-prog-card__footer {
+      display: flex;
+      justify-content: center;
+    }
+
+    .c-carousel-btn {
+      display: flex;
+      position: absolute;
+      top: 35%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      color: #040404;
+      border: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      z-index: 10;
+      transition: background-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .c-carousel-btn:hover {
+      background: #ffffff;
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    .c-carousel-btn--prev {
+      left: -10px;
+    }
+
+    .c-carousel-btn--next {
+      right: -10px;
+    }
+  }
+
+  /* Desktop (>= 64rem) - MUST NOT CHANGE */
   @media (min-width: 64rem) {
+    .c-carousel-btn {
+      display: none;
+    }
+
     .c-programmes__grid {
+      display: grid;
       grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      overflow: visible;
+    }
+
+    .c-prog-card {
+      width: 100%;
+    }
+
+    .c-prog-card__body {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .c-prog-card__footer {
+      display: block;
     }
   }
 
-  /* Card matching reference: 4:3 cover photo with 20px radius, zoom hover, badge and title */
+  /* Card styling */
   .c-prog-card {
     display: flex;
     flex-direction: column;
@@ -126,6 +352,7 @@ import { CORE_PROGRAMMES } from '../consts';
     border-radius: var(--radius-card);
     background-color: #1a1a1a;
     margin-bottom: 1.5rem;
+    width: 100%;
   }
 
   .c-prog-card__image {

@@ -12,7 +12,7 @@
 
     <!-- 3-Column Grid matching Reference: Photo Card + 2 Feature Cards -->
     <div class="c-platform__grid">
-      <!-- Card 1: Reference Photo Card -->
+      <!-- Card 1: Reference Photo Card (Kept visible above cards on mobile and tablet) -->
       <div class="c-platform__card c-platform__card--photo">
         <img
           src="/images/images-3.jpeg"
@@ -26,47 +26,55 @@
 
       <!-- Card 2: Workshop & Conference Registration -->
       <div class="c-platform__card c-platform__card--feature">
-        <div class="u-icon-pill">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <line x1="16" y1="13" x2="8" y2="13"/>
-            <line x1="16" y1="17" x2="8" y2="17"/>
-            <polyline points="10 9 9 9 8 9"/>
-          </svg>
+        <div class="c-platform__icon-wrap">
+          <div class="u-icon-pill">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
         </div>
         <h3 class="c-platform__card-title">Workshop and conference registration</h3>
         <p class="c-platform__card-desc">
           Choose your ticket, pay safely and get your confirmation and schedule by email.
         </p>
         <div class="c-platform__card-action">
-          <a href="/register" class="u-link-arrow">
+          <a href="/register" class="c-platform__pill-btn">
             <span>Get in touch</span>
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <span class="c-platform__circle-btn" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                <path d="M3.33 8H12.67M12.67 8L8 3.33M12.67 8L8 12.67" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
           </a>
         </div>
       </div>
 
       <!-- Card 3: Hotels, Transport & Logistics -->
       <div class="c-platform__card c-platform__card--feature">
-        <div class="u-icon-pill">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-            <polyline points="9 22 9 12 15 12 15 22"/>
-          </svg>
+        <div class="c-platform__icon-wrap">
+          <div class="u-icon-pill">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
         </div>
         <h3 class="c-platform__card-title">Hotels, transport and logistics</h3>
         <p class="c-platform__card-desc">
           Book partner accommodation, arrange local transfers, and secure venue parking ahead of the June 2027 summit.
         </p>
         <div class="c-platform__card-action">
-          <a href="/contact" class="u-link-arrow">
+          <a href="/contact" class="c-platform__pill-btn">
             <span>Get in touch</span>
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <span class="c-platform__circle-btn" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                <path d="M3.33 8H12.67M12.67 8L8 3.33M12.67 8L8 12.67" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
           </a>
         </div>
       </div>
@@ -83,6 +91,14 @@
   .c-platform__header {
     max-width: 800px;
     margin-bottom: 3.5rem;
+  }
+
+  /* Mobile and Tablet: Header centred */
+  @media (max-width: 63.99rem) {
+    .c-platform__header {
+      margin-inline: auto;
+      text-align: center;
+    }
   }
 
   .c-platform__title {
@@ -103,30 +119,91 @@
   .c-platform__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
   }
 
-  @media (min-width: 48rem) {
+  /* Mobile (<48rem): Big conference photo on top, 2 cards stacked, content centred */
+  @media (max-width: 47.99rem) {
+    .c-platform__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .c-platform__card--photo {
+      height: 260px;
+      min-height: 260px;
+    }
+
+    .c-platform__card--feature {
+      align-items: center;
+      text-align: center;
+    }
+
+    .c-platform__icon-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .c-platform__card-action {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  /* Tablet (48rem to 63.99rem): Conference photo spans full width above, 2 cards side by side, content centred */
+  @media (min-width: 48rem) and (max-width: 63.99rem) {
     .c-platform__grid {
       grid-template-columns: repeat(2, 1fr);
     }
 
     .c-platform__card--photo {
       grid-column: span 2;
+      height: 320px;
+      min-height: 320px;
+    }
+
+    .c-platform__card--feature {
+      align-items: center;
+      text-align: center;
+    }
+
+    .c-platform__icon-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .c-platform__card-action {
+      display: flex;
+      justify-content: center;
     }
   }
 
+  /* Desktop (>= 64rem) - MUST NOT CHANGE */
   @media (min-width: 64rem) {
     .c-platform__grid {
       grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
     }
 
     .c-platform__card--photo {
       grid-column: span 1;
+      min-height: 380px;
+    }
+
+    .c-platform__card--feature {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .c-platform__icon-wrap {
+      display: block;
+    }
+
+    .c-platform__card-action {
+      display: block;
     }
   }
 
-  /* Cards matching reference: 20px radius, off-white #F8FAF7, pill icon */
+  /* Cards matching reference: 20px radius, off-white #F8FAF7 */
   .c-platform__card {
     border-radius: var(--radius-card);
     overflow: hidden;
@@ -136,7 +213,6 @@
   }
 
   .c-platform__card--photo {
-    min-height: 380px;
     background-color: #1a1a1a;
   }
 
@@ -174,5 +250,43 @@
   .c-platform__card-action {
     margin-top: auto;
     padding-top: 1rem;
+  }
+
+  /* Black round arrow link */
+  .c-platform__pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #040404;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .c-platform__pill-btn:hover {
+    color: var(--color-brand-accent);
+  }
+
+  .c-platform__circle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #040404;
+    color: #ffffff;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .c-platform__circle-btn svg {
+    stroke: #ffffff;
+  }
+
+  .c-platform__pill-btn:hover .c-platform__circle-btn {
+    background-color: var(--color-brand-accent);
+    transform: translateX(3px);
   }
 </style>

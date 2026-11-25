@@ -53,11 +53,11 @@
         </div>
       </div>
 
-      <!-- Right Column: 40% width on Desktop, Asymmetric 3-Photo Grid -->
+      <!-- Right Column: 40% width on Desktop, Tablet 3-Photo Row, Mobile hidden -->
       <div class="c-hero__media">
         <div class="c-hero__photo-grid">
-          <!-- Photo 1: Top Wide (Avani Hotels Livingstone) -->
-          <div class="c-hero__photo c-hero__photo--top">
+          <!-- Photo 1: Left rounded -->
+          <div class="c-hero__photo c-hero__photo--left">
             <img
               src="/images/d4f84cf5.webp"
               alt="A hotel venue in Livingstone, Zambia, a possible host city for the 2027 conference"
@@ -67,8 +67,8 @@
             />
           </div>
 
-          <!-- Photo 2: Bottom-Left Oval/Pill Portrait -->
-          <div class="c-hero__photo c-hero__photo--left">
+          <!-- Photo 2: Middle oval -->
+          <div class="c-hero__photo c-hero__photo--middle">
             <img
               src="/images/nathan-dumlao-y440_q4e-0E-unsplash-scaled.jpg"
               alt="Person using a smartphone beside an open notebook"
@@ -78,7 +78,7 @@
             />
           </div>
 
-          <!-- Photo 3: Bottom-Right Asymmetric Architecture -->
+          <!-- Photo 3: Right rounded -->
           <div class="c-hero__photo c-hero__photo--right">
             <img
               src="/images/images-2.jpeg"
@@ -88,16 +88,18 @@
               loading="lazy"
             />
           </div>
+        </div>
 
-          <!-- Floating Play Button pill positioned overlapping photos -->
-          <div class="c-hero__play-badge">
-            <div class="c-hero__play-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <!-- Watch Badge: <span>, not a link. Centred below photos on tablet, floating on desktop, hidden on mobile -->
+        <div class="c-hero__play-badge-wrap">
+          <span class="c-hero__play-badge">
+            <span class="c-hero__play-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                 <polygon points="5 3 19 12 5 21 5 3"/>
               </svg>
-            </div>
+            </span>
             <span class="c-hero__play-label">Watch: why Zambia needs IPv6</span>
-          </div>
+          </span>
         </div>
       </div>
     </div>
@@ -112,7 +114,7 @@
     background-position: center top;
     background-repeat: no-repeat;
     color: #ffffff;
-    padding-top: clamp(3rem, 8vw, 6rem);
+    padding-top: clamp(3rem, 6vw, 6rem);
     padding-bottom: clamp(3.5rem, 6vw, 6rem);
     position: relative;
     overflow: hidden;
@@ -121,44 +123,31 @@
   .c-hero__inner {
     display: flex;
     flex-direction: column;
-    gap: 3.5rem;
-  }
-
-  @media (min-width: 64rem) {
-    .c-hero__inner {
-      flex-direction: row;
-      align-items: center;
-      gap: 5rem;
-    }
-
-    .c-hero__content {
-      flex: 0 0 56%;
-    }
-
-    .c-hero__media {
-      flex: 0 0 44%;
-    }
+    gap: 3rem;
   }
 
   /* Badge styling: Never squashed or stretched */
   .c-hero__badge-wrap {
     margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
   }
 
   .c-hero__badge {
-    height: 80px;
+    height: 100px;
     width: auto;
     max-width: 100%;
     object-fit: contain;
   }
 
-  @media (max-width: 48rem) {
-    .c-hero__badge {
-      height: 65px;
-    }
+  /* Content alignment: Centred on Mobile and Tablet */
+  .c-hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
-  /* Typography matching reference */
   .c-hero__title {
     font-family: var(--font-heading);
     font-size: var(--font-size-hero);
@@ -167,6 +156,7 @@
     color: #ffffff;
     margin-bottom: 1.25rem;
     letter-spacing: -0.01em;
+    max-width: 48rem;
   }
 
   .c-hero__subtitle {
@@ -176,21 +166,30 @@
     line-height: 1.65;
     color: var(--color-text-inverse-muted);
     margin-bottom: 2.25rem;
-    max-width: 38rem;
+    max-width: 40rem;
+    margin-inline: auto;
   }
 
-  /* Button Row */
+  /* Buttons: Stacked and centred on Mobile (<48rem) */
   .c-hero__actions {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
-    gap: 1.25rem;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
   }
 
-  /* Reference Contact Experts Pill Button */
+  .c-hero__actions .u-btn {
+    min-height: 48px;
+    justify-content: center;
+  }
+
+  /* Contact Experts Pill Button */
   .c-hero__pill-btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     background-color: rgba(248, 250, 247, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -200,7 +199,7 @@
     font-family: var(--font-sans);
     font-size: 15px;
     font-weight: 600;
-    min-height: 44px;
+    min-height: 48px;
     transition: background-color var(--transition-fast), border-color var(--transition-fast);
     text-decoration: none;
   }
@@ -225,119 +224,240 @@
     line-height: 1;
   }
 
-  /* Asymmetric 3-Photo Grid matching Reference */
-  .c-hero__photo-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    position: relative;
-    max-width: 520px;
-    margin-inline: auto;
+  /* Mobile (<48rem): Hide all 3 photos and watch badge */
+  @media (max-width: 47.99rem) {
+    .c-hero__media {
+      display: none;
+    }
   }
 
-  .c-hero__photo {
-    overflow: hidden;
-    background-color: #1a1a1a;
-  }
+  /* Tablet (48rem to 63.99rem) */
+  @media (min-width: 48rem) and (max-width: 63.99rem) {
+    .c-hero__badge {
+      height: 120px;
+    }
 
-  .c-hero__photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform var(--transition-base);
-  }
+    .c-hero__actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.25rem;
+    }
 
-  .c-hero__photo:hover img {
-    transform: scale(1.03);
-  }
+    .c-hero__media {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-top: 1rem;
+    }
 
-  /* Top photo: spans 2 columns, asymmetric top-left curve (250px 30px 30px 30px) */
-  .c-hero__photo--top {
-    grid-column: span 2;
-    height: 280px;
-    border-radius: 180px 24px 24px 24px;
-  }
-
-  /* Bottom-left: tall pill/oval (300px radius) */
-  .c-hero__photo--left {
-    height: 280px;
-    border-radius: 140px;
-  }
-
-  /* Bottom-right: asymmetric bottom-right curve (24px 24px 90px 24px) */
-  .c-hero__photo--right {
-    height: 280px;
-    border-radius: 24px 24px 90px 24px;
-  }
-
-  /* Reference Floating Play Button Pill */
-  .c-hero__play-badge {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--color-brand-accent);
-    color: #ffffff;
-    border-radius: var(--radius-pill);
-    padding: 14px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    z-index: 2;
-    cursor: default;
-    min-width: 130px;
-  }
-
-  .c-hero__play-icon {
-    width: 44px;
-    height: 44px;
-    background-color: #ffffff;
-    color: var(--color-brand-accent);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-left: 3px;
-  }
-
-  .c-hero__play-label {
-    font-family: var(--font-sans);
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #ffffff;
-    line-height: 1.2;
-  }
-
-  @media (max-width: 48rem) {
+    /* 3 photos in 1 row, equal size, like reference */
     .c-hero__photo-grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      width: 100%;
+      max-width: 780px;
+      margin-inline: auto;
     }
 
-    .c-hero__photo--top {
-      grid-column: span 1;
-      height: 220px;
-      border-radius: 100px 20px 20px 20px;
+    .c-hero__photo {
+      height: 240px;
+      overflow: hidden;
+      background-color: #1a1a1a;
     }
 
-    .c-hero__photo--left,
+    .c-hero__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .c-hero__photo--left {
+      border-radius: 120px 24px 24px 24px;
+    }
+
+    .c-hero__photo--middle {
+      border-radius: 120px;
+    }
+
     .c-hero__photo--right {
-      height: 220px;
-      border-radius: 20px;
+      border-radius: 24px 24px 100px 24px;
+    }
+
+    /* Watch badge centred BELOW photos on tablet */
+    .c-hero__play-badge-wrap {
+      margin-top: 1.75rem;
+      display: flex;
+      justify-content: center;
+      width: 100%;
     }
 
     .c-hero__play-badge {
-      position: static;
-      transform: none;
-      margin-top: 1rem;
-      flex-direction: row;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: var(--color-brand-accent);
+      color: #ffffff;
+      border-radius: var(--radius-pill);
+      padding: 10px 22px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      cursor: default;
+    }
+
+    .c-hero__play-icon {
+      width: 32px;
+      height: 32px;
+      background-color: #ffffff;
+      color: var(--color-brand-accent);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
+      padding-left: 2px;
+    }
+
+    .c-hero__play-label {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #ffffff;
+    }
+  }
+
+  /* Desktop (>= 64rem) - MUST NOT CHANGE */
+  @media (min-width: 64rem) {
+    .c-hero__inner {
+      flex-direction: row;
+      align-items: center;
+      gap: 5rem;
+    }
+
+    .c-hero__content {
+      flex: 0 0 56%;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .c-hero__badge-wrap {
+      justify-content: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    .c-hero__badge {
+      height: 80px;
+    }
+
+    .c-hero__title {
+      max-width: 100%;
+    }
+
+    .c-hero__subtitle {
+      max-width: 38rem;
+      margin-inline: 0;
+    }
+
+    .c-hero__actions {
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 1.25rem;
+    }
+
+    .c-hero__media {
+      flex: 0 0 44%;
+      position: relative;
+      display: block;
+    }
+
+    .c-hero__photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      position: relative;
+      max-width: 520px;
+      margin-inline: auto;
+    }
+
+    .c-hero__photo {
+      overflow: hidden;
+      background-color: #1a1a1a;
+    }
+
+    .c-hero__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform var(--transition-base);
+    }
+
+    .c-hero__photo:hover img {
+      transform: scale(1.03);
+    }
+
+    .c-hero__photo--left {
+      grid-column: span 2;
+      height: 280px;
+      border-radius: 180px 24px 24px 24px;
+    }
+
+    .c-hero__photo--middle {
+      height: 280px;
+      border-radius: 140px;
+    }
+
+    .c-hero__photo--right {
+      height: 280px;
+      border-radius: 24px 24px 90px 24px;
+    }
+
+    .c-hero__play-badge-wrap {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+
+    .c-hero__play-badge {
+      background-color: var(--color-brand-accent);
+      color: #ffffff;
+      border-radius: var(--radius-pill);
+      padding: 14px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      cursor: default;
+      min-width: 130px;
+    }
+
+    .c-hero__play-icon {
+      width: 44px;
+      height: 44px;
+      background-color: #ffffff;
+      color: var(--color-brand-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 3px;
+    }
+
+    .c-hero__play-label {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #ffffff;
+      line-height: 1.2;
     }
   }
 </style>

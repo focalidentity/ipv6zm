@@ -2,18 +2,20 @@
 ---
 
 <div class="c-newsletter-card">
-  <h2 class="c-newsletter-card__title">Subscribe to IPv6 Zambia updates!</h2>
-  <p class="c-newsletter-card__text">
-    Enter your email to get conference news, workshop dates and plain-English IPv6 guides. Subscribers also get early access to tickets.
-  </p>
+  <div class="c-newsletter-card__content">
+    <h2 class="c-newsletter-card__title">Subscribe to IPv6 Zambia updates!</h2>
+    <p class="c-newsletter-card__text">
+      Enter your email to get conference news, workshop dates and plain-English IPv6 guides. Subscribers also get early access to tickets.
+    </p>
+  </div>
 
-  <!-- Blocksy/Reference 2-Column Pill Input Container -->
+  <!-- Form: Mobile has input on top and full-width orange Subscribe button below; Tablet has side by side -->
   <form class="c-newsletter-card__form" action="/subscribe" method="GET">
     <div class="c-newsletter-card__input-pill">
       <input
         type="email"
         name="email"
-        placeholder="Enter your email address"
+        placeholder="Your email *"
         required
         aria-label="Email Address for IPv6 updates"
         class="c-newsletter-card__input"
@@ -37,6 +39,33 @@
     color: #ffffff;
   }
 
+  /* Mobile and Tablet: text centred */
+  @media (max-width: 63.99rem) {
+    .c-newsletter-card {
+      align-items: center;
+      text-align: center;
+    }
+
+    .c-newsletter-card__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  /* Desktop (>= 64rem) - MUST NOT CHANGE */
+  @media (min-width: 64rem) {
+    .c-newsletter-card {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .c-newsletter-card__content {
+      text-align: left;
+    }
+  }
+
   .c-newsletter-card__title {
     font-family: var(--font-heading);
     font-size: 1.5625rem; /* 25px */
@@ -58,54 +87,86 @@
     width: 100%;
   }
 
-  /* Reference Dark Pill Input Wrapper with Orange Button on Right */
-  .c-newsletter-card__input-pill {
-    background-color: #37373d;
-    border-radius: var(--radius-pill);
-    padding: 6px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-  }
-
-  @media (min-width: 32rem) {
+  /* Mobile (<48rem): Input on top and full-width orange Subscribe button below it */
+  @media (max-width: 47.99rem) {
     .c-newsletter-card__input-pill {
-      flex-direction: row;
-      align-items: center;
-      gap: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 100%;
+      background: transparent;
+      padding: 0;
+    }
+
+    .c-newsletter-card__input {
+      width: 100%;
+      background-color: #37373d;
+      border: 1px solid #4a4a52;
+      border-radius: var(--radius-pill);
+      padding: 0.75rem 1.25rem;
+      color: #ffffff;
+      min-height: 48px;
+      text-align: left;
+    }
+
+    .c-newsletter-card__btn {
+      width: 100%;
+      min-height: 48px;
+      border-radius: var(--radius-pill);
+      background-color: var(--color-brand-accent);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color var(--transition-fast);
     }
   }
 
-  .c-newsletter-card__input {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #ffffff;
-    font-family: var(--font-sans);
-    font-size: 1rem; /* 16px min prevents iOS zoom */
-    padding: 0.65rem 1.25rem;
-    flex: 1;
-    min-height: 44px;
+  /* Tablet and Desktop: Side by side pill input */
+  @media (min-width: 48rem) {
+    .c-newsletter-card__input-pill {
+      background-color: #37373d;
+      border-radius: var(--radius-pill);
+      padding: 6px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .c-newsletter-card__input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #ffffff;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      padding: 0.65rem 1.25rem;
+      flex: 1;
+      min-height: 44px;
+      text-align: left;
+    }
+
+    .c-newsletter-card__btn {
+      background-color: var(--color-brand-accent);
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 0.65rem 1.75rem;
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      min-height: 44px;
+      transition: background-color var(--transition-fast);
+      flex-shrink: 0;
+    }
   }
 
   .c-newsletter-card__input::placeholder {
     color: #94a3b8;
-  }
-
-  .c-newsletter-card__btn {
-    background-color: var(--color-brand-accent);
-    color: #ffffff;
-    border: none;
-    border-radius: var(--radius-pill);
-    padding: 0.65rem 1.75rem;
-    font-family: var(--font-sans);
-    font-size: 0.9375rem;
-    font-weight: 600;
-    cursor: pointer;
-    min-height: 44px;
-    transition: background-color var(--transition-fast);
-    flex-shrink: 0;
   }
 
   .c-newsletter-card__btn:hover {

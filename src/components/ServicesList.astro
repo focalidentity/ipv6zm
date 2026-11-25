@@ -28,9 +28,49 @@ import { SERVICES } from '../consts';
           <div class="c-services__row">
             <div class="c-services__icon-col">
               <div class="u-icon-pill">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-                </svg>
+                {srv.id === 'training' && (
+                  <!-- Nodes icon -->
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="18" cy="5" r="3"/>
+                    <circle cx="6" cy="12" r="3"/>
+                    <circle cx="18" cy="19" r="3"/>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                  </svg>
+                )}
+                {srv.id === 'audits' && (
+                  <!-- Toggles icon -->
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="6" width="20" height="12" rx="6"/>
+                    <circle cx="8" cy="12" r="3"/>
+                  </svg>
+                )}
+                {srv.id === 'policy' && (
+                  <!-- Screen/Device icon -->
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                  </svg>
+                )}
+                {srv.id === 'architecture' && (
+                  <!-- Code brackets icon -->
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"/>
+                    <polyline points="8 6 2 12 8 18"/>
+                  </svg>
+                )}
+                {srv.id === 'conference' && (
+                  <!-- Atom / concentric circle icon -->
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"/>
+                    <circle cx="12" cy="12" r="8"/>
+                    <line x1="12" y1="2" x2="12" y2="4"/>
+                    <line x1="12" y1="20" x2="12" y2="22"/>
+                    <line x1="20" y1="12" x2="22" y2="12"/>
+                    <line x1="2" y1="12" x2="4" y2="12"/>
+                  </svg>
+                )}
               </div>
             </div>
 
@@ -65,15 +105,44 @@ import { SERVICES } from '../consts';
   .c-services__header {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.25rem;
     margin-bottom: 3.5rem;
   }
 
-  @media (min-width: 48rem) {
+  /* Mobile and Tablet: Heading, paragraph and "View all services" centred, stacked */
+  @media (max-width: 63.99rem) {
+    .c-services__header {
+      align-items: center;
+      text-align: center;
+    }
+
+    .c-services__title-wrap {
+      text-align: center;
+    }
+
+    .c-services__header-action {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  /* Desktop (>= 64rem) - MUST NOT CHANGE */
+  @media (min-width: 64rem) {
     .c-services__header {
       flex-direction: row;
       justify-content: space-between;
       align-items: flex-end;
+      text-align: left;
+    }
+
+    .c-services__title-wrap {
+      text-align: left;
+    }
+
+    .c-services__header-action {
+      display: block;
+      width: auto;
     }
   }
 
@@ -100,10 +169,6 @@ import { SERVICES } from '../consts';
 
   .c-services__row {
     display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    padding-block: 2.25rem;
-    border-bottom: 1px solid var(--color-border);
     transition: background-color var(--transition-fast);
   }
 
@@ -111,12 +176,71 @@ import { SERVICES } from '../consts';
     border-bottom: none;
   }
 
-  @media (min-width: 56rem) {
+  /* Mobile (<48rem): Stacked and centred with thin line between services */
+  @media (max-width: 47.99rem) {
+    .c-services__row {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.25rem;
+      padding-block: 2.25rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .c-services__icon-col {
+      display: flex;
+      justify-content: center;
+    }
+
+    .c-services__arrow-col {
+      display: flex;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+  }
+
+  /* Tablet (48rem to 63.99rem): One row per service like reference: icon, title, text, arrow on right */
+  @media (min-width: 48rem) and (max-width: 63.99rem) {
+    .c-services__row {
+      display: grid;
+      grid-template-columns: 70px 220px 1fr 50px;
+      align-items: center;
+      gap: 1.5rem;
+      padding-block: 2rem;
+      border-bottom: 1px solid var(--color-border);
+      text-align: left;
+    }
+
+    .c-services__icon-col {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .c-services__arrow-col {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  /* Desktop (>= 64rem) - MUST NOT CHANGE */
+  @media (min-width: 64rem) {
     .c-services__row {
       display: grid;
       grid-template-columns: 80px 240px 1fr 60px;
       align-items: center;
       gap: 2rem;
+      padding-block: 2.25rem;
+      border-bottom: 1px solid var(--color-border);
+      text-align: left;
+    }
+
+    .c-services__icon-col {
+      display: block;
+    }
+
+    .c-services__arrow-col {
+      display: flex;
+      justify-content: flex-end;
     }
   }
 
@@ -140,17 +264,7 @@ import { SERVICES } from '../consts';
     margin: 0;
   }
 
-  .c-services__arrow-col {
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  @media (min-width: 56rem) {
-    .c-services__arrow-col {
-      justify-content: flex-end;
-    }
-  }
-
+  /* Black round arrow button */
   .c-services__circle-link {
     display: inline-flex;
     align-items: center;
@@ -158,15 +272,20 @@ import { SERVICES } from '../consts';
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    border: 1px solid var(--color-border);
-    color: var(--color-brand-primary);
+    background-color: #040404;
+    border: 1px solid #040404;
+    color: #ffffff;
     transition: all var(--transition-fast);
+  }
+
+  .c-services__circle-link svg {
+    stroke: #ffffff;
   }
 
   .c-services__row:hover .c-services__circle-link {
     background-color: var(--color-brand-accent);
     border-color: var(--color-brand-accent);
     color: #ffffff;
-    transform: translateX(4px);
+    transform: translateX(3px);
   }
 </style>
