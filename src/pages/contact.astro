@@ -71,7 +71,7 @@ import { SITE, CONTACT, CONFERENCE } from '../consts';
               <textarea id="message" name="message" rows="4" placeholder="Briefly describe your team size, network requirements, or questions..."></textarea>
             </div>
 
-            <button type="submit" class="u-btn u-btn--primary">Submit Registration / Inquiry</button>
+            <button type="submit" class="u-btn u-btn--accent">Submit Registration / Inquiry</button>
           </form>
         </div>
 
@@ -94,21 +94,27 @@ import { SITE, CONTACT, CONFERENCE } from '../consts';
 
 <style>
   .c-page-header {
-    background: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
-    padding-block: var(--space-xl);
-    border-bottom: 1px solid var(--color-border);
+    background-color: #040404;
+    background-image: url('/images/hero-section-background-scaled-1.webp');
+    background-size: cover;
+    background-position: center top;
+    color: #ffffff;
+    padding-block: clamp(3rem, 5vw, 5rem);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .c-page-header__title {
+    font-family: var(--font-heading);
     font-size: var(--font-size-h1);
-    color: var(--color-brand-primary);
-    margin-block: var(--space-2xs);
+    color: #ffffff;
+    margin-block: 0.5rem;
   }
 
   .c-page-header__lead {
-    font-size: var(--font-size-body);
-    color: var(--color-text-muted);
-    max-width: 42rem;
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    color: var(--color-text-inverse-muted);
+    max-width: 44rem;
   }
 
   .c-contact-grid {

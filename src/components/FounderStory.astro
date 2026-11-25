@@ -3,29 +3,79 @@
 
 <section class="c-founder l-section">
   <div class="l-container">
-    <div class="c-founder__card l-card">
-      <div class="c-founder__grid">
-        <div class="c-founder__content l-stack">
-          <div class="u-badge u-badge--accent">Origin & Vision</div>
-          <h2 class="c-founder__title">Born from a lifelong passion for computing</h2>
-          <p class="c-founder__body">
-            The Council began with one belief. Zambia’s internet will only grow if its people have the skills to run it. Our founder grew up around early computers, and that curiosity became a mission to bring IPv6 skills to every organisation that depends on the internet.
-          </p>
+    <div class="c-founder__split">
+      <!-- Left Card: Early Access with Background Photo & Frosted Glass Overlay -->
+      <div class="c-founder__left-card">
+        <div class="c-founder__glass-overlay">
+          <div class="c-founder__avatar-wrap">
+            <img
+              src="/images/team-member-7.webp"
+              alt="Portrait illustration representing a Council member"
+              width="600"
+              height="760"
+              class="c-founder__avatar"
+              loading="lazy"
+            />
+          </div>
+          <div class="c-founder__glass-content">
+            <p class="c-founder__glass-title">
+              Join the Council and get early access
+            </p>
+            <p class="c-founder__glass-text">
+              Become a member to get early access to IPv6 workshops and the national conference.
+            </p>
+            <a href="/contact" class="u-link-arrow u-link-arrow--inverse">
+              <span>Get in touch</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
 
-          <div class="c-founder__milestones l-cluster">
-            <div class="c-founder__stat">
-              <span class="c-founder__stat-val">2027</span>
-              <span class="c-founder__stat-lbl">National Conference (Date to be confirmed)</span>
+      <!-- Right Card: Born from passion with 2027 and Goals Counters -->
+      <div class="c-founder__right-card">
+        <div class="c-founder__story">
+          <h2 class="c-founder__title">
+            Born from a lifelong passion for computing
+          </h2>
+          <p class="c-founder__body">
+            The Council began with one belief: Zambia's internet will only grow if its people have the skills to run it. Our founder grew up around early computers, and that curiosity became a mission to bring IPv6 skills to every organisation that depends on the internet.
+          </p>
+        </div>
+
+        <!-- Counter Row matching Reference -->
+        <div class="c-founder__counters">
+          <!-- Counter 1: 2027 -->
+          <div class="c-counter">
+            <div class="u-icon-pill u-icon-pill--inverse">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
             </div>
-            <div class="c-founder__stat">
-              <span class="c-founder__stat-val">Goals</span>
-              <span class="c-founder__stat-lbl">Skills, security, growth and new ideas</span>
+            <div class="c-counter__data">
+              <div class="c-counter__number">2027</div>
+              <div class="c-counter__label">National Conference</div>
+              <div class="c-counter__sublabel">Date to be confirmed</div>
             </div>
           </div>
 
-          <div class="c-founder__callout">
-            <p><strong>Join the Council and get early access:</strong> Become a member to get early access to IPv6 workshops and the national conference.</p>
-            <a href="/contact" class="u-btn u-btn--primary">Get in touch</a>
+          <!-- Counter 2: Goals -->
+          <div class="c-counter">
+            <div class="u-icon-pill u-icon-pill--inverse">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <div class="c-counter__data">
+              <div class="c-counter__number">Goals</div>
+              <div class="c-counter__label">Core Pillars</div>
+              <div class="c-counter__sublabel">Skills, security, growth and new ideas</div>
+            </div>
           </div>
         </div>
       </div>
@@ -34,58 +84,169 @@
 </section>
 
 <style>
-  .c-founder__card {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    border-left: 6px solid var(--color-brand-primary);
-    padding: var(--space-xl);
+  .c-founder {
+    padding-top: clamp(2rem, 4vw, 3rem);
+    padding-bottom: clamp(3.5rem, 6vw, 6rem);
+    background-color: #ffffff;
+  }
+
+  .c-founder__split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 64rem) {
+    .c-founder__split {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+  }
+
+  /* Left Card: Full Image background with bottom Frosted Glass Card */
+  .c-founder__left-card {
+    min-height: 580px;
+    border-radius: var(--radius-card);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url('/images/Engineers_collaborating_at_network.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+
+  @media (max-width: 48rem) {
+    .c-founder__left-card {
+      min-height: 480px;
+      padding: 1.25rem;
+    }
+  }
+
+  /* Reference Glassmorphic Box */
+  .c-founder__glass-overlay {
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--radius-card);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  @media (min-width: 32rem) {
+    .c-founder__glass-overlay {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  .c-founder__avatar-wrap {
+    flex-shrink: 0;
+  }
+
+  .c-founder__avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .c-founder__glass-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem; /* 20px */
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.35rem;
+    line-height: 1.3;
+    display: block;
+  }
+
+  .c-founder__glass-text {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    color: var(--color-text-inverse-muted);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Right Card: Dark Wavy Background */
+  .c-founder__right-card {
+    background-color: #040404;
+    background-image: url('/images/hero-section-background-scaled-1.webp');
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--radius-card);
+    padding: clamp(2rem, 5vw, 3.5rem);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3rem;
   }
 
   .c-founder__title {
+    font-family: var(--font-heading);
     font-size: var(--font-size-h2);
+    color: #ffffff;
+    margin-bottom: 1.25rem;
+    line-height: 1.25;
   }
 
   .c-founder__body {
-    font-size: var(--font-size-body);
-    color: var(--color-text-muted);
-    line-height: var(--line-height-normal);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    color: var(--color-text-inverse-muted);
+    line-height: 1.65;
   }
 
-  .c-founder__milestones {
-    gap: var(--space-lg);
-    padding-block: var(--space-xs);
-    border-block: 1px solid var(--color-border);
+  /* Counters Grid matching Reference */
+  .c-founder__counters {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
   }
 
-  .c-founder__stat {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .c-founder__stat-val {
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: var(--color-brand-primary);
-  }
-
-  .c-founder__stat-lbl {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-  }
-
-  .c-founder__callout {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    padding: var(--space-md);
-    background-color: var(--color-surface-muted);
-    border-radius: var(--radius-md);
-  }
-
-  @media (min-width: 48rem) {
-    .c-founder__callout {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
+  @media (min-width: 32rem) {
+    .c-founder__counters {
+      grid-template-columns: repeat(2, 1fr);
     }
+  }
+
+  .c-counter {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .c-counter__number {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+  }
+
+  .c-counter__label {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+  }
+
+  .c-counter__sublabel {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    color: var(--color-text-inverse-muted);
+    line-height: 1.4;
   }
 </style>

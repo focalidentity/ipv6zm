@@ -1,88 +1,195 @@
 ---
-import { FAQ_ITEMS } from '../consts';
+import { FAQ_ITEMS, CONTACT } from '../consts';
 ---
 
-<div id="faq" class="c-faq">
-  <div class="c-faq__header">
-    <div class="u-badge u-badge--primary">Common Questions</div>
-    <h2 class="c-faq__title">Commonly asked questions and answers</h2>
-    <p class="c-faq__subtitle">Clear, direct answers regarding the council, our mandate, and the transition path.</p>
-  </div>
+<section id="faq" class="c-faq-section l-section">
+  <div class="l-container">
+    <div class="c-faq-section__grid">
+      <!-- Left Column: Heading + Direct Phone & Email Cards -->
+      <div class="c-faq-section__left">
+        <h2 class="c-faq-section__title">
+          Commonly asked questions and answers
+        </h2>
 
-  <div class="c-faq__list l-stack">
-    {
-      FAQ_ITEMS.map((item, index) => (
-        <details class="c-faq__item l-card" open={index === 0}>
-          <summary class="c-faq__question">
-            <span>{item.question}</span>
-            <span class="c-faq__icon" aria-hidden="true">+</span>
-          </summary>
-          <div class="c-faq__answer">
-            <p>{item.answer}</p>
+        <div class="c-faq-section__contacts">
+          <!-- Phone Card -->
+          <div class="c-contact-pill-item">
+            <div class="u-icon-pill u-icon-pill--white">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
+            <div class="c-contact-pill-item__text">
+              <h3 class="c-contact-pill-item__label">Phone / WhatsApp</h3>
+              <a href={CONTACT.phoneTel} class="c-contact-pill-item__link">{CONTACT.phoneDisplay}</a>
+            </div>
           </div>
-        </details>
-      ))
-    }
+
+          <!-- Email Card -->
+          <div class="c-contact-pill-item">
+            <div class="u-icon-pill u-icon-pill--white">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div class="c-contact-pill-item__text">
+              <h3 class="c-contact-pill-item__label">Official Desk</h3>
+              <a href={CONTACT.emailMailto} class="c-contact-pill-item__link">{CONTACT.email}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Clean Borderless Accordion matching Reference -->
+      <div class="c-faq-section__right">
+        <div class="c-accordion">
+          {
+            FAQ_ITEMS.map((item, index) => (
+              <details class="c-accordion__item" open={index === 0}>
+                <summary class="c-accordion__header">
+                  <span class="c-accordion__question">{item.question}</span>
+                  <span class="c-accordion__toggle" aria-hidden="true">
+                    <svg class="c-accordion__plus" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M8 3V13M3 8H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </summary>
+                <div class="c-accordion__body">
+                  <p>{item.answer}</p>
+                </div>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
 <style>
-  .c-faq {
-    width: 100%;
+  .c-faq-section {
+    background-color: #040404;
+    color: #ffffff;
+    padding-block: clamp(3.75rem, 6vw, 7.5rem);
   }
 
-  .c-faq__header {
-    margin-block-end: var(--space-md);
+  .c-faq-section__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
   }
 
-  .c-faq__title {
+  @media (min-width: 64rem) {
+    .c-faq-section__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 5rem;
+    }
+  }
+
+  .c-faq-section__title {
+    font-family: var(--font-heading);
     font-size: var(--font-size-h2);
-    margin-block: var(--space-2xs);
+    color: #ffffff;
+    margin-bottom: 2.5rem;
+    line-height: 1.25;
+    max-width: 500px;
   }
 
-  .c-faq__subtitle {
-    font-size: var(--font-size-body);
-    color: var(--color-text-muted);
+  .c-faq-section__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
-  .c-faq__item {
-    padding: 0;
-    overflow: hidden;
-    border: 1px solid var(--color-border);
+  .c-contact-pill-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
   }
 
-  .c-faq__question {
+  .c-contact-pill-item__label {
+    font-family: var(--font-heading);
+    font-size: 1.25rem; /* 20px */
+    color: #ffffff;
+    margin: 0 0 0.25rem 0;
+  }
+
+  .c-contact-pill-item__link {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    color: var(--color-text-inverse-muted);
+    transition: color var(--transition-fast);
+  }
+
+  .c-contact-pill-item__link:hover {
+    color: var(--color-brand-accent);
+  }
+
+  /* Accordion matching Reference: No outer borders, large typography, orange hover */
+  .c-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .c-accordion__item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding-bottom: 1.25rem;
+  }
+
+  .c-accordion__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--space-md) var(--space-lg);
-    font-weight: 700;
-    font-size: var(--font-size-body);
-    color: var(--color-brand-primary);
+    gap: 1.5rem;
     cursor: pointer;
     list-style: none;
     user-select: none;
+    padding-block: 0.5rem;
   }
 
-  .c-faq__question::-webkit-details-marker {
+  .c-accordion__header::-webkit-details-marker {
     display: none;
   }
 
-  .c-faq__icon {
-    font-size: 1.5rem;
-    font-weight: 400;
+  .c-accordion__question {
+    font-family: var(--font-heading);
+    font-size: 1.25rem; /* 20px */
+    font-weight: 600;
+    line-height: 1.4;
+    color: #ffffff;
+    transition: color var(--transition-fast);
+  }
+
+  .c-accordion__item:hover .c-accordion__question,
+  .c-accordion__item[open] .c-accordion__question {
     color: var(--color-brand-accent);
+  }
+
+  .c-accordion__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-brand-accent);
+    flex-shrink: 0;
     transition: transform var(--transition-fast);
   }
 
-  details[open] .c-faq__icon {
+  .c-accordion__item[open] .c-accordion__toggle {
     transform: rotate(45deg);
   }
 
-  .c-faq__answer {
-    padding: 0 var(--space-lg) var(--space-lg);
-    font-size: var(--font-size-body);
-    color: var(--color-text-muted);
-    line-height: var(--line-height-normal);
+  .c-accordion__body {
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .c-accordion__body p {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--color-text-inverse-muted);
+    line-height: 1.65;
+    margin: 0;
   }
 </style>

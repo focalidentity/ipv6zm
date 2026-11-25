@@ -2,26 +2,51 @@
 import { SERVICES } from '../consts';
 ---
 
-<section id="services" class="c-services l-section l-section--muted">
+<section id="services" class="c-services l-section">
   <div class="l-container">
-    <div class="u-section-header">
-      <div class="u-badge u-badge--primary">Capability Scope</div>
-      <h2>What we do to move Zambia to IPv6</h2>
-      <p>Specialized institutional assistance, engineering enablement, and advisory services.</p>
+    <div class="c-services__header">
+      <div class="c-services__title-wrap">
+        <h2 class="c-services__title">What we do to move Zambia to IPv6</h2>
+        <p class="c-services__lead">
+          Specialised institutional assistance, engineering enablement, and advisory services.
+        </p>
+      </div>
+      <div class="c-services__header-action">
+        <a href="/services" class="u-link-arrow">
+          <span>View all services</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
     </div>
 
-    <div class="c-services__list l-stack">
+    <!-- 8-Column Horizontal Service Rows matching Reference -->
+    <div class="c-services__table">
       {
         SERVICES.map((srv) => (
-          <div class="c-services__item l-card l-card--interactive">
-            <div class="c-services__item-num">{srv.number}</div>
-            <div class="c-services__item-content l-stack l-stack--sm">
+          <div class="c-services__row">
+            <div class="c-services__icon-col">
+              <div class="u-icon-pill">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="c-services__name-col">
               <h3 class="c-services__item-title">{srv.title}</h3>
+            </div>
+
+            <div class="c-services__desc-col">
               <p class="c-services__item-summary">{srv.summary}</p>
             </div>
-            <div class="c-services__item-action">
-              <a href="/services" class="u-btn u-btn--outline" aria-label={`Details for ${srv.title}`}>
-                Details →
+
+            <div class="c-services__arrow-col">
+              <a href="/services" class="c-services__circle-link" aria-label={`Details for ${srv.title}`}>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M3.33 8H12.67M12.67 8L8 3.33M12.67 8L8 12.67" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </a>
             </div>
           </div>
@@ -32,41 +57,116 @@ import { SERVICES } from '../consts';
 </section>
 
 <style>
-  .c-services__list {
-    gap: var(--space-md);
-    max-width: 60rem;
-    margin-inline: auto;
+  .c-services {
+    background-color: #ffffff;
+    padding-block: clamp(3.75rem, 6vw, 7.5rem);
   }
 
-  .c-services__item {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: var(--space-lg);
-    padding: var(--space-lg);
+  .c-services__header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
   }
 
-  @media (max-width: 40rem) {
-    .c-services__item {
-      grid-template-columns: 1fr;
-      gap: var(--space-sm);
+  @media (min-width: 48rem) {
+    .c-services__header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
     }
   }
 
-  .c-services__item-num {
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: var(--color-brand-accent);
-    font-family: var(--font-mono);
+  .c-services__title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-h2);
+    color: var(--color-text-heading);
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
+  }
+
+  .c-services__lead {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    color: var(--color-brand-charcoal);
+    margin: 0;
+  }
+
+  /* Table / Row Stack */
+  .c-services__table {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .c-services__row {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-block: 2.25rem;
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color var(--transition-fast);
+  }
+
+  .c-services__row:last-child {
+    border-bottom: none;
+  }
+
+  @media (min-width: 56rem) {
+    .c-services__row {
+      display: grid;
+      grid-template-columns: 80px 240px 1fr 60px;
+      align-items: center;
+      gap: 2rem;
+    }
+  }
+
+  .c-services__icon-col {
+    flex-shrink: 0;
   }
 
   .c-services__item-title {
-    font-size: var(--font-size-h3);
-    color: var(--color-brand-primary);
+    font-family: var(--font-heading);
+    font-size: 1.25rem; /* 20px */
+    color: var(--color-text-heading);
+    margin: 0;
+    line-height: 1.35;
   }
 
   .c-services__item-summary {
-    font-size: var(--font-size-body);
-    color: var(--color-text-muted);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--color-brand-charcoal);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .c-services__arrow-col {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  @media (min-width: 56rem) {
+    .c-services__arrow-col {
+      justify-content: flex-end;
+    }
+  }
+
+  .c-services__circle-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    color: var(--color-brand-primary);
+    transition: all var(--transition-fast);
+  }
+
+  .c-services__row:hover .c-services__circle-link {
+    background-color: var(--color-brand-accent);
+    border-color: var(--color-brand-accent);
+    color: #ffffff;
+    transform: translateX(4px);
   }
 </style>

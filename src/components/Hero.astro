@@ -1,71 +1,102 @@
 ---
-import { SITE } from '../consts';
 ---
 
-<section class="c-hero l-section">
+<section class="c-hero">
   <div class="l-container">
-    <div class="c-hero__grid">
-      <!-- Left Hero Content -->
-      <div class="c-hero__content l-stack">
+    <div class="c-hero__inner">
+      <!-- Left Column: 60% width on Desktop -->
+      <div class="c-hero__content">
+        <!-- Laurel Badge (300x167 natural ratio, never stretched) -->
         <div class="c-hero__badge-wrap">
           <img
             src="/images/Zambia_IPv6_association_badge_5fe0b2a8__1_-removebg-preview-300x167.png"
-            alt="Official IPv6 Council of Zambia Emblem"
-            width="220"
-            height="122"
+            alt="IPv6 Council of Zambia Emblem"
+            width="300"
+            height="167"
             class="c-hero__badge"
             loading="eager"
             decoding="async"
           />
         </div>
 
-        <h1 class="c-hero__title">IPv6 Zambia: Building a Faster, Safer Internet</h1>
+        <h1 class="c-hero__title">
+          Building Zambia's Digital Future on IPv6
+        </h1>
 
-        <p class="c-hero__lead">
-          The IPv6 Council of Zambia is a non-profit association. We train engineers, bring government, banks and mobile operators together, and help the whole country move to IPv6.
+        <p class="c-hero__subtitle">
+          The IPv6 Council of Zambia unites network engineers, regulators, commercial banks, and telecommunications operators to secure scalable, modern internet infrastructure nationwide.
         </p>
 
-        <div class="c-hero__ctas l-cluster">
-          <a href="#programmes" class="u-btn u-btn--primary">Find out more</a>
-          <a href="/contact" class="u-btn u-btn--outline">Contact our experts</a>
+        <!-- Button Row matching Reference -->
+        <div class="c-hero__actions">
+          <a href="/about" class="u-btn u-btn--accent">
+            <span>Find out more</span>
+            <span class="u-btn__circle">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.9 7H11.1M11.1 7L7 2.9M11.1 7L7 11.1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+          <!-- Contact Experts Pill Button (Direct Real Page Link) -->
+          <a href="/contact" class="c-hero__pill-btn">
+            <span class="c-hero__pill-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </span>
+            <span class="c-hero__pill-text">Contact our experts</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
         </div>
       </div>
 
-      <!-- Right Visual Grid (Authentic & Verified Imagery Only) -->
+      <!-- Right Column: 40% width on Desktop, Asymmetric 3-Photo Grid -->
       <div class="c-hero__media">
-        <div class="c-hero__media-grid">
-          <div class="c-hero__media-item c-hero__media-item--main">
-            <img
-              src="/images/nathan-dumlao-y440_q4e-0E-unsplash-scaled.jpg"
-              alt="Network engineer analyzing IPv6 configuration manuals"
-              width="600"
-              height="400"
-              loading="eager"
-              decoding="async"
-            />
-            <div class="c-hero__caption">Hands-on Capacity Building</div>
-          </div>
-          <div class="c-hero__media-item">
-            <img
-              src="/images/images-2.jpeg"
-              alt="Architectural structure representing institutional policy forums"
-              width="300"
-              height="200"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="c-hero__caption">Policy & Standards</div>
-          </div>
-          <div class="c-hero__media-item">
+        <div class="c-hero__photo-grid">
+          <!-- Photo 1: Top Wide (Avani Hotels Livingstone) -->
+          <div class="c-hero__photo c-hero__photo--top">
             <img
               src="/images/d4f84cf5.webp"
-              alt="Livingstone conference destination view"
-              width="300"
-              height="200"
-              loading="lazy"
-              decoding="async"
+              alt="A hotel venue in Livingstone, Zambia, a possible host city for the 2027 conference"
+              width="863"
+              height="575"
+              loading="eager"
             />
-            <div class="c-hero__caption">June 2027 Conference</div>
+          </div>
+
+          <!-- Photo 2: Bottom-Left Oval/Pill Portrait -->
+          <div class="c-hero__photo c-hero__photo--left">
+            <img
+              src="/images/nathan-dumlao-y440_q4e-0E-unsplash-scaled.jpg"
+              alt="Person using a smartphone beside an open notebook"
+              width="1600"
+              height="2400"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Photo 3: Bottom-Right Asymmetric Architecture -->
+          <div class="c-hero__photo c-hero__photo--right">
+            <img
+              src="/images/images-2.jpeg"
+              alt="Hotel entrance with terracotta architecture"
+              width="345"
+              height="414"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Floating Play Button pill positioned overlapping photos -->
+          <div class="c-hero__play-badge">
+            <div class="c-hero__play-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
+            <span class="c-hero__play-label">Watch: why Zambia needs IPv6</span>
           </div>
         </div>
       </div>
@@ -75,91 +106,238 @@ import { SITE } from '../consts';
 
 <style>
   .c-hero {
-    background: linear-gradient(180deg, rgba(241, 245, 249, 0.6) 0%, rgba(248, 250, 252, 1) 100%);
-    padding-block-start: var(--space-xl);
-    padding-block-end: var(--space-2xl);
+    background-color: #040404;
+    background-image: url('/images/hero-section-background-scaled-1.webp');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    padding-top: clamp(3rem, 8vw, 6rem);
+    padding-bottom: clamp(3.5rem, 6vw, 6rem);
+    position: relative;
+    overflow: hidden;
   }
 
-  .c-hero__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-    align-items: center;
+  .c-hero__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
   }
 
-  @media (min-width: 60rem) {
-    .c-hero__grid {
-      grid-template-columns: 1.1fr 0.9fr;
+  @media (min-width: 64rem) {
+    .c-hero__inner {
+      flex-direction: row;
+      align-items: center;
+      gap: 5rem;
+    }
+
+    .c-hero__content {
+      flex: 0 0 56%;
+    }
+
+    .c-hero__media {
+      flex: 0 0 44%;
     }
   }
 
+  /* Badge styling: Never squashed or stretched */
+  .c-hero__badge-wrap {
+    margin-bottom: 1.5rem;
+  }
+
   .c-hero__badge {
-    height: 4.5rem;
+    height: 80px;
     width: auto;
+    max-width: 100%;
     object-fit: contain;
   }
 
+  @media (max-width: 48rem) {
+    .c-hero__badge {
+      height: 65px;
+    }
+  }
+
+  /* Typography matching reference */
   .c-hero__title {
+    font-family: var(--font-heading);
     font-size: var(--font-size-hero);
-    color: var(--color-brand-primary);
-    letter-spacing: -0.02em;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #ffffff;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
   }
 
-  .c-hero__lead {
-    font-size: var(--font-size-body);
-    color: var(--color-text-muted);
-    line-height: var(--line-height-normal);
-    max-width: 36rem;
+  .c-hero__subtitle {
+    font-family: var(--font-sans);
+    font-size: 1.125rem; /* 18px */
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--color-text-inverse-muted);
+    margin-bottom: 2.25rem;
+    max-width: 38rem;
   }
 
-  .c-hero__ctas {
-    gap: var(--space-sm);
-    padding-block-start: var(--space-2xs);
+  /* Button Row */
+  .c-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem;
   }
 
-  .c-hero__media-grid {
+  /* Reference Contact Experts Pill Button */
+  .c-hero__pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(248, 250, 247, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-pill);
+    padding: 8px 22px 8px 12px;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    min-height: 44px;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast);
+    text-decoration: none;
+  }
+
+  .c-hero__pill-btn:hover {
+    background-color: rgba(248, 250, 247, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+  }
+
+  .c-hero__pill-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+  }
+
+  .c-hero__pill-text {
+    line-height: 1;
+  }
+
+  /* Asymmetric 3-Photo Grid matching Reference */
+  .c-hero__photo-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-xs);
-  }
-
-  .c-hero__media-item {
+    gap: 1.5rem;
     position: relative;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
-    background-color: #e2e8f0;
+    max-width: 520px;
+    margin-inline: auto;
   }
 
-  .c-hero__media-item img {
+  .c-hero__photo {
+    overflow: hidden;
+    background-color: #1a1a1a;
+  }
+
+  .c-hero__photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    aspect-ratio: 4 / 3;
+    display: block;
     transition: transform var(--transition-base);
   }
 
-  .c-hero__media-item:hover img {
+  .c-hero__photo:hover img {
     transform: scale(1.03);
   }
 
-  .c-hero__media-item--main {
+  /* Top photo: spans 2 columns, asymmetric top-left curve (250px 30px 30px 30px) */
+  .c-hero__photo--top {
     grid-column: span 2;
+    height: 280px;
+    border-radius: 180px 24px 24px 24px;
   }
 
-  .c-hero__media-item--main img {
-    aspect-ratio: 16 / 9;
+  /* Bottom-left: tall pill/oval (300px radius) */
+  .c-hero__photo--left {
+    height: 280px;
+    border-radius: 140px;
   }
 
-  .c-hero__caption {
+  /* Bottom-right: asymmetric bottom-right curve (24px 24px 90px 24px) */
+  .c-hero__photo--right {
+    height: 280px;
+    border-radius: 24px 24px 90px 24px;
+  }
+
+  /* Reference Floating Play Button Pill */
+  .c-hero__play-badge {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: var(--space-xs);
-    background: linear-gradient(180deg, transparent 0%, rgba(11, 37, 69, 0.85) 100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-brand-accent);
     color: #ffffff;
-    font-size: var(--font-size-xs);
-    font-weight: 600;
+    border-radius: var(--radius-pill);
+    padding: 14px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    z-index: 2;
+    cursor: default;
+    min-width: 130px;
+  }
+
+  .c-hero__play-icon {
+    width: 44px;
+    height: 44px;
+    background-color: #ffffff;
+    color: var(--color-brand-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 3px;
+  }
+
+  .c-hero__play-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 48rem) {
+    .c-hero__photo-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .c-hero__photo--top {
+      grid-column: span 1;
+      height: 220px;
+      border-radius: 100px 20px 20px 20px;
+    }
+
+    .c-hero__photo--left,
+    .c-hero__photo--right {
+      height: 220px;
+      border-radius: 20px;
+    }
+
+    .c-hero__play-badge {
+      position: static;
+      transform: none;
+      margin-top: 1rem;
+      flex-direction: row;
+      justify-content: center;
+    }
   }
 </style>

@@ -46,7 +46,7 @@ import { SITE, CORE_PROGRAMMES, CONFERENCE } from '../consts';
               <li>Routing protocols, firewall rule sets, and security audits</li>
             </ul>
             <div class="c-project-feature__cta">
-              <a href="/contact" class="u-btn u-btn--primary">Register for Upcoming Workshops</a>
+              <a href="/contact" class="u-btn u-btn--accent">Register for Upcoming Workshops</a>
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@ import { SITE, CORE_PROGRAMMES, CONFERENCE } from '../consts';
               <li>Addressing cybersecurity and critical infrastructure resilience</li>
             </ul>
             <div class="c-project-feature__cta">
-              <a href="/contact" class="u-btn u-btn--outline">Participate in Policy Dialogues</a>
+              <a href="/contact" class="u-btn u-btn--outline-dark">Participate in Policy Dialogues</a>
             </div>
           </div>
         </div>
@@ -127,21 +127,27 @@ import { SITE, CORE_PROGRAMMES, CONFERENCE } from '../consts';
 
 <style>
   .c-page-header {
-    background: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
-    padding-block: var(--space-xl);
-    border-bottom: 1px solid var(--color-border);
+    background-color: #040404;
+    background-image: url('/images/hero-section-background-scaled-1.webp');
+    background-size: cover;
+    background-position: center top;
+    color: #ffffff;
+    padding-block: clamp(3rem, 5vw, 5rem);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .c-page-header__title {
+    font-family: var(--font-heading);
     font-size: var(--font-size-h1);
-    color: var(--color-brand-primary);
-    margin-block: var(--space-2xs);
+    color: #ffffff;
+    margin-block: 0.5rem;
   }
 
   .c-page-header__lead {
-    font-size: var(--font-size-body);
-    color: var(--color-text-muted);
-    max-width: 42rem;
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    color: var(--color-text-inverse-muted);
+    max-width: 44rem;
   }
 
   .c-project-feature__grid {

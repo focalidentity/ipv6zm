@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap Index
-Sitemap: https://ipv6zm.org/sitemap.xml
+Sitemap: https://ipv6zm.org/sitemap-index.xml

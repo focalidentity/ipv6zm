@@ -1,34 +1,73 @@
 ---
 ---
 
-<section class="c-event l-section l-section--dark">
+<section class="c-platform l-section">
   <div class="l-container">
-    <div class="u-section-header u-text-center">
-      <div class="u-badge u-badge--gold">National Conference Logistics</div>
-      <h2>One platform to register, book and attend</h2>
-      <p class="u-text-inverse-muted">
+    <div class="c-platform__header">
+      <h2 class="c-platform__title">One platform to register, book and attend</h2>
+      <p class="c-platform__lead">
         Everything for the conference and workshops in one place: tickets, workshop seats, hotels, transport and parking.
       </p>
     </div>
 
-    <div class="l-grid l-grid--2col">
-      <div class="c-event__card l-card">
-        <h3 class="c-event__card-title">Workshop and conference registration</h3>
-        <p class="c-event__card-desc">
+    <!-- 3-Column Grid matching Reference: Photo Card + 2 Feature Cards -->
+    <div class="c-platform__grid">
+      <!-- Card 1: Reference Photo Card -->
+      <div class="c-platform__card c-platform__card--photo">
+        <img
+          src="/images/images-3.jpeg"
+          alt="Empty conference hall set up for a formal event"
+          width="400"
+          height="400"
+          loading="lazy"
+          class="c-platform__photo"
+        />
+      </div>
+
+      <!-- Card 2: Workshop & Conference Registration -->
+      <div class="c-platform__card c-platform__card--feature">
+        <div class="u-icon-pill">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <h3 class="c-platform__card-title">Workshop and conference registration</h3>
+        <p class="c-platform__card-desc">
           Choose your ticket, pay safely and get your confirmation and schedule by email.
         </p>
-        <div class="c-event__card-action">
-          <a href="/contact" class="u-btn u-btn--primary">Get in touch</a>
+        <div class="c-platform__card-action">
+          <a href="/register" class="u-link-arrow">
+            <span>Get in touch</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
         </div>
       </div>
 
-      <div class="c-event__card l-card">
-        <h3 class="c-event__card-title">Hotels, transport and logistics</h3>
-        <p class="c-event__card-desc">
+      <!-- Card 3: Hotels, Transport & Logistics -->
+      <div class="c-platform__card c-platform__card--feature">
+        <div class="u-icon-pill">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <h3 class="c-platform__card-title">Hotels, transport and logistics</h3>
+        <p class="c-platform__card-desc">
           Book partner accommodation, arrange local transfers, and secure venue parking ahead of the June 2027 summit.
         </p>
-        <div class="c-event__card-action">
-          <a href="/contact" class="u-btn u-btn--primary">Get in touch</a>
+        <div class="c-platform__card-action">
+          <a href="/contact" class="u-link-arrow">
+            <span>Get in touch</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
         </div>
       </div>
     </div>
@@ -36,20 +75,104 @@
 </section>
 
 <style>
-  .c-event__card {
+  .c-platform {
+    background-color: #ffffff;
+    padding-block: clamp(3.75rem, 6vw, 7.5rem);
+  }
+
+  .c-platform__header {
+    max-width: 800px;
+    margin-bottom: 3.5rem;
+  }
+
+  .c-platform__title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-h2);
+    color: var(--color-text-heading);
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
+  }
+
+  .c-platform__lead {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    color: var(--color-brand-charcoal);
+    margin: 0;
+  }
+
+  .c-platform__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 48rem) {
+    .c-platform__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .c-platform__card--photo {
+      grid-column: span 2;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .c-platform__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .c-platform__card--photo {
+      grid-column: span 1;
+    }
+  }
+
+  /* Cards matching reference: 20px radius, off-white #F8FAF7, pill icon */
+  .c-platform__card {
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    height: 100%;
     display: flex;
     flex-direction: column;
+  }
+
+  .c-platform__card--photo {
+    min-height: 380px;
+    background-color: #1a1a1a;
+  }
+
+  .c-platform__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .c-platform__card--feature {
+    background-color: var(--color-surface-card); /* #F8FAF7 */
+    padding: clamp(2rem, 4vw, 2.75rem);
     justify-content: space-between;
-    padding: var(--space-xl);
-    gap: var(--space-md);
+    gap: 1.5rem;
   }
 
-  .c-event__card-title {
-    font-size: var(--font-size-h3);
+  .c-platform__card-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem; /* 20px */
+    color: var(--color-text-heading);
+    line-height: 1.35;
+    margin: 0;
   }
 
-  .c-event__card-desc {
-    font-size: var(--font-size-body);
-    color: var(--color-text-muted);
+  .c-platform__card-desc {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--color-brand-charcoal);
+    line-height: 1.6;
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .c-platform__card-action {
+    margin-top: auto;
+    padding-top: 1rem;
   }
 </style>

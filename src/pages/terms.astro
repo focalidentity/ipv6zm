@@ -1,0 +1,157 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { SITE, CONTACT } from '../consts';
+---
+
+<PageLayout
+  title={`Terms of Use | ${SITE.name}`}
+  description="Terms of use for the IPv6 Council of Zambia website. Please read these terms before using our services."
+>
+  <div class="c-page-header l-section">
+    <div class="l-container">
+      <div class="u-badge u-badge--accent">Legal</div>
+      <h1 class="c-page-header__title">Terms of Use</h1>
+      <p class="c-page-header__lead">
+        Please read these terms carefully before using the IPv6 Council of Zambia website.
+      </p>
+    </div>
+  </div>
+
+  <section class="l-section">
+    <div class="l-container l-container--narrow">
+      <div class="c-legal-body l-stack l-stack--lg">
+
+        <div>
+          <p class="c-legal-meta">Last updated: November 2026</p>
+        </div>
+
+        <div>
+          <h2>1. Acceptance of terms</h2>
+          <p>
+            By accessing and using <strong>https://ipv6zm.org</strong> (the "Website"), you agree to be bound by these Terms of Use. If you do not agree, please do not use the Website.
+          </p>
+        </div>
+
+        <div>
+          <h2>2. About the organisation</h2>
+          <p>
+            The IPv6 Council of Zambia is a non-profit professional association. Our mission is to build technical capacity and accelerate IPv6 adoption across Zambia. Nothing on this website constitutes legal, financial, or regulatory advice.
+          </p>
+        </div>
+
+        <div>
+          <h2>3. Intellectual property</h2>
+          <p>
+            All content on this Website — including text, images, logos, graphics, and code — is the property of the IPv6 Council of Zambia or is used with permission. You may not reproduce, distribute, or republish any content without prior written consent, except for brief quotations with attribution.
+          </p>
+        </div>
+
+        <div>
+          <h2>4. Accuracy of information</h2>
+          <p>
+            We endeavour to keep all information on this Website accurate and up to date. However, we make no warranty as to the accuracy, completeness, or currency of any content. Event dates, venues, and schedules are subject to change; please contact us to confirm details before travelling or making commitments.
+          </p>
+        </div>
+
+        <div>
+          <h2>5. External links</h2>
+          <p>
+            This Website may contain links to third-party websites. These are provided for reference only. We are not responsible for the content, accuracy, or privacy practices of any external site.
+          </p>
+        </div>
+
+        <div>
+          <h2>6. Limitation of liability</h2>
+          <p>
+            To the fullest extent permitted by law, the IPv6 Council of Zambia shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of this Website or reliance on any information contained herein.
+          </p>
+        </div>
+
+        <div>
+          <h2>7. Governing law</h2>
+          <p>
+            These Terms of Use are governed by and construed in accordance with the laws of the Republic of Zambia. Any disputes shall be subject to the exclusive jurisdiction of the courts of Zambia.
+          </p>
+        </div>
+
+        <div>
+          <h2>8. Changes to these terms</h2>
+          <p>
+            We may update these Terms of Use at any time. Changes take effect when published on this page. The date at the top of this page shows when the terms were last revised.
+          </p>
+        </div>
+
+        <div>
+          <h2>9. Contact</h2>
+          <p>
+            For questions about these terms, email us at <a href={CONTACT.emailMailto}>{CONTACT.email}</a> or call <a href={CONTACT.phoneTel}>{CONTACT.phoneDisplay}</a>.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .c-page-header {
+    background-color: #040404;
+    background-image: url('/images/hero-section-background-scaled-1.webp');
+    background-size: cover;
+    background-position: center top;
+    color: #ffffff;
+    padding-block: clamp(3rem, 5vw, 5rem);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .c-page-header__title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-h1);
+    color: #ffffff;
+    margin-block: 0.5rem;
+  }
+
+  .c-page-header__lead {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    color: var(--color-text-inverse-muted);
+    max-width: 44rem;
+  }
+
+  .c-legal-body h2 {
+    font-size: var(--font-size-h3);
+    margin-bottom: var(--space-xs);
+  }
+
+  .c-legal-body p {
+    font-size: var(--font-size-body);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-normal);
+    margin-bottom: var(--space-xs);
+  }
+
+  .c-legal-body ul {
+    list-style: disc;
+    padding-left: var(--space-lg);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-normal);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    margin-bottom: var(--space-xs);
+  }
+
+  .c-legal-body a {
+    color: var(--color-brand-accent);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .c-legal-meta {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+</style>

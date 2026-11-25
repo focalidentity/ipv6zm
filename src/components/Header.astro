@@ -7,18 +7,19 @@ const currentPath = Astro.url.pathname;
 <header class="c-header">
   <div class="l-container">
     <div class="c-header__inner">
+      <!-- Clean, non-distorted Logo using true pixel ratio 254x179 -->
       <a href="/" class="c-header__brand" aria-label={`${SITE.name} Homepage`}>
         <img
           src="/images/WhatsApp_Image_2026-11-15_at_5.06.47_PM-removebg-preview.png"
           alt="IPv6 Council of Zambia Logo"
-          width="180"
-          height="52"
+          width="254"
+          height="179"
           class="c-header__logo"
           loading="eager"
         />
       </a>
 
-      <!-- Desktop Nav -->
+      <!-- Desktop Nav matching Reference (12px bold uppercase Lato, gap 30px) -->
       <nav class="c-header__nav" aria-label="Main Navigation">
         <ul class="c-header__menu">
           {
@@ -40,13 +41,21 @@ const currentPath = Astro.url.pathname;
         </ul>
       </nav>
 
+      <!-- Actions: Join the Council Pill + Hamburger Trigger -->
       <div class="c-header__actions">
-        <a href="/contact" class="u-btn u-btn--accent c-header__cta-desktop">Join the Council</a>
+        <a href="/contact" class="c-header__cta">
+          <span>Join the Council</span>
+          <svg class="c-header__cta-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <!-- Reference Circular Hamburger Button (42x42px, #FD5320) -->
         <button
           id="mobile-menu-toggle"
           class="c-header__toggle"
           aria-expanded="false"
-          aria-controls="mobile-nav"
+          aria-controls="offcanvas-drawer"
           aria-label="Toggle navigation menu"
         >
           <span class="c-header__toggle-bar"></span>
@@ -55,10 +64,29 @@ const currentPath = Astro.url.pathname;
         </button>
       </div>
     </div>
+  </div>
 
-    <!-- Mobile Nav Drawer -->
-    <nav id="mobile-nav" class="c-header__mobile-nav" aria-label="Mobile Navigation" hidden>
-      <ul class="c-header__mobile-menu">
+  <!-- Offcanvas Drawer matching Reference floating frosted card -->
+  <div id="drawer-overlay" class="c-drawer-overlay" hidden></div>
+  <aside id="offcanvas-drawer" class="c-drawer" aria-label="Mobile and Tablet Navigation" hidden>
+    <div class="c-drawer__header">
+      <img
+        src="/images/WhatsApp_Image_2026-11-15_at_5.06.47_PM-removebg-preview.png"
+        alt="IPv6 Council of Zambia"
+        width="254"
+        height="179"
+        class="c-drawer__logo"
+      />
+      <button id="drawer-close-btn" class="c-drawer__close" aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="c-drawer__nav">
+      <ul class="c-drawer__menu">
         {
           NAV_LINKS.map((link) => {
             const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
@@ -66,7 +94,7 @@ const currentPath = Astro.url.pathname;
               <li>
                 <a
                   href={link.href}
-                  class:list={['c-header__mobile-link', { 'c-header__mobile-link--active': isActive }]}
+                  class:list={['c-drawer__link', { 'c-drawer__link--active': isActive }]}
                   aria-current={isActive ? 'page' : undefined}
                 >
                   {link.text}
@@ -75,50 +103,75 @@ const currentPath = Astro.url.pathname;
             );
           })
         }
-        <li class="c-header__mobile-cta-wrap">
-          <a href="/contact" class="u-btn u-btn--accent" style="width: 100%; text-align: center;">Join the Council</a>
+        <li>
+          <a href="/register" class="c-drawer__link">
+            Event Registration
+          </a>
         </li>
       </ul>
     </nav>
-  </div>
+
+    <div class="c-drawer__footer">
+      <a href="/contact" class="u-btn u-btn--accent" style="width: 100%; text-align: center;">
+        Join the Council
+      </a>
+      <p class="c-drawer__contact">
+        Official Desk: <a href="tel:+260966239401">+260 966 239401</a><br />
+        <a href="mailto:info@ipv6zm.org">info@ipv6zm.org</a>
+      </p>
+    </div>
+  </aside>
 </header>
 
 <script>
   const toggleBtn = document.getElementById('mobile-menu-toggle');
-  const mobileNav = document.getElementById('mobile-nav');
+  const closeBtn = document.getElementById('drawer-close-btn');
+  const overlay = document.getElementById('drawer-overlay');
+  const drawer = document.getElementById('offcanvas-drawer');
 
-  if (toggleBtn && mobileNav) {
-    toggleBtn.addEventListener('click', () => {
-      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-      toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
-      if (isExpanded) {
-        mobileNav.setAttribute('hidden', '');
-      } else {
-        mobileNav.removeAttribute('hidden');
-      }
-    });
+  function openDrawer() {
+    if (!drawer || !overlay || !toggleBtn) return;
+    drawer.removeAttribute('hidden');
+    overlay.removeAttribute('hidden');
+    toggleBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
   }
+
+  function closeDrawer() {
+    if (!drawer || !overlay || !toggleBtn) return;
+    drawer.setAttribute('hidden', '');
+    overlay.setAttribute('hidden', '');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  toggleBtn?.addEventListener('click', openDrawer);
+  closeBtn?.addEventListener('click', closeDrawer);
+  overlay?.addEventListener('click', closeDrawer);
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeDrawer();
+  });
 </script>
 
 <style>
   .c-header {
-    background-color: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    backdrop-filter: blur(8px);
-    background-color: rgba(255, 255, 255, 0.96);
+    background-color: #040404; /* Matches reference dark header seamlessly blending into hero */
+    position: relative;
+    z-index: 40;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .c-header__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-block: var(--space-xs);
-    gap: var(--space-md);
+    height: 80px;
+    gap: 1.5rem;
   }
 
+  /* Logo: Undistorted with proper aspect ratio */
   .c-header__brand {
     display: flex;
     align-items: center;
@@ -126,144 +179,239 @@ const currentPath = Astro.url.pathname;
   }
 
   .c-header__logo {
-    height: 3rem;
+    height: 54px;
     width: auto;
+    max-width: 100%;
     object-fit: contain;
   }
 
+  /* Desktop Nav */
   .c-header__nav {
     display: none;
   }
 
-  @media (min-width: 54rem) {
+  @media (min-width: 64rem) {
     .c-header__nav {
       display: block;
+      margin-left: 2rem;
     }
   }
 
   .c-header__menu {
     display: flex;
     align-items: center;
-    gap: var(--space-md);
+    gap: 30px;
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
   .c-header__link {
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-    color: var(--color-text-main);
-    padding: var(--space-2xs) var(--space-3xs);
-    position: relative;
-    transition: color var(--transition-fast);
-  }
-
-  .c-header__link:hover {
-    color: var(--color-brand-secondary);
-  }
-
-  .c-header__link--active {
-    color: var(--color-brand-primary);
+    font-family: var(--font-sans);
+    font-size: 12px;
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    transition: color var(--transition-fast);
+    padding: 0.5rem 0;
   }
 
-  .c-header__link--active::after {
-    content: '';
-    position: absolute;
-    bottom: -0.25rem;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: var(--color-brand-accent);
-    border-radius: var(--radius-full);
+  .c-header__link:hover,
+  .c-header__link--active {
+    color: var(--color-brand-accent);
   }
 
+  /* Actions */
   .c-header__actions {
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
+    gap: 1rem;
   }
 
-  .c-header__cta-desktop {
-    display: none;
+  /* Join the Council CTA matching Reference (Orange Pill with Right Arrow) */
+  .c-header__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--color-brand-accent);
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: var(--radius-pill);
+    min-height: 42px;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+    text-decoration: none;
   }
 
-  @media (min-width: 54rem) {
-    .c-header__cta-desktop {
-      display: inline-flex;
+  .c-header__cta:hover {
+    background-color: var(--color-brand-accent-hover);
+    transform: translateY(-1px);
+    color: #ffffff;
+  }
+
+  @media (max-width: 30rem) {
+    .c-header__cta {
+      display: none; /* Keep screen clean on very narrow mobile */
     }
   }
 
+  /* Circular Hamburger Trigger (42x42px, #FD5320) */
   .c-header__toggle {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    width: 2.25rem;
-    height: 2.25rem;
-    background: transparent;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    padding: 0.35rem;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    width: 42px;
+    height: 42px;
+    min-height: 42px;
+    min-width: 42px;
+    background-color: var(--color-brand-accent);
+    border: none;
+    border-radius: 50%;
     cursor: pointer;
+    padding: 11px;
+    transition: background-color var(--transition-fast);
   }
 
-  @media (min-width: 54rem) {
+  @media (min-width: 64rem) {
     .c-header__toggle {
       display: none;
     }
   }
 
+  .c-header__toggle:hover {
+    background-color: var(--color-brand-accent-hover);
+  }
+
   .c-header__toggle-bar {
-    width: 100%;
-    height: 2px;
-    background-color: var(--color-brand-primary);
-    border-radius: var(--radius-full);
-    transition: transform var(--transition-fast), opacity var(--transition-fast);
-  }
-
-  .c-header__mobile-nav {
     display: block;
-    padding-block: var(--space-md);
-    border-top: 1px solid var(--color-border);
+    width: 18px;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transition: transform var(--transition-fast);
   }
 
-  .c-header__mobile-nav[hidden] {
+  /* Offcanvas Drawer Overlay */
+  .c-drawer-overlay[hidden],
+  .c-drawer[hidden] {
     display: none;
   }
 
-  @media (min-width: 54rem) {
-    .c-header__mobile-nav {
-      display: none !important;
+  .c-drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+  }
+
+  /* Offcanvas Drawer: Floating Card with Rounded Corners & Frosted Glass */
+  .c-drawer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    bottom: 20px;
+    width: min(480px, calc(100vw - 40px));
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
+    border-radius: 30px;
+    box-shadow: var(--shadow-drawer);
+    z-index: 101;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+  }
+
+  @media (max-width: 40rem) {
+    .c-drawer {
+      top: 10px;
+      right: 10px;
+      bottom: 10px;
+      width: calc(100vw - 20px);
+      padding: 1.5rem;
+      border-radius: 20px;
     }
   }
 
-  .c-header__mobile-menu {
+  .c-drawer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .c-drawer__logo {
+    height: 55px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .c-drawer__close {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-surface-muted);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--color-brand-primary);
+  }
+
+  .c-drawer__nav {
+    margin-block: 2rem;
+  }
+
+  .c-drawer__menu {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    gap: 1rem;
     margin: 0;
     padding: 0;
   }
 
-  .c-header__mobile-link {
+  .c-drawer__link {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-brand-charcoal);
     display: block;
-    padding: var(--space-xs);
-    font-size: var(--font-size-body);
-    font-weight: 600;
-    color: var(--color-text-main);
-    border-radius: var(--radius-sm);
-    transition: background-color var(--transition-fast);
+    padding: 0.5rem 0;
+    transition: color var(--transition-fast);
   }
 
-  .c-header__mobile-link:hover,
-  .c-header__mobile-link--active {
-    background-color: var(--color-surface-muted);
+  .c-drawer__link:hover,
+  .c-drawer__link--active {
+    color: var(--color-brand-accent);
+  }
+
+  .c-drawer__footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .c-drawer__contact {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .c-drawer__contact a {
     color: var(--color-brand-primary);
-  }
-
-  .c-header__mobile-cta-wrap {
-    padding-block-start: var(--space-xs);
+    font-weight: 600;
   }
 </style>

@@ -24,7 +24,7 @@ export const CONFERENCE = {
   title: 'National IPv6 & Internet Conference 2027',
   targetMonthYear: 'June 2027',
   statusNotice: 'Planned for June 2027 (Date, venue, and logistics to be confirmed)',
-  announcementText: 'the National IPv6 Conference comes to Zambia in June 2027.',
+  announcementText: 'The National IPv6 Conference comes to Zambia in June 2027.',
   announcementCtaText: 'Register your interest →',
   announcementCtaHref: '/register?event=national-conference-2027',
 } as const;
@@ -33,9 +33,8 @@ export const NAV_LINKS = [
   { text: 'Home', href: '/' },
   { text: 'Services', href: '/services' },
   { text: 'Projects', href: '/projects' },
-  { text: 'Articles', href: '/news' },
-  { text: 'Register', href: '/register' },
   { text: 'About', href: '/about' },
+  { text: 'News', href: '/news' },
   { text: 'Contact', href: '/contact' },
 ] as const;
 
@@ -47,7 +46,7 @@ export const CORE_PROGRAMMES = [
     description:
       'High-level dialogue connecting network operators, commercial banks, regulators, and government ministries to align policy and national IPv6 deployment standards.',
     image: '/images/cytonn-photography-GJao3ZTX9gU-unsplash-scaled.jpg',
-    imageAlt: 'IPv6 Council of Zambia policy dialogue session',
+    imageAlt: 'Professionals seated around a meeting table during a discussion',
     href: '/projects#policy-forum',
   },
   {
@@ -57,7 +56,7 @@ export const CORE_PROGRAMMES = [
     description:
       'The premier national gathering uniting global experts, local engineers, and enterprise leaders to accelerate IPv6 rollout across Zambia. Tentatively set for June 2027.',
     image: '/images/emediong-umoh-prhHGOOeJws-unsplash-scaled.jpg',
-    imageAlt: 'National IPv6 and Internet Conference hall',
+    imageAlt: 'Auditorium hall with conference seating and stage lighting',
     href: '/projects#national-conference-2027',
   },
   {
@@ -67,7 +66,7 @@ export const CORE_PROGRAMMES = [
     description:
       'Intensive, hands-on lab training covering IPv6 addressing, dual-stack migration, routing architectures (BGP/OSPFv3), and security hardening led with international partners.',
     image: '/images/ubreakifix-north-las-vegas-_AIT3BLFIag-unsplash-scaled.jpg',
-    imageAlt: 'Engineers participating in hands-on IPv6 training lab',
+    imageAlt: 'Technicians working with hardware equipment at a lab workbench',
     href: '/projects#capacity-workshops',
   },
 ] as const;

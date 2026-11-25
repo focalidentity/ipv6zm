@@ -137,20 +137,26 @@ const categories = getCategories();
 
 <style>
   .c-page-header {
-    background: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
-    padding-block: var(--space-xl);
-    border-bottom: 1px solid var(--color-border);
+    background-color: #040404;
+    background-image: url('/images/hero-section-background-scaled-1.webp');
+    background-size: cover;
+    background-position: center top;
+    color: #ffffff;
+    padding-block: clamp(3rem, 5vw, 5rem);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .c-page-header__title {
+    font-family: var(--font-heading);
     font-size: var(--font-size-h1);
-    color: var(--color-brand-primary);
-    margin-block: var(--space-2xs);
+    color: #ffffff;
+    margin-block: 0.5rem;
   }
 
   .c-page-header__lead {
-    font-size: var(--font-size-body);
-    color: var(--color-text-muted);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    color: var(--color-text-inverse-muted);
     max-width: 44rem;
   }
 
@@ -175,14 +181,14 @@ const categories = getCategories();
   }
 
   .c-category-pill:hover {
-    border-color: var(--color-brand-primary);
-    color: var(--color-brand-primary);
+    border-color: var(--color-brand-accent);
+    color: var(--color-brand-accent);
   }
 
   .c-category-pill--active {
-    background-color: var(--color-brand-primary);
+    background-color: var(--color-brand-accent);
     color: #ffffff;
-    border-color: var(--color-brand-primary);
+    border-color: var(--color-brand-accent);
   }
 
   .c-article-card {
@@ -206,11 +212,11 @@ const categories = getCategories();
 
   .c-article-card__title {
     font-size: var(--font-size-h3);
-    color: var(--color-brand-primary);
+    color: var(--color-text-heading);
   }
 
   .c-article-card__title a:hover {
-    color: var(--color-brand-secondary);
+    color: var(--color-brand-accent);
   }
 
   .c-article-card__excerpt {
@@ -236,11 +242,11 @@ const categories = getCategories();
 
   .c-article-card__link {
     font-weight: 700;
-    color: var(--color-brand-primary);
+    color: var(--color-brand-accent);
   }
 
   .c-article-card__link:hover {
-    color: var(--color-brand-accent);
+    color: var(--color-brand-accent-hover);
   }
 
   .c-event-callout {

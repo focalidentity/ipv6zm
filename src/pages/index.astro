@@ -2,14 +2,13 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import Hero from '../components/Hero.astro';
 import IntroStatement from '../components/IntroStatement.astro';
+import FounderStory from '../components/FounderStory.astro';
+import MembershipCard from '../components/MembershipCard.astro';
 import ProgrammesGrid from '../components/ProgrammesGrid.astro';
 import ServicesList from '../components/ServicesList.astro';
 import ProcessSteps from '../components/ProcessSteps.astro';
 import EventPlatform from '../components/EventPlatform.astro';
-import FounderStory from '../components/FounderStory.astro';
-import MembershipCard from '../components/MembershipCard.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
-import ContactCard from '../components/ContactCard.astro';
 import NewsletterBox from '../components/NewsletterBox.astro';
 import CallCtaCard from '../components/CallCtaCard.astro';
 import { SITE } from '../consts';
@@ -19,48 +18,62 @@ import { SITE } from '../consts';
   title={`${SITE.name} | ${SITE.tagline}`}
   description={SITE.description}
 >
+  <!-- 1. Hero with Laurel Badge and Asymmetric 3-Photo Grid -->
   <Hero />
+
+  <!-- 2. "Your partner in IPv6 adoption" Intro Statement -->
   <IntroStatement />
-  <ProgrammesGrid />
-  <ServicesList />
-  <ProcessSteps />
-  <EventPlatform />
+
+  <!-- 3. Origin Story with Counters (2027 & Goals) and Early Access Card -->
   <FounderStory />
+
+  <!-- 4. "Join us today and become a valued member" Full-Width Banner -->
   <MembershipCard />
 
-  <!-- Global Pre-Footer Section -->
-  <section class="l-section l-section--muted">
+  <!-- 5. "Our latest programmes" Cards Grid -->
+  <ProgrammesGrid />
+
+  <!-- 6. "What we do to move Zambia to IPv6" 8-Column Services List -->
+  <ServicesList />
+
+  <!-- 7. "A clear path from IPv4 to IPv6" Dashed Framework -->
+  <ProcessSteps />
+
+  <!-- 8. "One platform to register, book and attend" 3-Column Platform Cards -->
+  <EventPlatform />
+
+  <!-- 9. FAQ Section with Phone/Email Cards and Accordion -->
+  <FaqAccordion />
+
+  <!-- 10. Newsletter Card & "Have more questions?" Call Card Grid -->
+  <section class="c-cta-duo l-section">
     <div class="l-container">
-      <div class="c-prefooter-grid">
-        <div class="c-prefooter-grid__faq">
-          <FaqAccordion />
-        </div>
-        <div class="c-prefooter-grid__sidebar l-stack l-stack--md">
-          <ContactCard />
-          <NewsletterBox />
-          <CallCtaCard />
-        </div>
+      <div class="c-cta-duo__grid">
+        <NewsletterBox />
+        <CallCtaCard />
       </div>
     </div>
   </section>
 </PageLayout>
 
 <style>
-  .c-prefooter-grid {
+  /* Newsletter + Call CTA Duo section on dark background matching Reference */
+  .c-cta-duo {
+    background-color: #040404;
+    padding-top: 0;
+    padding-bottom: clamp(3.5rem, 6vw, 6rem);
+  }
+
+  .c-cta-duo__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-xl);
+    gap: 2.5rem;
   }
 
-  @media (min-width: 60rem) {
-    .c-prefooter-grid {
-      grid-template-columns: 1.4fr 0.9fr;
-      align-items: start;
+  @media (min-width: 56rem) {
+    .c-cta-duo__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
     }
-  }
-
-  .c-prefooter-grid__sidebar {
-    position: sticky;
-    top: 5rem;
   }
 </style>

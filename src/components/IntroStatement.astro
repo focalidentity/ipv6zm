@@ -1,14 +1,13 @@
 ---
 ---
 
-<section class="c-intro l-section l-section--muted">
+<section class="c-intro l-section">
   <div class="l-container">
-    <div class="c-intro__box l-card l-card--primary">
-      <div class="u-badge u-badge--primary">Our National Commitment</div>
+    <div class="c-intro__header">
       <h2 class="c-intro__title">
         Your partner in IPv6 adoption and a stronger Zambian internet
       </h2>
-      <p class="c-intro__text">
+      <p class="c-intro__lead">
         We are a community of network engineers, policy makers and business leaders. We turn IPv6 from a technical upgrade into a national opportunity. We offer practical training, trusted advice and a place to connect.
       </p>
     </div>
@@ -16,25 +15,31 @@
 </section>
 
 <style>
-  .c-intro__box {
-    text-align: center;
-    max-width: 52rem;
+  .c-intro {
+    padding-top: clamp(3.5rem, 6vw, 6rem);
+    padding-bottom: clamp(2rem, 4vw, 3.5rem);
+    background-color: #ffffff;
+  }
+
+  .c-intro__header {
+    max-width: 900px;
     margin-inline: auto;
-    padding: var(--space-xl);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-md);
+    text-align: center;
   }
 
   .c-intro__title {
+    font-family: var(--font-heading);
     font-size: var(--font-size-h2);
-    color: var(--color-brand-primary);
+    color: var(--color-text-heading);
+    margin-bottom: 1.25rem;
+    line-height: 1.3;
   }
 
-  .c-intro__text {
-    font-size: var(--font-size-body);
-    color: var(--color-text-muted);
-    line-height: var(--line-height-normal);
+  .c-intro__lead {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-lead);
+    color: var(--color-brand-charcoal);
+    line-height: 1.6;
+    margin: 0;
   }
 </style>

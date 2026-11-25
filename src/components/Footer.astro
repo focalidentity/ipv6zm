@@ -4,163 +4,208 @@ import { SITE, NAV_LINKS, CONTACT } from '../consts';
 
 <footer class="c-footer">
   <div class="l-container">
+    <!-- Top Row: Navigation Links & Secretariat Direct Contact -->
     <div class="c-footer__top">
-      <div class="c-footer__brand l-stack l-stack--sm">
-        <img
-          src="/images/WhatsApp_Image_2026-11-15_at_5.06.47_PM-removebg-preview.png"
-          alt="IPv6 Council of Zambia"
-          width="160"
-          height="46"
-          class="c-footer__logo"
-          loading="lazy"
-        />
-        <p class="c-footer__tagline">{SITE.description}</p>
-        <div class="c-footer__contact">
-          <p><strong>Phone:</strong> <a href={CONTACT.phoneTel}>{CONTACT.phoneDisplay}</a></p>
-          <p><strong>Email:</strong> <a href={CONTACT.emailMailto}>{CONTACT.email}</a></p>
-        </div>
-      </div>
+      <ul class="c-footer__nav-list">
+        {
+          NAV_LINKS.map((link) => (
+            <li>
+              <a href={link.href} class="c-footer__nav-link">
+                {link.text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
 
-      <div class="c-footer__links">
-        <h4 class="c-footer__heading">Navigation</h4>
-        <ul class="c-footer__menu">
-          {
-            NAV_LINKS.map((link) => (
-              <li>
-                <a href={link.href} class="c-footer__link">
-                  {link.text}
-                </a>
-              </li>
-            ))
-          }
-          <li><a href="/subscribe" class="c-footer__link">Subscribe to Dispatches</a></li>
-        </ul>
-      </div>
-
-      <div class="c-footer__programmes">
-        <h4 class="c-footer__heading">Participation</h4>
-        <ul class="c-footer__menu">
-          <li><a href="/register?event=capacity-workshops" class="c-footer__link">Workshop Registration</a></li>
-          <li><a href="/register?event=policy-forum" class="c-footer__link">Policy Forum Registration</a></li>
-          <li><a href="/register?event=national-conference-2027" class="c-footer__link">Conference 2027 Interest</a></li>
-          <li><a href="/services" class="c-footer__link">Readiness Assessments</a></li>
-        </ul>
+      <div class="c-footer__desk">
+        <span>Secretariat: <a href={CONTACT.phoneTel}>{CONTACT.phoneDisplay}</a></span>
+        <span class="c-footer__desk-dot">·</span>
+        <span><a href={CONTACT.emailMailto}>{CONTACT.email}</a></span>
       </div>
     </div>
 
+    <!-- Middle Row: Clean, undistorted Brand Emblem -->
+    <div class="c-footer__middle">
+      <img
+        src="/images/WhatsApp_Image_2026-11-15_at_5.06.47_PM-removebg-preview.png"
+        alt="IPv6 Council of Zambia Logo"
+        width="254"
+        height="179"
+        class="c-footer__logo"
+        loading="lazy"
+      />
+      <p class="c-footer__tagline">
+        Uniting network engineers, policymakers, government, commercial banks, and telecommunications operators to secure Zambia's digital sovereignty.
+      </p>
+    </div>
+
+    <!-- Bottom Row: Copyright + Participation & Legal Links -->
     <div class="c-footer__bottom">
       <p class="c-footer__copy">
-        Copyright © 2026 {SITE.name}. All rights reserved.
+        Copyright © 2026 - {SITE.name}. All rights reserved.
       </p>
-      <div class="c-footer__legal l-cluster">
-        <a href="/contact">Privacy Policy</a>
-        <span>·</span>
-        <a href="/contact">Terms & Conditions</a>
+
+      <div class="c-footer__links">
+        <a href="/register?event=capacity-workshops" class="c-footer__sublink">Workshop Registration</a>
+        <span class="c-footer__pipe">|</span>
+        <a href="/register?event=national-conference-2027" class="c-footer__sublink">Conference 2027</a>
+        <span class="c-footer__pipe">|</span>
+        <a href="/subscribe" class="c-footer__sublink">Subscribe</a>
+        <span class="c-footer__pipe">|</span>
+        <a href="/privacy" class="c-footer__sublink">Privacy Policy</a>
+        <span class="c-footer__pipe">|</span>
+        <a href="/terms" class="c-footer__sublink">Terms of Use</a>
       </div>
     </div>
   </div>
 </footer>
 
 <style>
+  /* Reference Footer: #040404 + wavy background texture */
   .c-footer {
-    background-color: var(--color-surface-dark);
-    color: var(--color-text-inverse-muted);
-    padding-block-start: var(--space-2xl);
-    padding-block-end: var(--space-xl);
-    border-top: 1px solid var(--color-border-dark);
-    margin-block-start: auto;
+    background-color: #040404;
+    background-image: linear-gradient(rgba(5, 5, 5, 0.4), rgba(5, 5, 5, 0.4)), url('/images/hero-section-background-scaled-1.webp');
+    background-size: cover;
+    background-position: center top;
+    color: #ffffff;
+    padding-top: 3.5rem;
+    padding-bottom: 2.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: auto;
   }
 
+  /* Row 1: Top Navigation matching Reference (12px bold uppercase white) */
   .c-footer__top {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-    padding-block-end: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   @media (min-width: 48rem) {
     .c-footer__top {
-      grid-template-columns: 2fr 1fr 1fr;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
     }
   }
 
-  .c-footer__logo {
-    height: 2.75rem;
-    width: auto;
-    filter: brightness(0) invert(1);
-    opacity: 0.9;
+  .c-footer__nav-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
   }
 
-  .c-footer__tagline {
-    font-size: var(--font-size-sm);
-    max-width: 28rem;
-    line-height: var(--line-height-normal);
-  }
-
-  .c-footer__contact {
-    font-size: var(--font-size-sm);
-  }
-
-  .c-footer__contact a {
-    color: var(--color-text-inverse);
-    text-decoration: underline;
-  }
-
-  .c-footer__heading {
-    color: var(--color-text-inverse);
-    font-size: var(--font-size-sm);
+  .c-footer__nav-link {
+    font-family: var(--font-sans);
+    font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-block-end: var(--space-md);
-  }
-
-  .c-footer__menu {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-  }
-
-  .c-footer__link {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-inverse-muted);
+    color: #ffffff;
     transition: color var(--transition-fast);
-    display: inline-block;
-    padding-block: var(--space-3xs);
   }
 
-  .c-footer__link:hover {
-    color: var(--color-text-inverse);
+  .c-footer__nav-link:hover {
+    color: var(--color-brand-accent);
   }
 
-  .c-footer__bottom {
+  .c-footer__desk {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--color-text-inverse-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .c-footer__desk a {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .c-footer__desk a:hover {
+    color: var(--color-brand-accent);
+  }
+
+  .c-footer__desk-dot {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Row 2: Middle Brand Center */
+  .c-footer__middle {
+    padding-block: 2.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--space-md);
-    padding-block-start: var(--space-lg);
-    font-size: var(--font-size-xs);
+    text-align: center;
+    gap: 1.25rem;
   }
 
-  @media (min-width: 40rem) {
+  .c-footer__logo {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.95;
+  }
+
+  .c-footer__tagline {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    color: var(--color-text-inverse-muted);
+    max-width: 38rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Row 3: Bottom Copyright & Sublinks */
+  .c-footer__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: center;
+    padding-top: 1.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--color-text-inverse-muted);
+  }
+
+  @media (min-width: 48rem) {
     .c-footer__bottom {
       flex-direction: row;
+      justify-content: space-between;
     }
   }
 
   .c-footer__copy {
-    color: var(--color-text-inverse-muted);
+    margin: 0;
   }
 
-  .c-footer__legal a {
-    color: var(--color-text-inverse-muted);
-    padding: var(--space-2xs);
+  .c-footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
   }
 
-  .c-footer__legal a:hover {
-    color: var(--color-text-inverse);
+  .c-footer__sublink {
+    color: var(--color-text-inverse-muted);
+    font-size: 14px;
+    transition: color var(--transition-fast);
+  }
+
+  .c-footer__sublink:hover {
+    color: var(--color-brand-accent);
+  }
+
+  .c-footer__pipe {
+    color: rgba(255, 255, 255, 0.2);
   }
 </style>

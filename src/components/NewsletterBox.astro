@@ -1,65 +1,114 @@
 ---
 ---
 
-<div class="c-newsletter l-card l-card--accent">
-  <div class="u-badge u-badge--accent">Stay Informed</div>
-  <h4 class="c-newsletter__title">Subscribe to IPv6 Zambia updates!</h4>
-  <p class="c-newsletter__text">
+<div class="c-newsletter-card">
+  <h2 class="c-newsletter-card__title">Subscribe to IPv6 Zambia updates!</h2>
+  <p class="c-newsletter-card__text">
     Enter your email to get conference news, workshop dates and plain-English IPv6 guides. Subscribers also get early access to tickets.
   </p>
-  <form class="c-newsletter__form" action="/contact" method="GET">
-    <input
-      type="email"
-      name="email"
-      placeholder="Enter your email address"
-      required
-      aria-label="Email Address for IPv6 updates"
-      class="c-newsletter__input"
-    />
-    <button type="submit" class="u-btn u-btn--accent">Subscribe</button>
+
+  <!-- Blocksy/Reference 2-Column Pill Input Container -->
+  <form class="c-newsletter-card__form" action="/subscribe" method="GET">
+    <div class="c-newsletter-card__input-pill">
+      <input
+        type="email"
+        name="email"
+        placeholder="Enter your email address"
+        required
+        aria-label="Email Address for IPv6 updates"
+        class="c-newsletter-card__input"
+      />
+      <button type="submit" class="c-newsletter-card__btn">Subscribe</button>
+    </div>
   </form>
 </div>
 
 <style>
-  .c-newsletter {
-    padding: var(--space-lg);
-  }
-
-  .c-newsletter__title {
-    font-size: var(--font-size-h3);
-    margin-block: var(--space-2xs);
-  }
-
-  .c-newsletter__text {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-    margin-block-end: var(--space-md);
-  }
-
-  .c-newsletter__form {
+  /* Reference Newsletter Card: Bordered charcoal card on dark section */
+  .c-newsletter-card {
+    background-color: transparent;
+    border: 1px solid #37373d;
+    border-radius: 30px;
+    padding: clamp(2rem, 4vw, 2.75rem);
     display: flex;
     flex-direction: column;
-    gap: var(--space-2xs);
+    justify-content: space-between;
+    height: 100%;
+    color: #ffffff;
   }
 
-  @media (min-width: 30rem) {
-    .c-newsletter__form {
+  .c-newsletter-card__title {
+    font-family: var(--font-heading);
+    font-size: 1.5625rem; /* 25px */
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .c-newsletter-card__text {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem; /* 17px */
+    color: #ffffff;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+  }
+
+  .c-newsletter-card__form {
+    width: 100%;
+  }
+
+  /* Reference Dark Pill Input Wrapper with Orange Button on Right */
+  .c-newsletter-card__input-pill {
+    background-color: #37373d;
+    border-radius: var(--radius-pill);
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  @media (min-width: 32rem) {
+    .c-newsletter-card__input-pill {
       flex-direction: row;
+      align-items: center;
+      gap: 6px;
     }
   }
 
-  .c-newsletter__input {
+  .c-newsletter-card__input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 1rem; /* 16px min prevents iOS zoom */
+    padding: 0.65rem 1.25rem;
     flex: 1;
-    min-height: 2.75rem; /* 44px minimum touch target */
-    padding: 0.65rem 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-full);
-    font-size: 1rem; /* Minimum 16px prevents iOS Safari auto-zoom */
-    color: var(--color-text-main);
-    background-color: #ffffff;
+    min-height: 44px;
   }
 
-  .c-newsletter__input:focus {
-    outline: 2px solid var(--color-brand-primary);
+  .c-newsletter-card__input::placeholder {
+    color: #94a3b8;
+  }
+
+  .c-newsletter-card__btn {
+    background-color: var(--color-brand-accent);
+    color: #ffffff;
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 0.65rem 1.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    min-height: 44px;
+    transition: background-color var(--transition-fast);
+    flex-shrink: 0;
+  }
+
+  .c-newsletter-card__btn:hover {
+    background-color: var(--color-brand-accent-hover);
   }
 </style>

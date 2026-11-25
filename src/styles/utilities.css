@@ -1,9 +1,8 @@
 /* ==========================================================================
-   Lumos for Astro - Utilities Layer (Atomic Modifiers & Helpers)
+   Utilities Layer - Exact Reference Components & Atomic Classes
    ========================================================================== */
 
 @layer utilities {
-  /* Screen Reader Accessible Only */
   .sr-only {
     position: absolute;
     width: 1px;
@@ -16,7 +15,6 @@
     border-width: 0;
   }
 
-  /* Alignment */
   .u-text-center {
     text-align: center;
   }
@@ -25,7 +23,6 @@
     text-align: right;
   }
 
-  /* Text Colors */
   .u-text-muted {
     color: var(--color-text-muted);
   }
@@ -42,21 +39,18 @@
     color: var(--color-brand-accent);
   }
 
-  .u-text-gold {
-    color: var(--color-brand-gold);
-  }
-
-  /* Buttons with WCAG 2.5.5 / 2.5.8 compliant 44px min tap targets */
+  /* Reference Pill Buttons */
   .u-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-2xs);
-    min-height: 2.75rem; /* 44px minimum tap target height */
-    padding: 0.65rem 1.35rem;
+    gap: 15px;
+    min-height: 44px; /* 44px WCAG mobile touch target */
+    padding: 8px 8px 8px 24px;
+    font-family: var(--font-sans);
     font-size: var(--font-size-sm);
     font-weight: 600;
-    border-radius: var(--radius-full);
+    border-radius: var(--radius-pill);
     border: 1px solid transparent;
     cursor: pointer;
     transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
@@ -69,102 +63,171 @@
     transform: scale(0.98);
   }
 
-  .u-btn--primary {
-    background-color: var(--color-brand-primary);
-    color: var(--color-text-inverse);
-  }
-
-  .u-btn--primary:hover {
-    background-color: var(--color-brand-primary-hover);
-  }
-
+  /* Main Orange Accent Pill Button with circular white arrow icon */
   .u-btn--accent {
     background-color: var(--color-brand-accent);
-    color: var(--color-text-inverse);
+    color: #ffffff;
   }
 
   .u-btn--accent:hover {
-    background-color: #a3171d;
-  }
-
-  .u-btn--outline {
-    background-color: transparent;
-    border-color: var(--color-brand-primary);
-    color: var(--color-brand-primary);
-  }
-
-  .u-btn--outline:hover {
-    background-color: var(--color-brand-primary);
-    color: var(--color-text-inverse);
-  }
-
-  .u-btn--outline-inverse {
-    background-color: transparent;
-    border-color: rgba(255, 255, 255, 0.4);
-    color: var(--color-text-inverse);
-  }
-
-  .u-btn--outline-inverse:hover {
-    border-color: var(--color-text-inverse);
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .u-btn--gold {
-    background-color: var(--color-brand-gold);
+    background-color: var(--color-brand-accent-hover);
     color: #ffffff;
+  }
+
+  .u-btn--accent .u-btn__circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    color: var(--color-brand-accent);
+    flex-shrink: 0;
+  }
+
+  /* Primary Dark Button */
+  .u-btn--primary {
+    background-color: var(--color-brand-primary);
+    color: #ffffff;
+  }
+
+  .u-btn--primary:hover {
+    background-color: #1a1a1a;
+    color: #ffffff;
+  }
+
+  .u-btn--primary .u-btn__circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    color: var(--color-brand-primary);
+    flex-shrink: 0;
+  }
+
+  /* Gold / amber button for conference callouts */
+  .u-btn--gold {
+    background-color: #d97706;
+    color: #ffffff;
+    border-color: #d97706;
+    padding: 10px 22px;
   }
 
   .u-btn--gold:hover {
     background-color: #b45309;
+    color: #ffffff;
   }
 
-  /* Badges & Tags */
+  /* Outline Button (white border — for use on dark backgrounds) */
+  .u-btn--outline {
+    background-color: transparent;
+    border-color: #ffffff;
+    color: #ffffff;
+    padding: 10px 22px;
+  }
+
+  .u-btn--outline:hover {
+    background-color: #ffffff;
+    color: var(--color-brand-primary);
+  }
+
+  .u-btn--outline-dark {
+    background-color: transparent;
+    border-color: var(--color-brand-primary);
+    color: var(--color-brand-primary);
+    padding: 10px 22px;
+  }
+
+  .u-btn--outline-dark:hover {
+    background-color: var(--color-brand-primary);
+    color: #ffffff;
+  }
+
+  /* Text link with arrow */
+  .u-link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    color: var(--color-brand-primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color var(--transition-fast);
+  }
+
+  .u-link-arrow:hover {
+    color: var(--color-brand-accent);
+  }
+
+  .u-link-arrow--inverse {
+    color: #ffffff;
+  }
+
+  .u-link-arrow--inverse:hover {
+    color: var(--color-brand-accent);
+  }
+
+  /* Reference Pill Badges */
   .u-badge {
     display: inline-flex;
     align-items: center;
-    padding: 0.25rem 0.625rem;
+    padding: 6px 16px;
     font-size: var(--font-size-xs);
     font-weight: 600;
-    border-radius: var(--radius-full);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    border-radius: var(--radius-pill);
+    background-color: #282827;
+    color: #ffffff8c;
+    letter-spacing: 0.02em;
+    width: fit-content;
   }
 
   .u-badge--primary {
-    background-color: #e2e8f0;
+    background-color: rgba(4, 4, 4, 0.08);
     color: var(--color-brand-primary);
   }
 
   .u-badge--accent {
-    background-color: #fee2e2;
-    color: #991b1b;
+    background-color: rgba(253, 83, 32, 0.15);
+    color: var(--color-brand-accent);
   }
 
   .u-badge--gold {
-    background-color: #fef3c7;
+    background-color: rgba(217, 119, 6, 0.12);
     color: #92400e;
   }
 
-  .u-badge--green {
-    background-color: #dcfce7;
-    color: #166534;
+  .u-badge--light {
+    background-color: var(--color-surface-muted);
+    color: var(--color-text-main);
   }
 
-  /* Section Headers */
-  .u-section-header {
-    max-width: 44rem;
-    margin-inline: auto;
-    margin-block-end: var(--space-xl);
-    text-align: center;
+  /* Circular & Pill Icon Boxes (Reference Characteristic) */
+  .u-icon-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 26px 20px 20px 20px;
+    border: 2px solid var(--color-brand-primary);
+    border-radius: 38px;
+    width: fit-content;
+    height: auto;
+    color: var(--color-brand-primary);
+    flex-shrink: 0;
   }
 
-  .u-section-header h2 {
-    font-size: var(--font-size-h2);
-    margin-block-end: var(--space-2xs);
+  .u-icon-pill--inverse {
+    border-color: #ffffff;
+    color: #ffffff;
   }
 
-  .u-section-header p {
-    font-size: var(--font-size-body);
-    color: var(--color-text-muted);
+  .u-icon-pill--white {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: var(--color-brand-primary);
   }
 }

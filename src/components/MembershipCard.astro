@@ -1,57 +1,138 @@
 ---
 ---
 
-<section class="c-member l-section l-section--muted">
+<section class="c-member l-section">
   <div class="l-container">
-    <div class="c-member__card l-card l-card--gold">
-      <div class="c-member__content l-stack l-stack--sm u-text-center">
+    <div class="c-member__banner">
+      <div class="c-member__left">
+        <!-- Site Emblem (Cropped IPv6 Favicon 512x512 with true ratio) -->
         <div class="c-member__icon-wrap">
           <img
             src="/images/cropped-IPv6-favicon.png"
             alt="IPv6 Council Emblem"
-            width="64"
-            height="64"
+            width="512"
+            height="512"
             class="c-member__icon"
+            loading="lazy"
           />
         </div>
-        <h3 class="c-member__title">Join us today and become a valued member</h3>
-        <p class="c-member__desc">
-          Partner with a community that values your skills. Get practical training, expert advice and a national network.
-        </p>
-        <div class="c-member__cta">
-          <a href="/contact" class="u-btn u-btn--gold">Become a member</a>
+        <div class="c-member__text">
+          <h2 class="c-member__title">
+            Join us today and become a valued member
+          </h2>
+          <p class="c-member__desc">
+            Partner with a community that values your skills. Get practical training, expert advice and a national network.
+          </p>
         </div>
+      </div>
+
+      <div class="c-member__right">
+        <a href="/contact" class="u-btn u-btn--accent">
+          <span>Become a member</span>
+          <span class="u-btn__circle">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.9 7H11.1M11.1 7L7 2.9M11.1 7L7 11.1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .c-member__card {
-    max-width: 48rem;
-    margin-inline: auto;
-    padding: var(--space-xl);
+  .c-member {
+    padding-top: clamp(2rem, 4vw, 3rem);
+    padding-bottom: clamp(3.5rem, 6vw, 6rem);
+    background-color: #ffffff;
+  }
+
+  /* Full-width curved dark wavy banner matching reference */
+  .c-member__banner {
+    background-color: #040404;
+    background-image: url('/images/hero-section-background-scaled-1.webp');
+    background-size: cover;
+    background-position: center bottom;
+    border-radius: var(--radius-card);
+    padding: clamp(2.5rem, 5vw, 4rem);
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    align-items: flex-start;
+    color: #ffffff;
+  }
+
+  @media (min-width: 64rem) {
+    .c-member__banner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4rem;
+    }
+
+    .c-member__left {
+      flex: 0 0 65%;
+    }
+
+    .c-member__right {
+      flex: 0 0 35%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .c-member__left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 36rem) {
+    .c-member__left {
+      flex-direction: row;
+      align-items: center;
+      gap: 2rem;
+    }
+  }
+
+  .c-member__icon-wrap {
+    flex-shrink: 0;
   }
 
   .c-member__icon {
-    width: 3.5rem;
-    height: 3.5rem;
-    margin-inline: auto;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: #ffffff;
+    padding: 10px;
+    border: 3px solid rgba(253, 83, 32, 0.4);
   }
 
   .c-member__title {
+    font-family: var(--font-heading);
     font-size: var(--font-size-h2);
-    color: var(--color-brand-primary);
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
   }
 
   .c-member__desc {
-    font-size: var(--font-size-body);
-    color: var(--color-text-muted);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    color: var(--color-text-inverse-muted);
+    line-height: 1.6;
+    margin: 0;
     max-width: 36rem;
-    margin-inline: auto;
   }
 
-  .c-member__cta {
-    padding-block-start: var(--space-xs);
+  .c-member__right {
+    width: 100%;
+  }
+
+  @media (min-width: 64rem) {
+    .c-member__right {
+      width: auto;
+    }
   }
 </style>

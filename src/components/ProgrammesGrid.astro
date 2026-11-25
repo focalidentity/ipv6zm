@@ -4,28 +4,50 @@ import { CORE_PROGRAMMES } from '../consts';
 
 <section id="programmes" class="c-programmes l-section">
   <div class="l-container">
-    <div class="u-section-header">
-      <div class="u-badge u-badge--primary">Core Pillars</div>
-      <h2>Our latest programmes</h2>
-      <p>Three foundational initiatives driving nationwide capacity and strategic alignment.</p>
+    <div class="c-programmes__header">
+      <div class="c-programmes__title-wrap">
+        <h2 class="c-programmes__title">Our latest programmes</h2>
+        <p class="c-programmes__lead">
+          Three foundational initiatives driving nationwide capacity and strategic alignment.
+        </p>
+      </div>
+      <div class="c-programmes__cta">
+        <a href="/projects" class="u-link-arrow u-link-arrow--inverse">
+          <span>View all programmes</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
     </div>
 
-    <div class="l-grid l-grid--3col">
+    <!-- 3-Column Card Grid matching Reference -->
+    <div class="c-programmes__grid">
       {
         CORE_PROGRAMMES.map((prog) => (
-          <article class="c-program-card l-card l-card--interactive">
-            <div class="c-program-card__frame l-frame">
-              <img src={prog.image} alt={prog.imageAlt} width="400" height="225" loading="lazy" />
-              <span class="c-program-card__tag u-badge u-badge--accent">{prog.category}</span>
+          <article class="c-prog-card">
+            <div class="c-prog-card__image-wrap">
+              <img
+                src={prog.image}
+                alt={prog.imageAlt}
+                width="600"
+                height="450"
+                loading="lazy"
+                class="c-prog-card__image"
+              />
             </div>
-            <div class="c-program-card__body l-stack l-stack--sm">
-              <h3 class="c-program-card__title">
+            <div class="c-prog-card__body">
+              <span class="u-badge">{prog.category}</span>
+              <h3 class="c-prog-card__title">
                 <a href={prog.href}>{prog.title}</a>
               </h3>
-              <p class="c-program-card__desc">{prog.description}</p>
-              <div class="c-program-card__footer">
-                <a href={prog.href} class="c-program-card__link">
-                  Learn more →
+              <p class="c-prog-card__desc">{prog.description}</p>
+              <div class="c-prog-card__footer">
+                <a href={prog.href} class="u-link-arrow u-link-arrow--inverse">
+                  <span>Learn more</span>
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </a>
               </div>
             </div>
@@ -37,50 +59,120 @@ import { CORE_PROGRAMMES } from '../consts';
 </section>
 
 <style>
-  .c-program-card {
+  .c-programmes {
+    background-color: #040404;
+    color: #ffffff;
+    padding-block: clamp(3.75rem, 6vw, 7.5rem);
+  }
+
+  .c-programmes__header {
     display: flex;
     flex-direction: column;
-    padding: var(--space-md);
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
   }
 
-  .c-program-card__frame {
-    margin-block-end: var(--space-md);
+  @media (min-width: 48rem) {
+    .c-programmes__header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
   }
 
-  .c-program-card__tag {
-    position: absolute;
-    top: var(--space-xs);
-    left: var(--space-xs);
-    z-index: 2;
+  .c-programmes__title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-h2);
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
   }
 
-  .c-program-card__title {
-    font-size: var(--font-size-h3);
+  .c-programmes__lead {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    color: var(--color-text-inverse-muted);
+    margin: 0;
   }
 
-  .c-program-card__title a:hover {
-    color: var(--color-brand-secondary);
+  .c-programmes__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 
-  .c-program-card__desc {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-    line-height: var(--line-height-normal);
+  @media (min-width: 48rem) {
+    .c-programmes__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .c-programmes__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Card matching reference: 4:3 cover photo with 20px radius, zoom hover, badge and title */
+  .c-prog-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .c-prog-card__image-wrap {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background-color: #1a1a1a;
+    margin-bottom: 1.5rem;
+  }
+
+  .c-prog-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .c-prog-card:hover .c-prog-card__image {
+    transform: scale(1.05);
+  }
+
+  .c-prog-card__body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 0.75rem;
+  }
+
+  .c-prog-card__title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem; /* ~22px */
+    color: #ffffff;
+    line-height: 1.35;
+    margin-top: 0.25rem;
+  }
+
+  .c-prog-card__title a {
+    color: #ffffff;
+  }
+
+  .c-prog-card__title a:hover {
+    color: var(--color-brand-accent);
+  }
+
+  .c-prog-card__desc {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    color: var(--color-text-inverse-muted);
+    line-height: 1.6;
+    margin: 0;
     flex-grow: 1;
   }
 
-  .c-program-card__footer {
-    padding-block-start: var(--space-xs);
-    border-top: 1px solid var(--color-border);
-  }
-
-  .c-program-card__link {
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-    color: var(--color-brand-primary);
-  }
-
-  .c-program-card__link:hover {
-    color: var(--color-brand-accent);
+  .c-prog-card__footer {
+    padding-top: 1rem;
+    margin-top: auto;
   }
 </style>
